@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f23c93e6-5781-4125-be49-f3f7172c6ba1" name="Default" comment="Initial Commit" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="msushrim_team@chadkrause.com" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="msushrim_team@chadkrause.com" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="msushrim_team@chadkrause.com" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="msushrim_team: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="msushrim_team@chadkrause.com" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="msushrim_team: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="validator: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="Table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="915">
+              <caret line="66" column="7" lean-forward="false" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Manager/Models/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+              <folding>
+                <element signature="e#593#629#0#PHP" expanded="false" />
+                <element signature="e#1102#1132#0#PHP" expanded="false" />
+                <element signature="e#1137#1198#0#PHP" expanded="false" />
+                <element signature="e#1204#1237#0#PHP" expanded="false" />
+                <element signature="e#1242#1317#0#PHP" expanded="false" />
+                <element signature="e#1323#1366#0#PHP" expanded="false" />
+                <element signature="e#1371#1462#0#PHP" expanded="false" />
+                <element signature="e#1468#1501#0#PHP" expanded="false" />
+                <element signature="e#1506#1579#0#PHP" expanded="false" />
+                <element signature="e#1585#1627#0#PHP" expanded="false" />
+                <element signature="e#1632#1719#0#PHP" expanded="false" />
+                <element signature="e#1725#1757#0#PHP" expanded="false" />
+                <element signature="e#1762#1829#0#PHP" expanded="false" />
+                <element signature="e#1835#1873#0#PHP" expanded="false" />
+                <element signature="e#1878#1953#0#PHP" expanded="false" />
+                <element signature="e#1959#1991#0#PHP" expanded="false" />
+                <element signature="e#1996#2061#0#PHP" expanded="false" />
+                <element signature="e#2067#2104#0#PHP" expanded="false" />
+                <element signature="e#2109#2180#0#PHP" expanded="false" />
+                <element signature="e#2186#2218#0#PHP" expanded="false" />
+                <element signature="e#2223#2308#0#PHP" expanded="false" />
+                <element signature="e#2314#2361#0#PHP" expanded="false" />
+                <element signature="e#2366#2477#0#PHP" expanded="false" />
+                <element signature="e#2483#2515#0#PHP" expanded="false" />
+                <element signature="e#2520#2597#0#PHP" expanded="false" />
+                <element signature="e#2603#2646#0#PHP" expanded="false" />
+                <element signature="e#2651#2746#0#PHP" expanded="false" />
+                <element signature="e#2752#2784#0#PHP" expanded="false" />
+                <element signature="e#2789#2862#0#PHP" expanded="false" />
+                <element signature="e#2868#2908#0#PHP" expanded="false" />
+                <element signature="e#2913#3000#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Users.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Users.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="90" column="48" lean-forward="false" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
+              <folding>
+                <element signature="e#146#231#0#PHP" expanded="false" />
+                <element signature="e#236#337#0#PHP" expanded="false" />
+                <element signature="e#343#534#0#PHP" expanded="false" />
+                <element signature="e#539#1195#0#PHP" expanded="false" />
+                <element signature="e#1201#1391#0#PHP" expanded="false" />
+                <marker date="1529882337564" expanded="true" signature="1680:1836" ph="INSERT INTO ${$this-&gt;tableName}... " />
+                <marker date="1529882337564" expanded="true" signature="2779:2977" ph="..." />
+                <marker date="1529882337564" expanded="true" signature="2809:2935" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Validators.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Validators.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <folding>
+                <element signature="e#151#240#0#PHP" expanded="false" />
+                <element signature="e#245#351#0#PHP" expanded="false" />
+                <element signature="e#357#518#0#PHP" expanded="false" />
+                <element signature="e#523#876#0#PHP" expanded="false" />
+                <element signature="e#656#743#0#PHP" expanded="false" />
+                <element signature="e#882#1046#0#PHP" expanded="false" />
+                <element signature="e#1051#1189#0#PHP" expanded="false" />
+                <element signature="e#1195#1411#0#PHP" expanded="false" />
+                <element signature="e#1416#1762#0#PHP" expanded="false" />
+                <element signature="e#1768#1896#0#PHP" expanded="false" />
+                <element signature="e#1901#2100#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Coordinator.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Coordinator.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.inc.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/config.inc.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="localize.inc.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/localize.inc.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding>
+                <element signature="e#93#191#0#PHP" expanded="false" />
+                <element signature="e#199#618#1#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>site</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>config</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/lib/TeamManagement/Table.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Table.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Models/User.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/lib/Manager/Config.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Models/Users.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Models/Validator.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Models/Validators.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/3dd24153-ef3f-43dd-8a8f-ecf02591e308/console.sql" />
+        <option value="$PROJECT_DIR$/lib/config.inc.php" />
+        <option value="$PROJECT_DIR$/lib/localize.inc.php" />
+        <option value="$PROJECT_DIR$/Coordinator.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 7.1" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="800" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="lib" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/Manager/Models" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f23c93e6-5781-4125-be49-f3f7172c6ba1" name="Default" comment="" />
+      <created>1529799579039</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1529799579039</updated>
+      <workItem from="1529799580434" duration="6768000" />
+    </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <created>1529932901900</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1529932901900</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Initial Commit">
+      <created>1529932937801</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1529932937801</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="6768000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <layout>
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5028612" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22818312" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.49713877" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="66" column="7" lean-forward="false" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding>
+            <element signature="e#593#629#0#PHP" expanded="false" />
+            <element signature="e#1102#1132#0#PHP" expanded="false" />
+            <element signature="e#1137#1198#0#PHP" expanded="false" />
+            <element signature="e#1204#1237#0#PHP" expanded="false" />
+            <element signature="e#1242#1317#0#PHP" expanded="false" />
+            <element signature="e#1323#1366#0#PHP" expanded="false" />
+            <element signature="e#1371#1462#0#PHP" expanded="false" />
+            <element signature="e#1468#1501#0#PHP" expanded="false" />
+            <element signature="e#1506#1579#0#PHP" expanded="false" />
+            <element signature="e#1585#1627#0#PHP" expanded="false" />
+            <element signature="e#1632#1719#0#PHP" expanded="false" />
+            <element signature="e#1725#1757#0#PHP" expanded="false" />
+            <element signature="e#1762#1829#0#PHP" expanded="false" />
+            <element signature="e#1835#1873#0#PHP" expanded="false" />
+            <element signature="e#1878#1953#0#PHP" expanded="false" />
+            <element signature="e#1959#1991#0#PHP" expanded="false" />
+            <element signature="e#1996#2061#0#PHP" expanded="false" />
+            <element signature="e#2067#2104#0#PHP" expanded="false" />
+            <element signature="e#2109#2180#0#PHP" expanded="false" />
+            <element signature="e#2186#2218#0#PHP" expanded="false" />
+            <element signature="e#2223#2308#0#PHP" expanded="false" />
+            <element signature="e#2314#2361#0#PHP" expanded="false" />
+            <element signature="e#2366#2477#0#PHP" expanded="false" />
+            <element signature="e#2483#2515#0#PHP" expanded="false" />
+            <element signature="e#2520#2597#0#PHP" expanded="false" />
+            <element signature="e#2603#2646#0#PHP" expanded="false" />
+            <element signature="e#2651#2746#0#PHP" expanded="false" />
+            <element signature="e#2752#2784#0#PHP" expanded="false" />
+            <element signature="e#2789#2862#0#PHP" expanded="false" />
+            <element signature="e#2868#2908#0#PHP" expanded="false" />
+            <element signature="e#2913#3000#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="90" column="48" lean-forward="false" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
+          <folding>
+            <element signature="e#146#231#0#PHP" expanded="false" />
+            <element signature="e#236#337#0#PHP" expanded="false" />
+            <element signature="e#343#534#0#PHP" expanded="false" />
+            <element signature="e#539#1195#0#PHP" expanded="false" />
+            <element signature="e#1201#1391#0#PHP" expanded="false" />
+            <marker date="1529882337564" expanded="true" signature="1680:1836" ph="INSERT INTO ${$this-&gt;tableName}... " />
+            <marker date="1529882337564" expanded="true" signature="2779:2977" ph="..." />
+            <marker date="1529882337564" expanded="true" signature="2809:2935" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3dd24153-ef3f-43dd-8a8f-ecf02591e308/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="18" lean-forward="true" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Validators.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding>
+            <element signature="e#151#240#0#PHP" expanded="false" />
+            <element signature="e#245#351#0#PHP" expanded="false" />
+            <element signature="e#357#518#0#PHP" expanded="false" />
+            <element signature="e#523#876#0#PHP" expanded="false" />
+            <element signature="e#656#743#0#PHP" expanded="false" />
+            <element signature="e#882#1046#0#PHP" expanded="false" />
+            <element signature="e#1051#1189#0#PHP" expanded="false" />
+            <element signature="e#1195#1411#0#PHP" expanded="false" />
+            <element signature="e#1416#1762#0#PHP" expanded="false" />
+            <element signature="e#1768#1896#0#PHP" expanded="false" />
+            <element signature="e#1901#2100#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding>
+            <element signature="e#539#2224#0#PHP" expanded="false" />
+            <element signature="e#2249#2710#0#PHP" expanded="false" />
+            <element signature="e#2719#2752#0#PHP" expanded="false" />
+            <element signature="e#2757#2836#0#PHP" expanded="false" />
+            <element signature="e#2842#2887#0#PHP" expanded="false" />
+            <element signature="e#2892#2991#0#PHP" expanded="false" />
+            <element signature="e#2997#3030#0#PHP" expanded="false" />
+            <element signature="e#3035#3102#0#PHP" expanded="false" />
+            <element signature="e#3108#3147#0#PHP" expanded="false" />
+            <element signature="e#3152#3227#0#PHP" expanded="false" />
+            <element signature="e#3233#3266#0#PHP" expanded="false" />
+            <element signature="e#3271#3336#0#PHP" expanded="false" />
+            <element signature="e#3342#3380#0#PHP" expanded="false" />
+            <element signature="e#3385#3456#0#PHP" expanded="false" />
+            <element signature="e#3463#3590#0#PHP" expanded="false" />
+            <element signature="e#3595#3803#0#PHP" expanded="false" />
+            <element signature="e#3809#3919#0#PHP" expanded="false" />
+            <element signature="e#3924#4374#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/config.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/localize.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#93#191#0#PHP" expanded="false" />
+            <element signature="e#199#618#1#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Coordinator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
