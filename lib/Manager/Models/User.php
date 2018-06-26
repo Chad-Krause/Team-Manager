@@ -6,7 +6,7 @@
  * Time: 8:45 PM
  */
 
-namespace Manager;
+namespace Manager\Models;
 
 
 class User
@@ -32,7 +32,7 @@ class User
         $this->id               = $row['id'];
         $this->firstname        = $row['firstname'];
         $this->lastname         = $row['lastname'];
-        $this->email            = $row['lastname'];
+        $this->email            = $row['email'];
         $this->role             = $row['roleid'];
         $this->graduationyear   = $row['graduationyear'];
         $this->yearjoined       = $row['yearjoined'];

@@ -6,7 +6,8 @@
  * Time: 8:21 PM
  */
 
-namespace Manager;
+namespace Manager\Models;
+use Manager\Config;
 
 
 class Table

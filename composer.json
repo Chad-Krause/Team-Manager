@@ -9,11 +9,12 @@
         }
     ],
     "require": {
-        "firebase/php-jwt": "^5.0"
+        "firebase/php-jwt": "^5.0",
+        "phpunit/phpunit": "^7.2"
     },
     "autoload": {
         "psr-4": {
-            "Manager\\": "lib/Manager"
+            "Manager\\": ["lib/Manager/"]
         }
     }
 }

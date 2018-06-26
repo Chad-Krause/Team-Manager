@@ -6,7 +6,8 @@
  * Time: 7:24 PM
  */
 
-namespace Manager;
+namespace Manager\Models;
+use Manager\Config;
 
 
 class Validators extends Table
