@@ -10,7 +10,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(-1);
 
-require __DIR__ . "/vendor/autoload.php";
+require "lib/config.inc.php";
+use Manager\Config;
 
 $request_url = $_SERVER['REQUEST_URI'];
 

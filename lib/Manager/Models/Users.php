@@ -8,6 +8,8 @@
 
 namespace Manager\Models;
 use Manager\Config;
+use Manager\Helpers\Email;
+use MongoDB\Driver\Manager;
 
 
 class Users extends Table
@@ -25,7 +27,7 @@ class Users extends Table
      * Test for a valid login.
      * @param $email string User email
      * @param $password string Password credential
-     * @returns User object if successful, null otherwise.
+     * @return User object if successful, null otherwise.
      */
     public function login($email, $password) {
 
@@ -60,10 +62,11 @@ SQL;
     /**
      * Create a new user.
      * @param User $user The new user data
-     * @param Email $mailer An Email object to use
+     * @param  int $mailer An Email object to use
+     * @throws \Exception when user exists
      * @return null on success or error message if failure
      */
-    public function add(User $user/*, mail $mailer*/) {
+    public function add(User $user, Email $mailer) {
         // Ensure we have no duplicate email address
         if($this->exists($user->getEmail())) {
             throw new \Exception('User already exists');
@@ -71,8 +74,8 @@ SQL;
 
         // Add a record to the user table
         $sql = <<<SQL
-INSERT INTO $this->tableName (firstname, lastname, email, role, date_added, date_modified, graduationyear, yearjoined, birthday)
-values(?, ?, ?, ?, ?, ?, ?)
+INSERT INTO $this->tableName (firstname, lastname, email, roleid, date_added, date_modified, graduationyear, yearjoined, birthday)
+values (?, ?, ?, ?, ?, ?, ?, ?, ?)
 SQL;
 
         $statement = $this->pdo()->prepare($sql);
@@ -94,7 +97,7 @@ SQL;
         $validator = $validators->newValidator($id);
 
         // Send email with the validator in it
-        $link = "http://webdev.cse.msu.edu"  . $this->site->getRoot() .
+        $link = "https://team.chadkrause.com"  . $this->config->getRoot() .
             '/password-validate.php?v=' . $validator;
 
         $from = $this->config->getEmail();
@@ -112,6 +115,26 @@ please verify your email address by visiting the following link:</p>
 </html>
 MSG;
         $headers = "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso=8859-1\r\nFrom: $from\r\n";
-        //$mailer->mail($user->getEmail(), $subject, $message, $headers);
+        $mailer->mail($user->getEmail(), $subject, $message, $headers);
+
+        return null;
+    }
+
+
+    /**
+     * @param string $email email to check whether user exists or not
+     * @return bool true if email exists
+     */
+    public function exists(string $email){
+        $sql =<<<SQL
+SELECT * from $this->tableName
+where email=?
+SQL;
+
+        $pdo = $this->pdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$email]);
+
+        return $stmt->rowCount() !== 0;
     }
 }

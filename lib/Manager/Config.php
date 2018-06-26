@@ -140,6 +140,10 @@ EOD;
                 $this->dbPassword);
         } catch(\PDOException $e) {
             // If we can't connect we die!
+            echo "<pre>";
+            print_r([$this->dbHost, $this->dbUser]);
+            print_r($e);
+            echo "</pre>";
             die("Unable to select database");
         }
 

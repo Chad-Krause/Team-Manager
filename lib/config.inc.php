@@ -13,9 +13,9 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
-$site = new Manager\Config();
 $localize = require 'localize.inc.php';
+$config = new Manager\Config();
 
 if(is_callable($localize)) {
-    $localize($site);
+    $localize($config);
 }

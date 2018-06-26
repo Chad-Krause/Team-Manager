@@ -29,14 +29,14 @@ class User
      */
     public function __construct($row)
     {
-        $this->id               = $row['id'];
+        $this->id               = isset($row['id']) ? $row['id'] : null;
         $this->firstname        = $row['firstname'];
         $this->lastname         = $row['lastname'];
         $this->email            = $row['email'];
         $this->role             = $row['roleid'];
-        $this->graduationyear   = $row['graduationyear'];
-        $this->yearjoined       = $row['yearjoined'];
-        $this->birthday         = $row['birthday'];
+        $this->graduationyear   = isset($row['graduationyear']) ? $row['graduationyear'] : null;
+        $this->yearjoined       = isset($row['yearjoined']) ? $row['yearjoined'] : null;
+        $this->birthday         = isset($row['birthday']) ? $row['birthday'] : null;
     }
 
     /**

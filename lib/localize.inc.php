@@ -15,9 +15,9 @@ return function(Manager\Config $config) {
     date_default_timezone_set('America/Detroit');
 
     $config->setEmail('chad@chadkrause.com');
-    $config->setRoot('/~krausec6/step8');
-    $config->dbConfigure('mysql:host=mysql-user.cse.msu.edu;dbname=msushrim_team',
-        'msushrim_chad',       // Database user
-        'Monsters308',     // Database password
+    $config->setRoot('/');
+    $config->dbConfigure('mysql:dbname=msushrim_team;host=127.0.0.1',
+        'msushrim_pattrn',       // Database user
+        '%m8Q%ym?Rrw4',     // Database password
         '');            // Table prefix
 };
