@@ -9,7 +9,6 @@
 namespace Manager\Models;
 use Manager\Config;
 use Manager\Helpers\Email;
-use MongoDB\Driver\Manager;
 
 
 class Users extends Table
@@ -82,7 +81,7 @@ SQL;
         $statement->execute(array(
             $user->getFirstname(),
             $user->getLastname(),
-            $user->getEmail(),
+            strtolower($user->getEmail()),
             $user->getRole(),
             date("Y-m-d H:i:s"),
             date("Y-m-d H:i:s"),
@@ -130,6 +129,8 @@ MSG;
 SELECT * from $this->tableName
 where email=?
 SQL;
+
+        $email = strtolower($email);
 
         $pdo = $this->pdo();
         $stmt = $pdo->prepare($sql);

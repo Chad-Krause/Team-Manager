@@ -27,16 +27,18 @@ class User
     /**
      * User constructor.
      */
-    public function __construct($row)
+    public function __construct($row = null)
     {
-        $this->id               = isset($row['id']) ? $row['id'] : null;
-        $this->firstname        = $row['firstname'];
-        $this->lastname         = $row['lastname'];
-        $this->email            = $row['email'];
-        $this->role             = $row['roleid'];
-        $this->graduationyear   = isset($row['graduationyear']) ? $row['graduationyear'] : null;
-        $this->yearjoined       = isset($row['yearjoined']) ? $row['yearjoined'] : null;
-        $this->birthday         = isset($row['birthday']) ? $row['birthday'] : null;
+        if($row !== null) {
+            $this->id               = isset($row['id']) ? $row['id'] : null;
+            $this->firstname        = $row['firstname'];
+            $this->lastname         = $row['lastname'];
+            $this->email            = strtolower($row['email']);
+            $this->role             = $row['roleid'];
+            $this->graduationyear   = isset($row['graduationyear']) ? $row['graduationyear'] : null;
+            $this->yearjoined       = isset($row['yearjoined']) ? $row['yearjoined'] : null;
+            $this->birthday         = isset($row['birthday']) ? $row['birthday'] : null;
+        }
     }
 
     /**
@@ -92,7 +94,7 @@ class User
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = strtolower($email);
     }
 
     /**
@@ -152,7 +154,7 @@ class User
     }
 
     /**
-     * @param date $birthday
+     * @param string $birthday
      */
     public function setBirthday($birthday)
     {
