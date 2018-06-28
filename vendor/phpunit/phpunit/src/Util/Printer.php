@@ -36,7 +36,7 @@ class Printer
     /**
      * Constructor.
      *
-     * @param null|mixed $out
+     * @param mixed $out
      *
      * @throws Exception
      */
@@ -53,8 +53,8 @@ class Printer
 
                     $this->out = \fsockopen($out[0], $out[1]);
                 } else {
-                    if (\strpos($out, 'php://') === false && !$this->createDirectory(\dirname($out))) {
-                        throw new Exception(\sprintf('Directory "%s" was not created', \dirname($out)));
+                    if (\strpos($out, 'php://') === false && !@\mkdir(\dirname($out)) && !\is_dir(\dirname($out))) {
+                        throw new \RuntimeException(\sprintf('Directory "%s" was not created', \dirname($out)));
                     }
 
                     $this->out = \fopen($out, 'wt');
@@ -93,6 +93,9 @@ class Printer
         }
     }
 
+    /**
+     * @param string $buffer
+     */
     public function write(string $buffer): void
     {
         if ($this->out) {
@@ -102,8 +105,8 @@ class Printer
                 $this->incrementalFlush();
             }
         } else {
-            if (\PHP_SAPI !== 'cli' && \PHP_SAPI !== 'phpdbg') {
-                $buffer = \htmlspecialchars($buffer, \ENT_SUBSTITUTE);
+            if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+                $buffer = \htmlspecialchars($buffer, ENT_SUBSTITUTE);
             }
 
             print $buffer;
@@ -116,6 +119,8 @@ class Printer
 
     /**
      * Check auto-flush mode.
+     *
+     * @return bool
      */
     public function getAutoFlush(): bool
     {
@@ -127,14 +132,11 @@ class Printer
      *
      * If set, *incremental* flushes will be done after each write. This should
      * not be confused with the different effects of this class' flush() method.
+     *
+     * @param bool $autoFlush
      */
     public function setAutoFlush(bool $autoFlush): void
     {
         $this->autoFlush = $autoFlush;
-    }
-
-    private function createDirectory(string $directory): bool
-    {
-        return !(!\is_dir($directory) && !@\mkdir($directory, 0777, true) && !\is_dir($directory));
     }
 }
