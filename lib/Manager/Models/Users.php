@@ -61,7 +61,7 @@ SQL;
     /**
      * Create a new user.
      * @param User $user The new user data
-     * @param  int $mailer An Email object to use
+     * @param  Email $mailer An Email object to use
      * @throws \Exception when user exists
      * @return null on success or error message if failure
      */
@@ -73,21 +73,28 @@ SQL;
 
         // Add a record to the user table
         $sql = <<<SQL
-INSERT INTO $this->tableName (firstname, lastname, email, roleid, date_added, date_modified, graduationyear, yearjoined, birthday)
-values (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO $this->tableName (firstname, lastname, email, roleid, enabled, date_added, date_modified, graduationyear, yearjoined, birthday)
+values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 SQL;
 
         $statement = $this->pdo()->prepare($sql);
-        $statement->execute(array(
-            $user->getFirstname(),
-            $user->getLastname(),
-            strtolower($user->getEmail()),
-            $user->getRole(),
-            date("Y-m-d H:i:s"),
-            date("Y-m-d H:i:s"),
-            $user->getGraduationyear(),
-            $user->getYearjoined(),
-            $user->getBirthday()));
+
+        try{
+            $statement->execute(array(
+                $user->getFirstname(),
+                $user->getLastname(),
+                strtolower($user->getEmail()),
+                $user->getRole(),
+                true,
+                date("Y-m-d H:i:s"),
+                date("Y-m-d H:i:s"),
+                $user->getGraduationyear(),
+                $user->getYearjoined(),
+                $user->getBirthday()));
+        } catch(\PDOException $e) {
+            throw new \Exception('Duplicate user');
+        }
+
 
         $id = $this->pdo()->lastInsertId();
 
@@ -118,7 +125,6 @@ MSG;
 
         return null;
     }
-
 
     /**
      * @param string $email email to check whether user exists or not

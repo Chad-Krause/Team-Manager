@@ -6,7 +6,7 @@
  * Time: 4:00 PM
  */
 
-require '../vendor/autoload.php';
+//require __DIR__ .  '../vendor/autoload.php';
 
 use Manager\Models\Lesson;
 use PHPUnit\Framework\TestCase;
@@ -53,7 +53,6 @@ class LessonTest extends TestCase
         $this->assertEquals(1, $lesson->isEnabled());
         $this->assertEquals($date, $lesson->getDateAdded());
         $this->assertEquals($date, $lesson->getDateModified());
-
     }
 
 

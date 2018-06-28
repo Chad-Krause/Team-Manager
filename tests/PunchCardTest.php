@@ -6,7 +6,7 @@
  * Time: 6:08 PM
  */
 
-
+//require __DIR__ . '../vendor/autoload.php';
 
 use Manager\Models\PunchCard;
 use PHPUnit\Framework\TestCase;
