@@ -16,6 +16,6 @@ PHPUnit %s by Sebastian Bergmann and contributors.
 DummyFoo
  ✔ Foo equals foo
 
-Time: %s, Memory: %s
+Time: %d ms, Memory: %fMB
 
 OK (1 test, 1 assertion)

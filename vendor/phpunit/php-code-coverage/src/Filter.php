@@ -10,8 +10,6 @@
 
 namespace SebastianBergmann\CodeCoverage;
 
-use SebastianBergmann\FileIterator\Facade as FileIteratorFacade;
-
 /**
  * Filter for whitelisting of code coverage information.
  */
@@ -29,7 +27,7 @@ final class Filter
      */
     public function addDirectoryToWhitelist(string $directory, string $suffix = '.php', string $prefix = ''): void
     {
-        $facade = new FileIteratorFacade;
+        $facade = new \File_Iterator_Facade;
         $files  = $facade->getFilesAsArray($directory, $suffix, $prefix);
 
         foreach ($files as $file) {
@@ -62,7 +60,7 @@ final class Filter
      */
     public function removeDirectoryFromWhitelist(string $directory, string $suffix = '.php', string $prefix = ''): void
     {
-        $facade = new FileIteratorFacade;
+        $facade = new \File_Iterator_Facade;
         $files  = $facade->getFilesAsArray($directory, $suffix, $prefix);
 
         foreach ($files as $file) {

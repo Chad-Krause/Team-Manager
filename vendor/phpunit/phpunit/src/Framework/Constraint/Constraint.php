@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace PHPUnit\Framework\Constraint;
 
 use Countable;
@@ -43,6 +44,9 @@ abstract class Constraint implements Countable, SelfDescribing
      *
      * @throws ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Exception
+     *
+     * @return mixed
      */
     public function evaluate($other, $description = '', $returnResult = false)
     {
@@ -63,6 +67,8 @@ abstract class Constraint implements Countable, SelfDescribing
 
     /**
      * Counts the number of constraint elements.
+     *
+     * @return int
      */
     public function count(): int
     {
@@ -76,6 +82,8 @@ abstract class Constraint implements Countable, SelfDescribing
      * This method can be overridden to implement the evaluation algorithm.
      *
      * @param mixed $other value or object to evaluate
+     *
+     * @return bool
      */
     protected function matches($other): bool
     {
@@ -90,6 +98,7 @@ abstract class Constraint implements Countable, SelfDescribing
      * @param ComparisonFailure $comparisonFailure
      *
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     protected function fail($other, $description, ComparisonFailure $comparisonFailure = null): void
@@ -122,6 +131,8 @@ abstract class Constraint implements Countable, SelfDescribing
      * information like a diff
      *
      * @param mixed $other evaluated value or object
+     *
+     * @return string
      */
     protected function additionalFailureDescription($other): string
     {
@@ -139,7 +150,10 @@ abstract class Constraint implements Countable, SelfDescribing
      *
      * @param mixed $other evaluated value or object
      *
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     *
+     * @return string
      */
     protected function failureDescription($other): string
     {

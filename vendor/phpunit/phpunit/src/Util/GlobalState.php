@@ -33,6 +33,8 @@ final class GlobalState
 
     /**
      * @param string[] $files
+     *
+     * @return string
      */
     public static function processIncludedFilesAsString(array $files): string
     {
@@ -129,7 +131,7 @@ final class GlobalState
         $blacklist[] = 'GLOBALS';
 
         foreach (\array_keys($GLOBALS) as $key) {
-            if (!$GLOBALS[$key] instanceof Closure && !\in_array($key, $blacklist, true)) {
+            if (!$GLOBALS[$key] instanceof Closure && !\in_array($key, $blacklist)) {
                 $result .= \sprintf(
                     '$GLOBALS[\'%s\'] = %s;' . "\n",
                     $key,
@@ -151,6 +153,11 @@ final class GlobalState
         return 'unserialize(' . \var_export(\serialize($variable), true) . ')';
     }
 
+    /**
+     * @param array $array
+     *
+     * @return bool
+     */
     private static function arrayOnlyContainsScalars(array $array): bool
     {
         $result = true;

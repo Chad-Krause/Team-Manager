@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace PHPUnit\Util;
 
 use PHPUnit\Framework\Exception;
@@ -16,7 +17,11 @@ final class Json
     /**
      * Prettify json string
      *
+     * @param string $json
+     *
      * @throws \PHPUnit\Framework\Exception
+     *
+     * @return string
      */
     public static function prettify(string $json): string
     {
@@ -28,7 +33,7 @@ final class Json
             );
         }
 
-        return \json_encode($decodedJson, \JSON_PRETTY_PRINT);
+        return \json_encode($decodedJson, JSON_PRETTY_PRINT);
     }
 
     /*
@@ -67,7 +72,7 @@ final class Json
             // But EMPTY objects MUST remain empty objects. (Otherwise we will
             // re-encode it as a JSON array rather than a JSON object.)
             // See #2919.
-            if (\is_object($json) && \count((array) $json) > 0) {
+            if (\is_object($json) && count((array) $json) > 0) {
                 $json = (array) $json;
             } else {
                 return;

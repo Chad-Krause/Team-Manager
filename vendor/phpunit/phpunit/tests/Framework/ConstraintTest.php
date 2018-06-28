@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace PHPUnit\Framework;
 
 use PHPUnit\Framework\Constraint\Count;
@@ -71,7 +72,7 @@ EOF
 
     public function testConstraintFileNotExists(): void
     {
-        $file = \dirname(__DIR__) . \DIRECTORY_SEPARATOR . '_files' . \DIRECTORY_SEPARATOR . 'ClassWithNonPublicAttributes.php';
+        $file = \dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ClassWithNonPublicAttributes.php';
 
         $constraint = Assert::logicalNot(
             Assert::fileExists()
@@ -101,7 +102,7 @@ EOF
 
     public function testConstraintFileNotExists2(): void
     {
-        $file = \dirname(__DIR__) . \DIRECTORY_SEPARATOR . '_files' . \DIRECTORY_SEPARATOR . 'ClassWithNonPublicAttributes.php';
+        $file = \dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ClassWithNonPublicAttributes.php';
 
         $constraint = Assert::logicalNot(
             Assert::fileExists()

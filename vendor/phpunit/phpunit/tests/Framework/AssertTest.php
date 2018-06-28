@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace PHPUnit\Framework;
 
 use PHPUnit\Util\Xml;
@@ -18,20 +19,9 @@ class AssertTest extends TestCase
      */
     private $filesDirectory;
 
-    /**
-     * @return array<string, string[]>
-     */
-    public static function validInvalidJsonDataprovider()
-    {
-        return [
-            'error syntax in expected JSON' => ['{"Mascott"::}', '{"Mascott" : "Tux"}'],
-            'error UTF-8 in actual JSON'    => ['{"Mascott" : "Tux"}', '{"Mascott" : :}'],
-        ];
-    }
-
     protected function setUp(): void
     {
-        $this->filesDirectory = \dirname(__DIR__) . \DIRECTORY_SEPARATOR . '_files' . \DIRECTORY_SEPARATOR;
+        $this->filesDirectory = \dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR;
     }
 
     public function testFail(): void
@@ -228,8 +218,12 @@ class AssertTest extends TestCase
     /**
      * @dataProvider assertArraySubsetInvalidArgumentProvider
      *
+     * @param mixed $partial
+     * @param mixed $subject
+     *
      * @throws Exception
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testAssertArraySubsetRaisesExceptionForInvalidArguments($partial, $subject): void
@@ -538,7 +532,14 @@ class AssertTest extends TestCase
     /**
      * @dataProvider equalProvider
      *
+     * @param mixed $a
+     * @param mixed $b
+     * @param mixed $delta
+     * @param mixed $canonicalize
+     * @param mixed $ignoreCase
+     *
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testAssertEqualsSucceeds($a, $b, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
@@ -549,7 +550,14 @@ class AssertTest extends TestCase
     /**
      * @dataProvider notEqualProvider
      *
+     * @param mixed $a
+     * @param mixed $b
+     * @param mixed $delta
+     * @param mixed $canonicalize
+     * @param mixed $ignoreCase
+     *
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testAssertEqualsFails($a, $b, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
@@ -562,7 +570,14 @@ class AssertTest extends TestCase
     /**
      * @dataProvider notEqualProvider
      *
+     * @param mixed $a
+     * @param mixed $b
+     * @param mixed $delta
+     * @param mixed $canonicalize
+     * @param mixed $ignoreCase
+     *
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testAssertNotEqualsSucceeds($a, $b, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
@@ -573,7 +588,14 @@ class AssertTest extends TestCase
     /**
      * @dataProvider equalProvider
      *
+     * @param mixed $a
+     * @param mixed $b
+     * @param mixed $delta
+     * @param mixed $canonicalize
+     * @param mixed $ignoreCase
+     *
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testAssertNotEqualsFails($a, $b, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
@@ -586,7 +608,11 @@ class AssertTest extends TestCase
     /**
      * @dataProvider sameProvider
      *
+     * @param mixed $a
+     * @param mixed $b
+     *
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testAssertSameSucceeds($a, $b): void
@@ -597,7 +623,11 @@ class AssertTest extends TestCase
     /**
      * @dataProvider notSameProvider
      *
+     * @param mixed $a
+     * @param mixed $b
+     *
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testAssertSameFails($a, $b): void
@@ -610,7 +640,11 @@ class AssertTest extends TestCase
     /**
      * @dataProvider notSameProvider
      *
+     * @param mixed $a
+     * @param mixed $b
+     *
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testAssertNotSameSucceeds($a, $b): void
@@ -621,7 +655,11 @@ class AssertTest extends TestCase
     /**
      * @dataProvider sameProvider
      *
+     * @param mixed $a
+     * @param mixed $b
+     *
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testAssertNotSameFails($a, $b): void
@@ -855,7 +893,7 @@ XML;
 
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertIsReadable(__DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting');
+        $this->assertIsReadable(__DIR__ . DIRECTORY_SEPARATOR . 'NotExisting');
     }
 
     public function testAssertNotIsReadable(): void
@@ -871,7 +909,7 @@ XML;
 
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertIsWritable(__DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting');
+        $this->assertIsWritable(__DIR__ . DIRECTORY_SEPARATOR . 'NotExisting');
     }
 
     public function testAssertNotIsWritable(): void
@@ -887,12 +925,12 @@ XML;
 
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertDirectoryExists(__DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting');
+        $this->assertDirectoryExists(__DIR__ . DIRECTORY_SEPARATOR . 'NotExisting');
     }
 
     public function testAssertDirectoryNotExists(): void
     {
-        $this->assertDirectoryNotExists(__DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting');
+        $this->assertDirectoryNotExists(__DIR__ . DIRECTORY_SEPARATOR . 'NotExisting');
 
         $this->expectException(AssertionFailedError::class);
 
@@ -905,7 +943,7 @@ XML;
 
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertDirectoryIsReadable(__DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting');
+        $this->assertDirectoryIsReadable(__DIR__ . DIRECTORY_SEPARATOR . 'NotExisting');
     }
 
     public function testAssertDirectoryIsWritable(): void
@@ -914,7 +952,7 @@ XML;
 
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertDirectoryIsWritable(__DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting');
+        $this->assertDirectoryIsWritable(__DIR__ . DIRECTORY_SEPARATOR . 'NotExisting');
     }
 
     public function testAssertFileExists(): void
@@ -923,12 +961,12 @@ XML;
 
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertFileExists(__DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting');
+        $this->assertFileExists(__DIR__ . DIRECTORY_SEPARATOR . 'NotExisting');
     }
 
     public function testAssertFileNotExists(): void
     {
-        $this->assertFileNotExists(__DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting');
+        $this->assertFileNotExists(__DIR__ . DIRECTORY_SEPARATOR . 'NotExisting');
 
         $this->expectException(AssertionFailedError::class);
 
@@ -941,7 +979,7 @@ XML;
 
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertFileIsReadable(__DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting');
+        $this->assertFileIsReadable(__DIR__ . DIRECTORY_SEPARATOR . 'NotExisting');
     }
 
     public function testAssertFileIsWritable(): void
@@ -950,7 +988,7 @@ XML;
 
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertFileIsWritable(__DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting');
+        $this->assertFileIsWritable(__DIR__ . DIRECTORY_SEPARATOR . 'NotExisting');
     }
 
     public function testAssertObjectHasAttribute(): void
@@ -981,12 +1019,12 @@ XML;
 
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertFinite(\INF);
+        $this->assertFinite(INF);
     }
 
     public function testAssertInfinite(): void
     {
-        $this->assertInfinite(\INF);
+        $this->assertInfinite(INF);
 
         $this->expectException(AssertionFailedError::class);
 
@@ -995,7 +1033,7 @@ XML;
 
     public function testAssertNan(): void
     {
-        $this->assertNan(\NAN);
+        $this->assertNan(NAN);
 
         $this->expectException(AssertionFailedError::class);
 
@@ -2326,7 +2364,11 @@ XML;
     /**
      * @dataProvider validInvalidJsonDataprovider
      *
+     * @param mixed $expected
+     * @param mixed $actual
+     *
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testAssertJsonStringEqualsJsonStringErrorRaised($expected, $actual): void
@@ -2348,7 +2390,11 @@ XML;
     /**
      * @dataProvider validInvalidJsonDataprovider
      *
+     * @param mixed $expected
+     * @param mixed $actual
+     *
      * @throws ExpectationFailedException
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testAssertJsonStringNotEqualsJsonStringErrorRaised($expected, $actual): void
@@ -2522,12 +2568,23 @@ XML;
         $this->assertStringNotMatchesFormatFile($this->filesDirectory . 'expectedFileFormat.txt', "FOO\n");
     }
 
+    /**
+     * @return array<string, string[]>
+     */
+    public static function validInvalidJsonDataprovider()
+    {
+        return [
+            'error syntax in expected JSON' => ['{"Mascott"::}', '{"Mascott" : "Tux"}'],
+            'error UTF-8 in actual JSON'    => ['{"Mascott" : "Tux"}', '{"Mascott" : :}'],
+        ];
+    }
+
     protected function sameValues()
     {
         $object = new \SampleClass(4, 8, 15);
         // cannot use $filesDirectory, because neither setUp() nor
         // setUpBeforeClass() are executed before the data providers
-        $file     = \dirname(__DIR__) . \DIRECTORY_SEPARATOR . '_files' . \DIRECTORY_SEPARATOR . 'foo.xml';
+        $file     = \dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'foo.xml';
         $resource = \fopen($file, 'r');
 
         return [
@@ -2578,7 +2635,7 @@ XML;
 
         // cannot use $filesDirectory, because neither setUp() nor
         // setUpBeforeClass() are executed before the data providers
-        $file = \dirname(__DIR__) . \DIRECTORY_SEPARATOR . '_files' . \DIRECTORY_SEPARATOR . 'foo.xml';
+        $file = \dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'foo.xml';
 
         return [
             // strings
@@ -2597,7 +2654,7 @@ XML;
             [new \Struct(2.3), new \Struct(4.2), 0.5],
             [[new \Struct(2.3)], [new \Struct(4.2)], 0.5],
             // NAN
-            [\NAN, \NAN],
+            [NAN, NAN],
             // arrays
             [[], [0 => 1]],
             [[0     => 1], []],

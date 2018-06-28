@@ -21,7 +21,26 @@ class LogicalNot extends Constraint
      */
     private $constraint;
 
-    public static function negate(string $string): string
+    /**
+     * @param Constraint $constraint
+     */
+    public function __construct($constraint)
+    {
+        parent::__construct();
+
+        if (!($constraint instanceof Constraint)) {
+            $constraint = new IsEqual($constraint);
+        }
+
+        $this->constraint = $constraint;
+    }
+
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
+    public static function negate($string): string
     {
         $positives = [
             'contains ',
@@ -75,20 +94,6 @@ class LogicalNot extends Constraint
     }
 
     /**
-     * @param Constraint|mixed $constraint
-     */
-    public function __construct($constraint)
-    {
-        parent::__construct();
-
-        if (!($constraint instanceof Constraint)) {
-            $constraint = new IsEqual($constraint);
-        }
-
-        $this->constraint = $constraint;
-    }
-
-    /**
      * Evaluates the constraint for parameter $other
      *
      * If $returnResult is set to false (the default), an exception is thrown
@@ -104,6 +109,9 @@ class LogicalNot extends Constraint
      *
      * @throws ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Exception
+     *
+     * @return mixed
      */
     public function evaluate($other, $description = '', $returnResult = false)
     {
@@ -120,6 +128,8 @@ class LogicalNot extends Constraint
 
     /**
      * Returns a string representation of the constraint.
+     *
+     * @return string
      */
     public function toString(): string
     {
@@ -138,6 +148,8 @@ class LogicalNot extends Constraint
 
     /**
      * Counts the number of constraint elements.
+     *
+     * @return int
      */
     public function count(): int
     {
@@ -152,7 +164,10 @@ class LogicalNot extends Constraint
      *
      * @param mixed $other evaluated value or object
      *
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     *
+     * @return string
      */
     protected function failureDescription($other): string
     {

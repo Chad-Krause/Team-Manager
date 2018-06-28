@@ -44,13 +44,20 @@ class SkippedTestCase extends TestCase
      */
     protected $useOutputBuffering = false;
 
-    public function __construct(string $className, string $methodName, string $message = '')
+    /**
+     * @param string $message
+     * @param mixed  $className
+     * @param mixed  $methodName
+     */
+    public function __construct($className, $methodName, $message = '')
     {
-        parent::__construct($className . '::' . $methodName);
-
         $this->message = $message;
+        parent::__construct($className . '::' . $methodName);
     }
 
+    /**
+     * @return string
+     */
     public function getMessage(): string
     {
         return $this->message;
@@ -59,7 +66,10 @@ class SkippedTestCase extends TestCase
     /**
      * Returns a string representation of the test case.
      *
+     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     *
+     * @return string
      */
     public function toString(): string
     {

@@ -13,7 +13,6 @@ use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Test;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestResult;
-use PHPUnit\Framework\TestSuite;
 use PHPUnit\Framework\Warning;
 use PHPUnit\Runner\PhptTestCase;
 use PHPUnit\TextUI\ResultPrinter;
@@ -55,10 +54,7 @@ class CliTestDoxPrinter extends ResultPrinter
 
     public function startTest(Test $test): void
     {
-        if (!$test instanceof TestCase
-            && !$test instanceof PhptTestCase
-            && !$test instanceof TestSuite
-        ) {
+        if (!$test instanceof TestCase && !$test instanceof PhptTestCase) {
             return;
         }
 
@@ -80,12 +76,6 @@ class CliTestDoxPrinter extends ResultPrinter
             }
 
             $testMethod .= \substr($test->getDataSetAsString(false), 5);
-        } elseif ($test instanceof TestSuite) {
-            $className  = $test->getName();
-            $testMethod = \sprintf(
-                'Error bootstapping suite (most likely in %s::setUpBeforeClass)',
-                $test->getName()
-            );
         } elseif ($test instanceof PhptTestCase) {
             $className  = $class;
             $testMethod = $test->getName();
@@ -104,10 +94,7 @@ class CliTestDoxPrinter extends ResultPrinter
 
     public function endTest(Test $test, float $time): void
     {
-        if (!$test instanceof TestCase
-            && !$test instanceof PhptTestCase
-            && !$test instanceof TestSuite
-        ) {
+        if (!$test instanceof TestCase && !$test instanceof PhptTestCase) {
             return;
         }
 
@@ -175,7 +162,7 @@ class CliTestDoxPrinter extends ResultPrinter
         );
     }
 
-    public function writeProgress(string $progress): void
+    public function writeProgress($progress): void
     {
     }
 

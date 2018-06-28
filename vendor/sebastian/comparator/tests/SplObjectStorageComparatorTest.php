@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\Comparator;
 
 use PHPUnit\Framework\TestCase;
@@ -32,9 +33,9 @@ class SplObjectStorageComparatorTest extends TestCase
     public function acceptsFailsProvider()
     {
         return [
-            [new SplObjectStorage, new stdClass],
-            [new stdClass, new SplObjectStorage],
-            [new stdClass, new stdClass]
+          [new SplObjectStorage, new stdClass],
+          [new stdClass, new SplObjectStorage],
+          [new stdClass, new stdClass]
         ];
     }
 
@@ -55,10 +56,10 @@ class SplObjectStorageComparatorTest extends TestCase
         $storage4->attach($object1);
 
         return [
-            [$storage1, $storage1],
-            [$storage1, $storage2],
-            [$storage3, $storage3],
-            [$storage3, $storage4]
+          [$storage1, $storage1],
+          [$storage1, $storage2],
+          [$storage3, $storage3],
+          [$storage3, $storage4]
         ];
     }
 
@@ -77,9 +78,9 @@ class SplObjectStorageComparatorTest extends TestCase
         $storage3->attach($object1);
 
         return [
-            [$storage1, $storage2],
-            [$storage1, $storage3],
-            [$storage2, $storage3],
+          [$storage1, $storage2],
+          [$storage1, $storage3],
+          [$storage2, $storage3],
         ];
     }
 

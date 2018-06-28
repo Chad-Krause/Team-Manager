@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace PHPUnit\Framework;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -14,9 +15,9 @@ use PHPUnit\Runner\BaseTestRunner;
 
 class TestCaseTest extends TestCase
 {
-    protected static $testStatic      = 0;
-
     protected $backupGlobalsBlacklist = ['i', 'singleton'];
+
+    protected static $testStatic = 0;
 
     public static function setUpBeforeClass(): void
     {
@@ -177,14 +178,6 @@ class TestCaseTest extends TestCase
         $this->assertEquals(BaseTestRunner::STATUS_ERROR, $test->getStatus());
     }
 
-    public function testExceptionInTestIsDetectedInTeardown(): void
-    {
-        $test   = new \ExceptionInTestDetectedInTeardown('testSomething');
-        $test->run();
-
-        $this->assertTrue($test->exceptionDetected);
-    }
-
     public function testNoArgTestCasePasses(): void
     {
         $result = new TestResult;
@@ -330,17 +323,6 @@ class TestCaseTest extends TestCase
         $this->assertCount(1, $result);
     }
 
-    public function testDoesNotPerformAssertions(): void
-    {
-        $test = new \DoNoAssertionTestCase('testNothing');
-        $test->expectNotToPerformAssertions();
-
-        $result = $test->run();
-
-        $this->assertEquals(0, $result->riskyCount());
-        $this->assertCount(1, $result);
-    }
-
     /**
      * @backupGlobals enabled
      */
@@ -386,9 +368,6 @@ class TestCaseTest extends TestCase
         $this->assertEquals('ii', $GLOBALS['i']);
     }
 
-    /**
-     * @depends testGlobalsBackupPre
-     */
     public function testGlobalsBackupPost(): void
     {
         global $a;
@@ -573,14 +552,14 @@ class TestCaseTest extends TestCase
         $test->run();
 
         $this->assertEquals(
-            'PHP >= 99-dev is required.' . \PHP_EOL .
-            'PHPUnit >= 9-dev is required.' . \PHP_EOL .
-            'Operating system matching /DOESNOTEXIST/i is required.' . \PHP_EOL .
-            'Function testFuncOne is required.' . \PHP_EOL .
-            'Function testFuncTwo is required.' . \PHP_EOL .
-            'Setting "not_a_setting" must be "Off".' . \PHP_EOL .
-            'Extension testExtOne is required.' . \PHP_EOL .
-            'Extension testExtTwo is required.' . \PHP_EOL .
+            'PHP >= 99-dev is required.' . PHP_EOL .
+            'PHPUnit >= 9-dev is required.' . PHP_EOL .
+            'Operating system matching /DOESNOTEXIST/i is required.' . PHP_EOL .
+            'Function testFuncOne is required.' . PHP_EOL .
+            'Function testFuncTwo is required.' . PHP_EOL .
+            'Setting "not_a_setting" must be "Off".' . PHP_EOL .
+            'Extension testExtOne is required.' . PHP_EOL .
+            'Extension testExtTwo is required.' . PHP_EOL .
             'Extension testExtThree >= 2.0 is required.',
             $test->getStatusMessage()
         );
@@ -665,17 +644,17 @@ class TestCaseTest extends TestCase
         /** @var \Mockable $mock */
         $mock = $this->createMock(\Mockable::class);
 
-        $this->assertNull($mock->mockableMethod());
-        $this->assertNull($mock->anotherMockableMethod());
+        $this->assertNull($mock->foo());
+        $this->assertNull($mock->bar());
     }
 
     public function testCreatePartialMockDoesNotMockAllMethods(): void
     {
         /** @var \Mockable $mock */
-        $mock = $this->createPartialMock(\Mockable::class, ['mockableMethod']);
+        $mock = $this->createPartialMock(\Mockable::class, ['foo']);
 
-        $this->assertNull($mock->mockableMethod());
-        $this->assertTrue($mock->anotherMockableMethod());
+        $this->assertNull($mock->foo());
+        $this->assertTrue($mock->bar());
     }
 
     public function testCreatePartialMockCanMockNoMethods(): void
@@ -683,8 +662,8 @@ class TestCaseTest extends TestCase
         /** @var \Mockable $mock */
         $mock = $this->createPartialMock(\Mockable::class, []);
 
-        $this->assertTrue($mock->mockableMethod());
-        $this->assertTrue($mock->anotherMockableMethod());
+        $this->assertTrue($mock->foo());
+        $this->assertTrue($mock->bar());
     }
 
     public function testCreateMockSkipsConstructor(): void
@@ -692,7 +671,7 @@ class TestCaseTest extends TestCase
         /** @var \Mockable $mock */
         $mock = $this->createMock(\Mockable::class);
 
-        $this->assertNull($mock->constructorArgs);
+        $this->assertFalse($mock->constructorCalled);
     }
 
     public function testCreateMockDisablesOriginalClone(): void
@@ -701,7 +680,7 @@ class TestCaseTest extends TestCase
         $mock = $this->createMock(\Mockable::class);
 
         $cloned = clone $mock;
-        $this->assertNull($cloned->cloned);
+        $this->assertFalse($cloned->cloned);
     }
 
     public function testConfiguredMockCanBeCreated(): void
@@ -710,12 +689,12 @@ class TestCaseTest extends TestCase
         $mock = $this->createConfiguredMock(
             \Mockable::class,
             [
-                'mockableMethod' => false
+                'foo' => false
             ]
         );
 
-        $this->assertFalse($mock->mockableMethod());
-        $this->assertNull($mock->anotherMockableMethod());
+        $this->assertFalse($mock->foo());
+        $this->assertNull($mock->bar());
     }
 
     public function testProvidingOfAutoreferencedArray(): void
@@ -741,12 +720,6 @@ class TestCaseTest extends TestCase
 
         $this->assertInternalType('array', $test->myTestData);
         $this->assertSame($data, $test->myTestData);
-    }
-
-    public function testGettingNullTestResultObject(): void
-    {
-        $test = new \Success();
-        $this->assertNull($test->getTestResultObject());
     }
 
     /**

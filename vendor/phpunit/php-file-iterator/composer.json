@@ -11,15 +11,16 @@
     "authors": [
         {
             "name": "Sebastian Bergmann",
-            "email": "sebastian@phpunit.de",
+            "email": "sb@sebastian-bergmann.de",
             "role": "lead"
         }
     ],
     "support": {
-        "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues"
+        "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues",
+        "irc": "irc://irc.freenode.net/phpunit"
     },
     "require": {
-        "php": "^7.1"
+        "php": ">=5.3.3"
     },
     "autoload": {
         "classmap": [
@@ -28,7 +29,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-master": "1.4.x-dev"
         }
     }
 }

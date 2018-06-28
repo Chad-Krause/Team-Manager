@@ -31,6 +31,8 @@ class IsAnything extends Constraint
      * @param bool   $returnResult Whether to return a result or throw an exception
      *
      * @throws ExpectationFailedException
+     *
+     * @return mixed
      */
     public function evaluate($other, $description = '', $returnResult = false)
     {
@@ -39,6 +41,8 @@ class IsAnything extends Constraint
 
     /**
      * Returns a string representation of the constraint.
+     *
+     * @return string
      */
     public function toString(): string
     {
@@ -47,6 +51,8 @@ class IsAnything extends Constraint
 
     /**
      * Counts the number of constraint elements.
+     *
+     * @return int
      */
     public function count(): int
     {

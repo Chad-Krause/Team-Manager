@@ -17,6 +17,6 @@ BankAccount
  ✔ Balance cannot become negative
  ✔ Balance cannot become negative
 
-Time: %s, Memory: %s
+Time: %d ms, Memory: %fMB
 
 OK (3 tests, 3 assertions)

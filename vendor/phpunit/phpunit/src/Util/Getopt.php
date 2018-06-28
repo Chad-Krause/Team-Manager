@@ -17,7 +17,13 @@ use PHPUnit\Framework\Exception;
 final class Getopt
 {
     /**
+     * @param array      $args
+     * @param string     $short_options
+     * @param null|array $long_options
+     *
      * @throws Exception
+     *
+     * @return array
      */
     public static function getopt(array $args, string $short_options, array $long_options = null): array
     {
@@ -60,7 +66,6 @@ final class Getopt
 
                 continue;
             }
-
             if (\strlen($arg) > 1 && $arg[1] === '-') {
                 self::parseLongOption(
                     \substr($arg, 2),
@@ -82,6 +87,11 @@ final class Getopt
     }
 
     /**
+     * @param string $arg
+     * @param string $short_options
+     * @param array  $opts
+     * @param array  $args
+     *
      * @throws Exception
      */
     private static function parseShortOption(string $arg, string $short_options, array &$opts, array &$args): void
@@ -122,6 +132,11 @@ final class Getopt
     }
 
     /**
+     * @param string $arg
+     * @param array  $long_options
+     * @param array  $opts
+     * @param array  $args
+     *
      * @throws Exception
      */
     private static function parseLongOption(string $arg, array $long_options, array &$opts, array &$args): void
@@ -155,16 +170,18 @@ final class Getopt
             }
 
             if (\substr($long_opt, -1) === '=') {
-                /* @noinspection StrlenInEmptyStringCheckContextInspection */
-                if (\substr($long_opt, -2) !== '==' && !\strlen($opt_arg)) {
-                    /* @noinspection ComparisonOperandsOrderInspection */
-                    if (false === $opt_arg = \current($args)) {
-                        throw new Exception(
-                            "option --$opt requires an argument"
-                        );
-                    }
+                if (\substr($long_opt, -2) !== '==') {
+                    /* @noinspection StrlenInEmptyStringCheckContextInspection */
+                    if (!\strlen($opt_arg)) {
+                        /* @noinspection ComparisonOperandsOrderInspection */
+                        if (false === $opt_arg = \current($args)) {
+                            throw new Exception(
+                                "option --$opt requires an argument"
+                            );
+                        }
 
-                    \next($args);
+                        \next($args);
+                    }
                 }
             } elseif ($opt_arg) {
                 throw new Exception(
