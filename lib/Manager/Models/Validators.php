@@ -46,7 +46,7 @@ SQL;
      * @param $len int Length to generate, default is 32
      * @returns string Validator string
      */
-    public function createValidator($len = 32) {
+    private function createValidator($len = 32) {
         $bytes = openssl_random_pseudo_bytes($len / 2);
         return bin2hex($bytes);
     }

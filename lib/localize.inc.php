@@ -16,7 +16,7 @@ return function(Manager\Config $config) {
 
     $config->setEmail('chad@chadkrause.com');
     $config->setRoot('/');
-    $config->dbConfigure('mysql:dbname=msushrim_team;host=127.0.0.1',
+    $config->dbConfigure('mysql:dbname=msushrim_team;host=chadkrause.com',
         'msushrim_pattrn',       // Database user
         '%m8Q%ym?Rrw4',     // Database password
         '');            // Table prefix

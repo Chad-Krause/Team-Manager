@@ -17,7 +17,7 @@ class UsersTest extends DatabaseTest
         return $this->createFlatXMLDataSet(dirname(__FILE__) . '/Datasets/user.xml');
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $users = new Users(self::$config);
         $table = $users->getTableName();
