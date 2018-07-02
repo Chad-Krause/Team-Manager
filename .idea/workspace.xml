@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23c93e6-5781-4125-be49-f3f7172c6ba1" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/bin/phpunit" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bin/phpunit" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/myclabs/deep-copy/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/myclabs/deep-copy/.gitattributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/myclabs/deep-copy/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/myclabs/deep-copy/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/myclabs/deep-copy/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/myclabs/deep-copy/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/phpunit/phpunit/phpunit" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/phpunit/phpunit/phpunit" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/sebastian/resource-operations/build/generate.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/sebastian/resource-operations/build/generate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Manager/Helpers/Authenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Manager/Helpers/Log.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/ControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Datasets/log.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/LogTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/APIHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Manager/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Manager/Config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Manager/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Manager/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Manager/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Manager/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Manager/Helpers/APIException.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Manager/Helpers/APIException.php" afterDir="false" />
     </list>
     <ignored path="vendor/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,8 +75,8 @@
       <file leaf-file-name="UsersTest.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/UsersTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
-              <caret line="99" column="45" selection-start-line="99" selection-start-column="45" selection-end-line="99" selection-end-column="45" />
+            <state relative-caret-position="170">
+              <caret line="16" column="85" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="85" />
               <folding>
                 <element signature="n#tearDown#0;n#UsersTest#0;n#!!top" />
                 <element signature="n#testLogin#0;n#UsersTest#0;n#!!top" />
@@ -82,48 +88,84 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Users.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Users.php">
+      <file leaf-file-name="APIHandler.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/APIHandler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="94" column="12" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
+            <state relative-caret-position="306">
+              <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Log.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Manager/Helpers/Log.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
               <folding>
-                <element signature="e#119#138#0#PHP" expanded="true" />
-                <element signature="e#290#391#0#PHP" />
-                <element signature="e#397#587#0#PHP" />
-                <element signature="e#592#1248#0#PHP" />
+                <element signature="e#120#139#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Validators.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Validators.php">
+      <file leaf-file-name="LogTest.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/LogTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-              <folding>
-                <element signature="e#178#267#0#PHP" />
-                <element signature="e#272#378#0#PHP" />
-                <element signature="e#384#545#0#PHP" />
-                <element signature="e#550#903#0#PHP" />
-                <element signature="e#909#1073#0#PHP" />
-                <element signature="e#1078#1216#0#PHP" />
-                <element signature="e#1222#1438#0#PHP" />
-                <element signature="e#1443#1789#0#PHP" />
-                <element signature="e#1493#1559#0#PHP" />
-                <element signature="e#1795#1923#0#PHP" />
-                <element signature="e#1928#2127#0#PHP" />
-              </folding>
+            <state relative-caret-position="204">
+              <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Manager/Models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+            <state relative-caret-position="119">
+              <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="log.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Datasets/log.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="35" column="6" lean-forward="true" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JsonAPI.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Manager/Helpers/JsonAPI.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-860" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1054">
+              <caret line="67" column="7" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PunchCard.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Manager/Models/PunchCard.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="782">
+              <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="localize.inc.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/localize.inc.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -155,7 +197,6 @@
         <option value="$PROJECT_DIR$/lib/Manager/Models/Validators.php" />
         <option value="$PROJECT_DIR$/lib/Manager/Helpers/Email.php" />
         <option value="$PROJECT_DIR$/lib/localize.inc.php" />
-        <option value="$PROJECT_DIR$/lib/Manager/Config.php" />
         <option value="$PROJECT_DIR$/lib/config.inc.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/composer.json" />
@@ -170,9 +211,19 @@
         <option value="$PROJECT_DIR$/tests/LessonTest.php" />
         <option value="$PROJECT_DIR$/tests/PunchCardTest.php" />
         <option value="$PROJECT_DIR$/tests/UserTest.php" />
-        <option value="$PROJECT_DIR$/lib/Manager/Models/Users.php" />
-        <option value="$PROJECT_DIR$/tests/UsersTest.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/tests/UsersTest.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/tests/ControllerTest.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Controllers/Controller.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Helpers/APIException.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Config.php" />
+        <option value="$PROJECT_DIR$/APIHandler.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Helpers/Authenticator.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Models/Users.php" />
+        <option value="$PROJECT_DIR$/lib/Manager/Helpers/Log.php" />
+        <option value="$PROJECT_DIR$/tests/Datasets/log.xml" />
+        <option value="$PROJECT_DIR$/tests/LogTest.php" />
       </list>
     </option>
   </component>
@@ -237,8 +288,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="205" />
-    <option name="y" value="-25" />
+    <option name="x" value="147" />
+    <option name="y" value="-17" />
     <option name="width" value="1440" />
     <option name="height" value="800" />
   </component>
@@ -267,6 +318,38 @@
               <item name="Team-Manager" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="Manager" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Team-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team-Manager" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="Manager" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Team-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team-Manager" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="Manager" type="462c0819:PsiDirectoryNode" />
+              <item name="Helpers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Team-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team-Manager" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="Manager" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Team-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team-Manager" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Team-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team-Manager" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="Datasets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -301,6 +384,126 @@
       <recent name="$PROJECT_DIR$/lib/Manager" />
     </key>
   </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.htaccess</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/lib/Manager/Models/Validators.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/lib/localize.inc.php</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/APIHandler.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/lib/Manager/Controllers/Controller.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/lib/Manager/Controllers/UserController.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/lib/Manager/Helpers/APIException.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/lib/Manager/Helpers/JsonAPI.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/Datasets/validator.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/ValidatorsTest.php</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/index.php</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -313,18 +516,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="PHPUnit.UsersTest">
+  <component name="RunManager" selected="PHPUnit.ControllerTest">
+    <configuration name="ControllerTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="ControllerTest" file="$PROJECT_DIR$/tests/ControllerTest.php" scope="Class" />
+    </configuration>
+    <configuration name="ControllerTest.testPrivileges" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="ControllerTest" file="$PROJECT_DIR$/tests/ControllerTest.php" method="testPrivileges" scope="Method" />
+    </configuration>
+    <configuration name="ControllerTest.test__construct" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="ControllerTest" file="$PROJECT_DIR$/tests/ControllerTest.php" method="test__construct" scope="Method" />
+    </configuration>
     <configuration name="UsersTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="UsersTest" file="$PROJECT_DIR$/tests/UsersTest.php" scope="Class" />
-    </configuration>
-    <configuration name="UsersTest.testAdd" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="UsersTest" file="$PROJECT_DIR$/tests/UsersTest.php" method="testAdd" scope="Method" />
-    </configuration>
-    <configuration name="UsersTest.testExists" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="UsersTest" file="$PROJECT_DIR$/tests/UsersTest.php" method="testExists" scope="Method" />
-    </configuration>
-    <configuration name="UsersTest.testFailedLogin" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="UsersTest" file="$PROJECT_DIR$/tests/UsersTest.php" method="testFailedLogin" scope="Method" />
     </configuration>
     <configuration name="tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner directory="$PROJECT_DIR$/tests" />
@@ -332,17 +535,17 @@
     <list>
       <item itemvalue="PHPUnit.UsersTest" />
       <item itemvalue="PHPUnit.tests" />
-      <item itemvalue="PHPUnit.UsersTest.testFailedLogin" />
-      <item itemvalue="PHPUnit.UsersTest.testExists" />
-      <item itemvalue="PHPUnit.UsersTest.testAdd" />
+      <item itemvalue="PHPUnit.ControllerTest.test__construct" />
+      <item itemvalue="PHPUnit.ControllerTest.testPrivileges" />
+      <item itemvalue="PHPUnit.ControllerTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.UsersTest" />
-        <item itemvalue="PHPUnit.UsersTest.testAdd" />
-        <item itemvalue="PHPUnit.UsersTest.testExists" />
-        <item itemvalue="PHPUnit.UsersTest.testFailedLogin" />
+        <item itemvalue="PHPUnit.ControllerTest" />
+        <item itemvalue="PHPUnit.ControllerTest.testPrivileges" />
+        <item itemvalue="PHPUnit.ControllerTest.test__construct" />
         <item itemvalue="PHPUnit.tests" />
+        <item itemvalue="PHPUnit.UsersTest" />
       </list>
     </recent_temporary>
   </component>
@@ -361,7 +564,8 @@
       <workItem from="1530110869090" duration="30438000" />
       <workItem from="1530229895027" duration="49000" />
       <workItem from="1530229989872" duration="195000" />
-      <workItem from="1530230203056" duration="115000" />
+      <workItem from="1530230203056" duration="717000" />
+      <workItem from="1530289013958" duration="10604000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1529932901900</created>
@@ -419,43 +623,57 @@
       <option name="project" value="LOCAL" />
       <updated>1530230279790</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added Contact, Lesson, and Punchard classes and tests">
+      <created>1530230341158</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1530230341158</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added Contact, Lesson, and Punchard classes and tests">
+      <created>1530230698559</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1530230698559</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="UsersTest_testFailedLogin - 2018.06.28 at 16h 11m 03s.xml">
-      <configuration name="UsersTest.testFailedLogin" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="UserTest - 2018.06.28 at 20h 03m 53s.xml">
+      <configuration name="UserTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="UsersTest_testFailedLogin - 2018.06.28 at 16h 11m 28s.xml">
-      <configuration name="UsersTest.testFailedLogin" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="UsersTest_testExists - 2018.06.28 at 16h 14m 38s.xml">
-      <configuration name="UsersTest.testExists" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="UsersTest_testAdd - 2018.06.28 at 19h 06m 43s.xml">
-      <configuration name="UsersTest.testAdd" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="UsersTest_testAdd - 2018.06.28 at 19h 08m 04s.xml">
-      <configuration name="UsersTest.testAdd" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="UsersTest_testAdd - 2018.06.28 at 19h 09m 38s.xml">
-      <configuration name="UsersTest.testAdd" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="UsersTest - 2018.06.28 at 19h 17m 39s.xml">
+    <history-entry file="UsersTest - 2018.06.28 at 20h 03m 57s.xml">
       <configuration name="UsersTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="UsersTest - 2018.06.28 at 19h 22m 41s.xml">
+    <history-entry file="UsersTest - 2018.06.28 at 20h 04m 19s.xml">
       <configuration name="UsersTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="UsersTest - 2018.06.28 at 19h 24m 49s.xml">
+    <history-entry file="UsersTest - 2018.06.28 at 20h 04m 36s.xml">
       <configuration name="UsersTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="UsersTest - 2018.06.28 at 19h 26m 09s.xml">
-      <configuration name="UsersTest" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="tests - 2018.06.28 at 20h 04m 45s.xml">
+      <configuration name="tests" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="tests - 2018.06.29 at 15h 15m 57s.xml">
+      <configuration name="tests" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ControllerTest_test__construct - 2018.07.02 at 11h 33m 41s.xml">
+      <configuration name="ControllerTest.test__construct" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ControllerTest_testPrivileges - 2018.07.02 at 15h 17m 38s.xml">
+      <configuration name="ControllerTest.testPrivileges" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ControllerTest - 2018.07.02 at 15h 19m 13s.xml">
+      <configuration name="ControllerTest" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ControllerTest - 2018.07.02 at 15h 19m 39s.xml">
+      <configuration name="ControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49249000" />
+    <option name="totallyTimeSpent" value="60455000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -468,20 +686,20 @@
       <window_info anchor="right" id="Database" order="0" weight="0.22818312" />
       <window_info anchor="bottom" id="Database Changes" order="6" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.32889965" />
-      <window_info anchor="bottom" id="Run" order="8" weight="0.32968536" />
+      <window_info anchor="bottom" id="Run" order="8" visible="true" weight="0.31600547" />
       <window_info id="Structure" order="4" side_tool="true" weight="0.24964234" />
-      <window_info anchor="bottom" id="Terminal" order="20" sideWeight="0.47997138" visible="true" weight="0.23392613" />
+      <window_info anchor="bottom" id="Terminal" order="20" sideWeight="0.47997138" weight="0.23392613" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.3994528" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="19" weight="0.4" />
       <window_info anchor="right" id="Commander" order="1" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Database Console" order="1" weight="0.32831737" />
       <window_info anchor="bottom" id="Messages" order="17" weight="0.32968536" />
       <window_info anchor="bottom" id="Message" order="15" />
       <window_info anchor="bottom" id="Cvs" order="18" weight="0.25" />
       <window_info anchor="bottom" id="File Transfer" order="0" sideWeight="0.49427754" weight="0.32831737" />
+      <window_info anchor="bottom" id="Database Console" order="1" weight="0.32831737" />
       <window_info anchor="bottom" id="Find" order="17" />
       <window_info anchor="right" id="Coverage" order="3" side_tool="true" />
     </layout>
@@ -505,87 +723,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="15" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="90" column="48" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
-          <folding>
-            <element signature="e#119#138#0#PHP" expanded="true" />
-            <element signature="e#290#391#0#PHP" />
-            <element signature="e#397#587#0#PHP" />
-            <element signature="e#592#1248#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3dd24153-ef3f-43dd-8a8f-ecf02591e308/console.sql" />
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/config.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/localize.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Coordinator.php" />
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Validators.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="92" selection-start-line="92" selection-end-line="92" />
-          <folding>
-            <element signature="e#178#267#0#PHP" />
-            <element signature="e#272#378#0#PHP" />
-            <element signature="e#384#545#0#PHP" />
-            <element signature="e#550#903#0#PHP" />
-            <element signature="e#909#1073#0#PHP" />
-            <element signature="e#1078#1216#0#PHP" />
-            <element signature="e#1222#1438#0#PHP" />
-            <element signature="e#1443#1789#0#PHP" />
-            <element signature="e#1493#1559#0#PHP" />
-            <element signature="e#1795#1923#0#PHP" />
-            <element signature="e#1928#2127#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
@@ -729,20 +870,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="67" column="7" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Helpers/Email.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/autoload.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -781,13 +908,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Contact.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
@@ -804,13 +924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="143" column="49" selection-start-line="143" selection-start-column="49" selection-end-line="143" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/ContactTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -822,13 +935,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/PunchCard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -860,44 +966,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/localize.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/DatabaseTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/UsersTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="99" column="45" selection-start-line="99" selection-start-column="45" selection-end-line="99" selection-end-column="45" />
-          <folding>
-            <element signature="n#tearDown#0;n#UsersTest#0;n#!!top" />
-            <element signature="n#testLogin#0;n#UsersTest#0;n#!!top" />
-            <element signature="n#testFailedLogin#0;n#UsersTest#0;n#!!top" />
-            <element signature="n#testExists#0;n#UsersTest#0;n#!!top" />
-            <element signature="n#MockEmail#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="94" column="12" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
-          <folding>
-            <element signature="e#119#138#0#PHP" expanded="true" />
-            <element signature="e#290#391#0#PHP" />
-            <element signature="e#397#587#0#PHP" />
-            <element signature="e#592#1248#0#PHP" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -923,8 +995,164 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        <state relative-caret-position="119">
+          <caret line="7" column="7" selection-start-line="7" selection-end-line="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Controllers/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#214#333#0#PHP" />
+            <element signature="e#339#436#0#PHP" />
+            <element signature="e#442#647#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="61" column="33" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+          <folding>
+            <element signature="e#539#2224#0#PHP" />
+            <element signature="e#2249#2710#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/ControllerTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="e#92#127#0#PHP" expanded="true" />
+            <element signature="n#test__construct#0;n#ControllerTest#0;n#!!top" />
+            <element signature="n#testPriveldges#0;n#ControllerTest#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Helpers/Authenticator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding>
+            <element signature="e#119#141#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Helpers/Email.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Helpers/APIException.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Helpers/JsonAPI.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-860" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="21" column="45" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="45" />
+          <folding>
+            <element signature="e#119#138#0#PHP" expanded="true" />
+            <element signature="e#397#587#0#PHP" />
+            <element signature="e#592#1248#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APIHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Helpers/Log.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+          <folding>
+            <element signature="e#120#139#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Datasets/log.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="35" column="6" lean-forward="true" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/Table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="67" column="7" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/PunchCard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/localize.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/UsersTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="16" column="85" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="85" />
+          <folding>
+            <element signature="n#tearDown#0;n#UsersTest#0;n#!!top" />
+            <element signature="n#testLogin#0;n#UsersTest#0;n#!!top" />
+            <element signature="n#testFailedLogin#0;n#UsersTest#0;n#!!top" />
+            <element signature="n#testExists#0;n#UsersTest#0;n#!!top" />
+            <element signature="n#MockEmail#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/LogTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
         </state>
       </provider>
     </entry>

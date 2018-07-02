@@ -6,7 +6,7 @@
  * Time: 12:45 AM
  */
 
-namespace Controllers;
+namespace Manager\Controllers;
 
 use Manager\Models\User;
 
@@ -21,7 +21,10 @@ class Controller
     }
 
     /**
-     * Determines if the user has access;
+     * Determines if the user has access
+     * If user is null, it looks for the 0 in the roles
+     * If there is a 0 in $roles, it's open to anyone
+     *
      * @param User $user
      * @return bool
      */
@@ -30,6 +33,9 @@ class Controller
         if($user !== null)
         {
             return in_array($user->getRole(), $this->hasAccess) || in_array(0, $this->hasAccess);
+        } else {
+            return in_array(0, $this->hasAccess);
         }
     }
+
 }

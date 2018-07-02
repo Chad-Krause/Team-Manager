@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dataset>
+    <ztest_log
+            id="1"
+            message="Authentication failure for user 1: Chad Krause"
+            date="2018-06-26 18:35:22"
+            type="2"
+    />
+
+    <ztest_log
+            id="2"
+            message="Authentication failure for user 1: Chad Krause"
+            date="2018-06-26 18:35:30"
+            type="2"
+    />
+
+    <ztest_log
+            id="3"
+            message="User tried to access page without permission: 2: Brittney Luckett"
+            date="2018-06-27 19:35:30"
+            type="3"
+    />
+
+    <ztest_log
+            id="4"
+            message="Token was modified. User: 1: Chad Krause"
+            date="2018-06-27 19:35:30"
+            type="4"
+    />
+
+    <ztest_log
+            id="5"
+            message="New User Created: 3: Jeff Parks"
+            date="2018-06-30 12:00:30"
+            type="1"
+    />
+</dataset>

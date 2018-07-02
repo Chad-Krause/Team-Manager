@@ -9,7 +9,7 @@
 namespace Manager\Controllers;
 
 
-use Controllers\Controller;
+use Manager\Controllers\Controller;
 
 class UserController extends Controller
 {

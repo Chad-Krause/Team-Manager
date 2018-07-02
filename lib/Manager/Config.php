@@ -59,6 +59,8 @@ AgMBAAE=
 -----END PUBLIC KEY-----
 EOD;
 
+    const AUTH_COOKIE = 'AUTH_JWT';
+
 
 
     /**
