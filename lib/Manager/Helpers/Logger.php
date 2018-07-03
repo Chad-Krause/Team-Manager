@@ -46,12 +46,35 @@ SQL;
         }
     }
 
-    public function logWithUser($type, User $user, $message = null)
+    public function logWithUser($type, User $user, $message = null, \DateTime $dateTime)
     {
         $log = new Log();
 
+        $userString = sprintf(
+            'User %d: %s %s',
+            $user->getId(),
+            $user->getFirstname(),
+            $user->getLastname()
+        );
+
         switch ($type) {
-            case
+            case self::TOKEN_MODIFIED:
+                $log->setMessage('Invalid Token. ' . $userString);
+                break;
+            case self::INVALID_LOGIN:
+                $log->setMessage('Invalid Login. ' . $userString);
+                break;
+            case self::PERMISSION_DENIED:
+                $log->setMessage('Permission Denied. ' . $userString);
+                break;
+            default:
+             $log->setMessage('Unknown Log. ' . $userString);
+        }
+
+        $log->setType($type);
+
+        if($dateTime == null) {
+            $dateTime = new \DateTime();
         }
     }
 }
