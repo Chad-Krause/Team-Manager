@@ -22,7 +22,7 @@ class UsersTest extends DatabaseTest
         $users = new Users(self::$config);
         $table = $users->getTableName();
         $sql = <<<SQL
-delete from $table where 1
+delete from $table where id > 1
 SQL;
 
         $stmt = self::$config->pdo()->prepare($sql);
@@ -98,6 +98,21 @@ SQL;
         $this->expectException(\Exception::class);
 
         $users->add($duplicateUser, $mailer);
+    }
+
+    public function testGet()
+    {
+        $users = new Users(self::$config);
+
+        $user = $users->get(1); // 1 is always Chad
+
+        $this->assertNotNull($user);
+        $this->assertEquals('Chad', $user->getFirstname());
+        $this->assertEquals(1, $user->getId());
+
+        $user = $users->get(10000); // user does not exist
+
+        $this->assertNull($user);
     }
 }
 

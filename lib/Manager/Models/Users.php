@@ -144,4 +144,25 @@ SQL;
 
         return $stmt->rowCount() !== 0;
     }
+
+    /**
+     * Returns a user object that matches the id
+     * @param $id int the id of the user
+     * @return $user User
+     */
+    public function get($id)
+    {
+        $sql = <<<SQL
+select * from $this->tableName where id = ?
+SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+        $stmt->execute([$id]);
+
+        if($stmt->rowCount() !== 1) {
+            return null;
+        } else {
+            return new User($stmt->fetch(\PDO::FETCH_ASSOC));
+        }
+    }
 }
