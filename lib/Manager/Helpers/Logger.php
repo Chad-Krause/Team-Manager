@@ -33,7 +33,9 @@ class Logger extends Table
     public function getLastLog()
     {
         $sql = <<<SQL
-select top 1 * from $this->tableName order by id desc
+select * from $this->tableName
+order by id desc
+limit 1
 SQL;
         $stmt = $this->pdo()->prepare($sql);
 
@@ -46,7 +48,7 @@ SQL;
         }
     }
 
-    public function logWithUser($type, User $user, $message = null, \DateTime $dateTime)
+    public function logWithUser($type, User $user, $message = null, \DateTime $dateTime = null)
     {
         $log = new Log();
 
@@ -74,7 +76,27 @@ SQL;
         $log->setType($type);
 
         if($dateTime == null) {
-            $dateTime = new \DateTime();
+            $dateTime = date("Y-m-d H:i:s");
         }
+
+        $log->setDate($dateTime);
+
+        $this->log($log);
     }
+
+    private function log(Log $log)
+    {
+        $sql = <<<SQL
+insert into log (message, type, date)
+values(?, ?, ?)
+SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+        $stmt->execute([
+            $log->getMessage(),
+            $log->getType(),
+            $log->getDate()
+        ]);
+    }
+
 }

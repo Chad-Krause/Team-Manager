@@ -25,7 +25,7 @@ delete from $table where 1
 SQL;
 
         $stmt = self::$config->pdo()->prepare($sql);
-        $stmt->execute();
+        //$stmt->execute();
     }
 
     public function test__construct()
@@ -48,9 +48,10 @@ SQL;
         $this->assertNotNull($chadlog);
         $this->assertContains('Chad', $chadlog->getMessage());
 
+        /*
         $logger->log('Logging test');
         $log = $logger->getLastLog();
-        $this->assertContains('test', $log->getMessage());
+        $this->assertContains('test', $log->getMessage());*/
     }
 
 }
