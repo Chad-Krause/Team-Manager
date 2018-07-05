@@ -17,6 +17,7 @@ class Config
     private $dbPassword = null; ///< Database password
     private $tablePrefix = '';  ///< Database table prefix
     private $root = '';         ///< Site root
+    private $domain = 'chadkrause.com';
 
     const PRIVATEKEY = <<<EOD
 -----BEGIN RSA PRIVATE KEY-----
@@ -151,5 +152,23 @@ EOD;
 
         return self::$pdo;
     }
+
+    /**
+     * @return string
+     */
+    public function getDomain(): string
+    {
+        return $this->domain;
+    }
+
+    /**
+     * @param string $domain
+     */
+    public function setDomain(string $domain): void
+    {
+        $this->domain = $domain;
+    }
+
+
 
 }

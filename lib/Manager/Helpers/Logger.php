@@ -19,6 +19,9 @@ class Logger extends Table
     const TOKEN_MODIFIED = 1;
     const INVALID_LOGIN = 2;
     const PERMISSION_DENIED = 3;
+    const USER_LOGGED_IN = 4;
+    const USER_LOGGED_OUT = 5;
+    const INTERNAL_EXCEPTION = 6;
 
 
     public function __construct(Config $config)
@@ -81,10 +84,10 @@ SQL;
 
         $log->setDate($dateTime);
 
-        $this->log($log);
+        $this->_log($log);
     }
 
-    private function log(Log $log)
+    private function _log(Log $log)
     {
         $sql = <<<SQL
 insert into log (message, type, date)

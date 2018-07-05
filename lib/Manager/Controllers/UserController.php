@@ -13,5 +13,10 @@ use Manager\Controllers\Controller;
 
 class UserController extends Controller
 {
+    private $post;
+
+    public function __construct()
+    {
+    }
 
 }
