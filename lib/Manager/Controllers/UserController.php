@@ -9,14 +9,13 @@
 namespace Manager\Controllers;
 
 
+use Manager\Config;
 use Manager\Controllers\Controller;
 
 class UserController extends Controller
 {
-    private $post;
-
-    public function __construct()
+    public function __construct(Config $config, array $request, int $userid)
     {
+        parent::__construct($config, $request, $userid);
     }
-
 }
