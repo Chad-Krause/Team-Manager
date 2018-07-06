@@ -12,7 +12,7 @@ use Manager\Config;
 use Manager\Models\User;
 use Manager\Models\Users;
 
-class Controller
+abstract class Controller
 {
     /**
      * @var User
@@ -29,19 +29,20 @@ class Controller
      */
     protected $config;
 
+    protected $time;
+
     /**
      * Controller constructor.
      * @param Config $config
      * @param array $request
      * @param int $userid
      */
-    public function __construct(Config $config, $request, $userid)
+    public function __construct(Config $config, $time, $request = [])
     {
-        $users = new Users($config);
-        $this->user = $users->get($userid);
-
+        $this->time = $time;
         $this->request = $request;
         $this->config = $config;
     }
 
+    abstract public function getResponse();
 }

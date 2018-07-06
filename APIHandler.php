@@ -6,6 +6,15 @@
  * Time: 9:46 PM
  */
 
+
+/* Main entry point for APIs
+ *
+ * The data flow is as follows:
+ * 1. Refresh authentication token if it is available
+ * 2. Send post data to the controller
+ * 3. Return the JSON from the controller by calling getResponse()
+ */
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(-1);

@@ -6,7 +6,7 @@
  * Time: 8:17 PM
  */
 
-namespace Helpers;
+namespace Manager\Helpers;
 
 
 class APIException extends \Exception
@@ -15,5 +15,10 @@ class APIException extends \Exception
     const NOT_FOUND                     = 404;
     const UNSUPPORTED_MEDIA_TYPE        = 415;
     const VALIDATION_ERROR              = 429;
+
+    const EMAIL_PASSWORD_NOT_FOUND      = 1;
+    const EMAIL_PASSWORD_WRONG          = 2;
+    const USERID_NOT_FOUND              = 3;
+
 
 }

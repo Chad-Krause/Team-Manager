@@ -161,5 +161,16 @@ class User
         $this->birthday = $birthday;
     }
 
-
+    public function toArray()
+    {
+        return array(
+            'id' => $this->getId(),
+            'firstname' => $this->getFirstname(),
+            'lastname' => $this->getLastname(),
+            'email' => $this->getEmail(),
+            'graduationyear' => $this->getGraduationyear(),
+            'yearjoined' => $this->getYearjoined(),
+            'birthday' => $this->getBirthday()
+        );
+    }
 }

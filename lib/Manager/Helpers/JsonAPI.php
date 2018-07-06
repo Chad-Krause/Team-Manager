@@ -48,17 +48,12 @@ class JsonAPI
 
     /**
      * Add data to an API response
-     * @param $type string Name of the data type
-     * @param $id int Optional ID associated with data
-     * @param array $attributes Contents for the data item section
+     * @param $data array an associative array of data
      */
-    public function add_data($type, $id, array $attributes=null) {
-        $data = ["type"=>$type, "attributes"=>$attributes];
-        if($id !== null) {
-            $data['id'] = $id;
+    public function setData($data) {
+        if($data != null) {
+            $this->data = $data;
         }
-
-        $this->data[] = $data;
     }
 
     /**
@@ -87,7 +82,7 @@ class JsonAPI
             $json['errors'] = $this->errors;
         }
 
-        if(count($this->data) > 0) {
+        if($this->data !== null) {
             $json['data'] = $this->data;
         }
 
