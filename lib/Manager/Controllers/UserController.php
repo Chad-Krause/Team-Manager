@@ -9,9 +9,13 @@
 namespace Manager\Controllers;
 
 
+use Manager\Config;
 use Manager\Controllers\Controller;
 
 class UserController extends Controller
 {
-
+    public function __construct(Config $config, array $request, int $userid)
+    {
+        parent::__construct($config, $request, $userid);
+    }
 }
