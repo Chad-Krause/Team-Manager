@@ -19,10 +19,12 @@ class User
     private $graduationyear;    ///> Graduation Year
     private $yearjoined;        ///> Year Joined
     private $birthday;          ///> Birthday
+    private $confirmed;         ///>
 
-    const ADMIN = "1";
-    const STUDENT = "2";
-    const MENTOR = "3";
+    const ADMIN = 1;
+    const STUDENT = 2;
+    const MENTOR = 3;
+    const GUARDIAN = 4;
 
     /**
      * User constructor.
@@ -38,6 +40,10 @@ class User
             $this->graduationyear   = isset($row['graduationyear']) ? $row['graduationyear'] : null;
             $this->yearjoined       = isset($row['yearjoined']) ? $row['yearjoined'] : null;
             $this->birthday         = isset($row['birthday']) ? $row['birthday'] : null;
+
+            if(isset($row['confirmed'])) {
+                $this->confirmed = $row['confirmed'] == '1';
+            }
         }
     }
 
@@ -173,4 +179,22 @@ class User
             'birthday' => $this->getBirthday()
         );
     }
+
+    /**
+     * @return null
+     */
+    public function isConfirmed() : bool
+    {
+        return $this->confirmed;
+    }
+
+    /**
+     * @param null $confirmed
+     */
+    public function setConfirmed($confirmed): void
+    {
+        $this->confirmed = $confirmed;
+    }
+
+
 }

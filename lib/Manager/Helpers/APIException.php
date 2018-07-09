@@ -19,6 +19,7 @@ class APIException extends \Exception
     const EMAIL_PASSWORD_NOT_FOUND      = 1;
     const EMAIL_PASSWORD_WRONG          = 2;
     const USERID_NOT_FOUND              = 3;
+    const USER_NOT_CONFIRMED            = 4;
 
 
 }

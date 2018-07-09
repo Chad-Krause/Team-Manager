@@ -24,6 +24,7 @@ class UserController extends Controller
     const NO_USERID = 'No UserId Supplied';
     const INVALID_REQUEST = 'Invalid API Request';
     const INELIGIBLE_USER = 'Not eligible to receive that user\'s information';
+    const UNCONFIRMED_USER = 'This user has not been confirmed by an admin yet!';
 
     public function __construct(Config $config, $time, array $request)
     {
@@ -70,6 +71,13 @@ class UserController extends Controller
         return $response->encode();
     }
 
+    /**
+     * Logs in a user using the request variable. Must have email and password set in the request
+     * @throws APIException if email or password isn't set
+     * @throws APIException if email and password doesn't match
+     * @throws APIException if the user hasn't been confirmed yet
+     * @return array
+     */
     private function _login() {
         if(!isset($this->request['email']) || !isset($this->request['password'])) {
             throw new APIException(self::EMAIL_PASSWORD_NOT_SET, APIException::EMAIL_PASSWORD_NOT_FOUND);
@@ -80,6 +88,10 @@ class UserController extends Controller
 
         if($user === null) {
             throw new APIException(self::INCORRECT_LOGIN, APIException::EMAIL_PASSWORD_WRONG);
+        }
+
+        if(!$user->isConfirmed()) {
+            throw new APIException(self::UNCONFIRMED_USER, APIException::USER_NOT_CONFIRMED);
         }
 
         $auth = new Authenticator($this->config);

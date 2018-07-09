@@ -1,0 +1,49 @@
+ztest_user:
+  -
+    id: 1
+    firstname: "Chad"
+    lastname: "Krause"
+    email: "chad@chadkrause.com"
+    password: "07a87ddb4439201c7acfb43980f400f35dbfdcda83a1a73b66d2b7f34f7ec711"
+    salt: "6WmZ9XDT4ZYtDsOX"
+    roleid: 1
+    date_added: ""
+    date_modified: ""
+    enabled: 1
+    confirmed: 1
+    graduationyear: 2020
+    yearjoined: 2017
+    birthday: 1996-01-27
+    profileimageid:
+  -
+    id: 2
+    firstname: "Mike"
+    lastname: "Rowe"
+    email: "mike@rowe.com"
+    password: "671e728bcb284f423e19dacdf132a9410afc170ef6b7666d19b689a467d39f24"
+    salt: "y-GHUX0Ey8%E6J53"
+    roleid: 3
+    date_added: ""
+    date_modified: ""
+    enabled: 1
+    confirmed: 1
+    graduationyear: 2020
+    yearjoined: 2019
+    birthday: 1962-03-18
+    profileimageid:
+  -
+    id: 3
+    firstname: "Eddie"
+    lastname: "Van Halen"
+    email: "eddie@vanhalen.com"
+    password: "dabac4cd92d71106e74406be137a578e1b3ce436420f66d2df5be458301d2154"
+    salt: "zU`Rr$X=YjxHRp8o"
+    roleid: 2
+    date_added: ""
+    date_modified: ""
+    enabled: 0
+    confirmed: 0
+    graduationyear: 2020
+    yearjoined: 2019
+    birthday: 1955-01-26
+    profileimageid:

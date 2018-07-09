@@ -14,6 +14,9 @@ use Manager\Models\User;
 
 class Authenticator
 {
+
+    //TODO: Add user permission to the JWT, Modify tests to accommodate
+
     const DEFAULT_EXPIRATION_TIME = 86400;
     const INVALID_JWT = 'The login token was corrupt or non existant. Please log in.';
 
@@ -42,7 +45,8 @@ class Authenticator
             'nbf' => $time,
             'exp' => $time + $expiration,
             'data' => [
-                'userid' => $user->getId()
+                'userid' => $user->getId(),
+                'type' => $user->getRole()
             ]
         );
 

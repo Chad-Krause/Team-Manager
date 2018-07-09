@@ -1,12 +1,11 @@
 <?php
 
-//require __DIR__ . "/../vendor/autoload.php";
-//use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase;
 use Manager\Models\User;
 
 
 
-class UserTest extends \PHPUnit\Framework\TestCase
+class UserTest extends TestCase
 {
     public function test__construct() {
         $row = array(
@@ -37,6 +36,7 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $user->setBirthday("1996-01-27");
         $user->setYearjoined(2017);
         $user->setGraduationyear(2020);
+        $user->setConfirmed(true);
 
         $this->assertEquals("Chad", $user->getFirstname());
         $this->assertEquals("Krause", $user->getLastname());
@@ -45,5 +45,6 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("1996-01-27", $user->getBirthday());
         $this->assertEquals(2017, $user->getYearjoined());
         $this->assertEquals(2020,$user->getGraduationyear());
+        $this->assertTrue($user->isConfirmed());
     }
 }

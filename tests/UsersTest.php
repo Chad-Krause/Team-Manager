@@ -9,12 +9,13 @@
 require_once 'DatabaseTest.php';
 use Manager\Models\Users;
 use Manager\Models\User;
+use PHPUnit\DbUnit\DataSet\YamlDataSet;
 
 class UsersTest extends DatabaseTest
 {
     protected function getDataSet()
     {
-        return $this->createFlatXMLDataSet(dirname(__FILE__) . '/Datasets/user.xml');
+        return new YamlDataSet(dirname(__FILE__) . '/Datasets/user.yaml');
     }
 
     protected function tearDown(): void
