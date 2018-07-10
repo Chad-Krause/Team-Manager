@@ -17,6 +17,18 @@ class UserControllerTest extends DatabaseTest
         return new YamlDataSet(dirname(__FILE__) . '/Datasets/user.yaml');
     }
 
+    protected function setUp(): void
+    {
+        // For some reason, the .yaml and .xml put a 1 into the bit(1) instead of a 0, so this fixes that
+        $sql = <<<SQL
+update ztest_user set confirmed = 0 where id = 3
+SQL;
+        $table = new \Manager\Models\Table(self::$config, '');
+
+        $stmt = $table->pdo()->prepare($sql);
+        $stmt->execute();
+    }
+
     public function test__construct()
     {
         $request = array(
@@ -106,7 +118,8 @@ class UserControllerTest extends DatabaseTest
         $this->assertEquals($expectedJson, $actualJson);
     }
 
-    public function testLogin() {
+    public function testLogin()
+    {
         $time = time();
         $success = new \Manager\Helpers\JsonAPI();
         $success->setData(['success' => true]);
@@ -120,18 +133,16 @@ class UserControllerTest extends DatabaseTest
 
         $request = array(
             'path' => ['login'],
-            'email' => 'eddie@vanhalen.com',
-            'password' => 'Panama'
+            'email' => 'mike@rowe.com',
+            'password' => 'userpassword'
         );
 
         $control = new UserController(self::$config, $time, $request);
         $response = $control->getResponse();
 
         // Create identical JWT to compare the one set in the header
-        $evh = $users->get(3);
-        $jwt = $auth->mintToken($evh, $time);
-
-        print_r($evh);
+        $mike = $users->get(2);
+        $jwt = $auth->mintToken($mike, $time);
 
         // Response must be ['success' => true]
         $this->assertEquals($successJson, $response);
@@ -141,6 +152,7 @@ class UserControllerTest extends DatabaseTest
 
         /*
          * Log in with incorrect credentials
+         * (Will throw incorrect password before not verified)
          */
         $_COOKIE[\Manager\Config::AUTH_COOKIE] = null;
         $request = array(
@@ -164,16 +176,16 @@ class UserControllerTest extends DatabaseTest
         /*
          * Log in with unconfirmed user
          */
-        /*$_COOKIE[\Manager\Config::AUTH_COOKIE] = null;
+        $_COOKIE[\Manager\Config::AUTH_COOKIE] = null;
         $request = array(
             'path' => ['login'],
             'email' => 'eddie@vanhalen.com',
-            'password' => 'WRONG PASSWORD'
+            'password' => 'Panama' // Correct password
         );
 
         $unconfirmedJsonAPI = new \Manager\Helpers\JsonAPI();
-        $unconfirmedJsonAPI->add_error($control::INCORRECT_LOGIN, \Manager\Helpers\APIException::EMAIL_PASSWORD_WRONG);
-        $BadPasswordJson = $BadPasswordJsonAPI->encode();
+        $unconfirmedJsonAPI->add_error($control::UNCONFIRMED_USER, \Manager\Helpers\APIException::USER_NOT_CONFIRMED);
+        $unconfirmedJson = $unconfirmedJsonAPI->encode();
 
         $control = new UserController(self::$config, $time, $request);
         $response = $control->getResponse();
@@ -181,7 +193,40 @@ class UserControllerTest extends DatabaseTest
         // No cookie should be set
         $this->assertNull($_COOKIE[\Manager\Config::AUTH_COOKIE]);
         // JSON Response with Error set
-        $this->assertEquals($BadPasswordJson, $response);*/
+        $this->assertEquals($unconfirmedJson, $response);
 
+    }
+
+    public function testLogout()
+    {
+        $time = time();
+        $success = new \Manager\Helpers\JsonAPI();
+        $success->setData(['success' => true]);
+        $successJson = $success->encode();
+
+        /*
+         * Log in with correct username and password
+         */
+
+        $request = array(
+            'path' => ['login'],
+            'email' => 'mike@rowe.com',
+            'password' => 'userpassword'
+        );
+
+        $control = new UserController(self::$config, $time, $request);
+        $control->getResponse();
+
+        $this->assertNotNull($_COOKIE[\Manager\Config::AUTH_COOKIE]);
+
+        $request = array(
+            'path' => ['logout']
+        );
+
+        $control = new UserController(self::$config, $time, $request);
+        $actualJson = $control->getResponse();
+
+        $this->assertEquals($successJson, $actualJson);
+        $this->assertNull($_COOKIE[\Manager\Config::AUTH_COOKIE]);
     }
 }

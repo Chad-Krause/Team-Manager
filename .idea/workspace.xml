@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23c93e6-5781-4125-be49-f3f7172c6ba1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/Datasets/user.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/ScratchTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Manager/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Manager/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Manager/Helpers/APIException.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Manager/Helpers/APIException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Manager/Helpers/Authenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Manager/Helpers/Authenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Manager/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Manager/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Datasets/user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Datasets/user.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/UserControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/UserControllerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/UserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/UserTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/UsersTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/UsersTest.php" afterDir="false" />
     </list>
     <ignored path="vendor/" />
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
@@ -123,12 +114,17 @@
       <file leaf-file-name="UserControllerTest.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/UserControllerTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+            <state relative-caret-position="357">
+              <caret line="232" lean-forward="true" selection-start-line="232" selection-end-line="232" />
               <folding>
                 <element signature="e#91#130#0#PHP" expanded="true" />
+                <element signature="n#getDataSet#0;n#UserControllerTest#0;n#!!top" />
+                <element signature="n#setUp#0;n#UserControllerTest#0;n#!!top" />
+                <element signature="e#545#556#0#PHP" />
                 <element signature="n#test__construct#0;n#UserControllerTest#0;n#!!top" />
                 <element signature="n#testGetResponse#0;n#UserControllerTest#0;n#!!top" />
+                <element signature="n#testLogin#0;n#UserControllerTest#0;n#!!top" />
+                <element signature="n#testLogout#0;n#UserControllerTest#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -149,8 +145,8 @@
       <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/Manager/Controllers/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="92" column="12" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="12" />
+            <state relative-caret-position="102">
+              <caret line="103" column="35" selection-start-line="103" selection-start-column="35" selection-end-line="103" selection-end-column="35" />
               <folding>
                 <element signature="e#126#159#0#PHP" expanded="true" />
                 <element signature="e#694#827#0#PHP" />
@@ -162,8 +158,8 @@
       <file leaf-file-name="user.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/Datasets/user.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="46" column="34" lean-forward="true" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="34" />
+            <state relative-caret-position="357">
+              <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -171,8 +167,8 @@
       <file leaf-file-name="user.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/Datasets/user.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="34" selection-start-line="34" selection-end-line="48" selection-end-column="19" />
+            <state relative-caret-position="476">
+              <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -256,8 +252,8 @@
         <option value="$PROJECT_DIR$/lib/Manager/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/tests/Datasets/user.xml" />
         <option value="$PROJECT_DIR$/tests/UsersTest.php" />
-        <option value="$PROJECT_DIR$/tests/UserControllerTest.php" />
         <option value="$PROJECT_DIR$/tests/Datasets/user.yaml" />
+        <option value="$PROJECT_DIR$/tests/UserControllerTest.php" />
       </list>
     </option>
   </component>
@@ -571,7 +567,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="PHPUnit.UserControllerTest">
+  <component name="RunManager" selected="PHPUnit.UserControllerTest.testLogout">
     <configuration name="ScratchpadTest.testSQLOutput" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="ScratchpadTest" file="$PROJECT_DIR$/tests/ScratchTest.php" method="testSQLOutput" scope="Method" />
     </configuration>
@@ -581,26 +577,26 @@
     <configuration name="UserControllerTest.testLogin" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="UserControllerTest" file="$PROJECT_DIR$/tests/UserControllerTest.php" method="testLogin" scope="Method" />
     </configuration>
-    <configuration name="UserTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="UserTest" file="$PROJECT_DIR$/tests/UserTest.php" scope="Class" />
+    <configuration name="UserControllerTest.testLogout" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="UserControllerTest" file="$PROJECT_DIR$/tests/UserControllerTest.php" method="testLogout" scope="Method" />
     </configuration>
     <configuration name="UsersTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="UsersTest" file="$PROJECT_DIR$/tests/UsersTest.php" scope="Class" />
     </configuration>
     <list>
       <item itemvalue="PHPUnit.UserControllerTest" />
-      <item itemvalue="PHPUnit.UserTest" />
       <item itemvalue="PHPUnit.UserControllerTest.testLogin" />
       <item itemvalue="PHPUnit.ScratchpadTest.testSQLOutput" />
       <item itemvalue="PHPUnit.UsersTest" />
+      <item itemvalue="PHPUnit.UserControllerTest.testLogout" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.UserControllerTest.testLogout" />
+        <item itemvalue="PHPUnit.UserControllerTest.testLogin" />
         <item itemvalue="PHPUnit.UserControllerTest" />
         <item itemvalue="PHPUnit.UsersTest" />
-        <item itemvalue="PHPUnit.UserControllerTest.testLogin" />
         <item itemvalue="PHPUnit.ScratchpadTest.testSQLOutput" />
-        <item itemvalue="PHPUnit.UserTest" />
       </list>
     </recent_temporary>
   </component>
@@ -621,7 +617,7 @@
       <workItem from="1530229989872" duration="195000" />
       <workItem from="1530230203056" duration="717000" />
       <workItem from="1530289013958" duration="15554000" />
-      <workItem from="1530658110803" duration="36847000" />
+      <workItem from="1530658110803" duration="38930000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1529932901900</created>
@@ -728,31 +724,17 @@
       <option name="project" value="LOCAL" />
       <updated>1530914212719</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="More testing on UserController">
+      <created>1531170074946</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1531170074946</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="UserControllerTest_testLogin - 2018.07.09 at 16h 09m 59s.xml">
-      <configuration name="UserControllerTest.testLogin" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="UserControllerTest_testLogin - 2018.07.09 at 16h 11m 48s.xml">
-      <configuration name="UserControllerTest.testLogin" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="UserControllerTest_testLogin - 2018.07.09 at 16h 12m 07s.xml">
-      <configuration name="UserControllerTest.testLogin" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="UsersTest - 2018.07.09 at 16h 43m 45s.xml">
-      <configuration name="UsersTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="UsersTest - 2018.07.09 at 16h 44m 28s.xml">
-      <configuration name="UsersTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="UserControllerTest - 2018.07.09 at 16h 45m 11s.xml">
-      <configuration name="UserControllerTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="UserControllerTest - 2018.07.09 at 16h 45m 39s.xml">
-      <configuration name="UserControllerTest" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="UserControllerTest - 2018.07.09 at 16h 46m 17s.xml">
       <configuration name="UserControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
@@ -762,9 +744,30 @@
     <history-entry file="UserControllerTest - 2018.07.09 at 16h 48m 11s.xml">
       <configuration name="UserControllerTest" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
+    <history-entry file="UserControllerTest - 2018.07.10 at 11h 00m 40s.xml">
+      <configuration name="UserControllerTest" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UserControllerTest_testLogin - 2018.07.10 at 11h 08m 12s.xml">
+      <configuration name="UserControllerTest.testLogin" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UserControllerTest_testLogin - 2018.07.10 at 11h 08m 39s.xml">
+      <configuration name="UserControllerTest.testLogin" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UserControllerTest_testLogin - 2018.07.10 at 11h 09m 13s.xml">
+      <configuration name="UserControllerTest.testLogin" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UserControllerTest_testLogin - 2018.07.10 at 11h 10m 07s.xml">
+      <configuration name="UserControllerTest.testLogin" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UserControllerTest_testLogin - 2018.07.10 at 11h 10m 19s.xml">
+      <configuration name="UserControllerTest.testLogin" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UserControllerTest_testLogout - 2018.07.10 at 11h 14m 39s.xml">
+      <configuration name="UserControllerTest.testLogout" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102252000" />
+    <option name="totallyTimeSpent" value="104335000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -814,7 +817,8 @@
     <MESSAGE value="Added Logging classes and test&#10;&#10;Still need to finish:&#10;Logger&#10;Controller&#10;UserController&#10;APIException" />
     <MESSAGE value="Updated logger" />
     <MESSAGE value="Massive update:&#10;-Controllers now have some working functionality in them&#10;-UserController Get is implemented and tested&#10;-UserController Login and Logout framework is layed out but not tested&#10;-User class gained function toArray() that takes the User object and converts it to an array that can be put into a JsonAPI&#10;-APIException gained new exceptions&#10;-Authenticator works better, going to write a test&#10;-JsonAPI was moved from Dr. Owen's implementation to Chad Krause's - His implementation is more advanced, and I don't need that level of complexity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Massive update:&#10;-Controllers now have some working functionality in them&#10;-UserController Get is implemented and tested&#10;-UserController Login and Logout framework is layed out but not tested&#10;-User class gained function toArray() that takes the User object and converts it to an array that can be put into a JsonAPI&#10;-APIException gained new exceptions&#10;-Authenticator works better, going to write a test&#10;-JsonAPI was moved from Dr. Owen's implementation to Chad Krause's - His implementation is more advanced, and I don't need that level of complexity" />
+    <MESSAGE value="More testing on UserController" />
+    <option name="LAST_COMMIT_MESSAGE" value="More testing on UserController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1150,16 +1154,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Helpers/Authenticator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="52" column="42" lean-forward="true" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
-          <folding>
-            <element signature="e#119#141#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/Manager/Models/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1167,14 +1161,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Manager/Controllers/UserController.php">
+    <entry file="file://$PROJECT_DIR$/tests/Datasets/user.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="92" column="12" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="12" />
-          <folding>
-            <element signature="e#126#159#0#PHP" expanded="true" />
-            <element signature="e#694#827#0#PHP" />
-          </folding>
+        <state relative-caret-position="476">
+          <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Datasets/user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1197,20 +1194,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Datasets/user.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="46" column="34" lean-forward="true" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/ScratchTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="25" column="4" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/UsersTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1228,21 +1211,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Datasets/user.yaml">
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Helpers/Authenticator.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="34" selection-start-line="34" selection-end-line="48" selection-end-column="19" />
+        <state relative-caret-position="799">
+          <caret line="52" column="42" lean-forward="true" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
+          <folding>
+            <element signature="e#119#141#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Manager/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="103" column="35" selection-start-line="103" selection-start-column="35" selection-end-line="103" selection-end-column="35" />
+          <folding>
+            <element signature="e#126#159#0#PHP" expanded="true" />
+            <element signature="e#694#827#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/ScratchTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="25" column="4" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/UserControllerTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+        <state relative-caret-position="357">
+          <caret line="232" lean-forward="true" selection-start-line="232" selection-end-line="232" />
           <folding>
             <element signature="e#91#130#0#PHP" expanded="true" />
+            <element signature="n#getDataSet#0;n#UserControllerTest#0;n#!!top" />
+            <element signature="n#setUp#0;n#UserControllerTest#0;n#!!top" />
+            <element signature="e#545#556#0#PHP" />
             <element signature="n#test__construct#0;n#UserControllerTest#0;n#!!top" />
             <element signature="n#testGetResponse#0;n#UserControllerTest#0;n#!!top" />
+            <element signature="n#testLogin#0;n#UserControllerTest#0;n#!!top" />
+            <element signature="n#testLogout#0;n#UserControllerTest#0;n#!!top" />
           </folding>
         </state>
       </provider>
