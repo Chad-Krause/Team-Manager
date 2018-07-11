@@ -16,11 +16,12 @@ class UserControllerTest extends DatabaseTest
     protected function getDataSet()
     {
         //return new YamlDataSet(dirname(__FILE__) . '/Datasets/user.yaml');
-        return $this->createFlatXMLDataSet(dirname(__FILE__) . '/Datasets/user.xml');
+        return new YamlDataSet(dirname(__FILE__) . '/Datasets/user.yaml');
     }
 
     protected function setUp(): void
     {
+        parent::setUp();
         // For some reason, the .yaml and .xml put a 1 into the bit(1) instead of a 0, so this fixes that
         $sql = <<<SQL
 update ztest_user set confirmed = 0 where id = 3

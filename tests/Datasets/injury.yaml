@@ -2,7 +2,7 @@ ztest_injury:
   -
     id: 1
     date_added: ''
-    date_modified: ''
+    date_occurred: ''
     reporterid: 1
     victimid: 2
     description: 'Test injury 1, Mike Rowe was doing a dirty job and got really dirty'
@@ -10,7 +10,7 @@ ztest_injury:
   -
     id: 2
     date_added: ''
-    date_modified: ''
+    date_occurred: ''
     reporterid: 3
     victimid: 2
     description: 'Test injury 2, Mike Rowe was cutting a tree and pinched a finger'
@@ -18,7 +18,7 @@ ztest_injury:
   -
     id: 3
     date_added: ''
-    date_modified: ''
+    date_occurred: ''
     reporterid: 1
     victimid: 1
     description: 'I got my feelings hurt'
@@ -26,7 +26,7 @@ ztest_injury:
   -
     id: 4
     date_added: ''
-    date_modified: ''
+    date_occurred: ''
     reporterid: 3
     victimid: 3
     description: 'Got my self wrapped up in the leathery claws of satan'
@@ -34,7 +34,7 @@ ztest_injury:
   -
     id: 5
     date_added: ''
-    date_modified: ''
+    date_occurred: ''
     reporterid: 2
     victimid: 3
     description: 'Eddie Van Halen shredded too hard and broke his string'

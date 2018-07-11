@@ -9,7 +9,13 @@
 namespace Manager\Models;
 
 
-class Injuries
+use Manager\Config;
+
+class Injuries extends Table
 {
+    public function __construct(Config $config)
+    {
+        parent::__construct($config, "injury");
+    }
 
 }

@@ -17,7 +17,7 @@ class InjuryTest extends TestCase
         $row = array(
             'id' => 1,
             'date_added' => '',
-            'date_modified' => '',
+            'date_occurred' => '',
             'victimid' => 2,
             'reporterid' => 1,
             'description' => 'Mike hurt himself cutting something',

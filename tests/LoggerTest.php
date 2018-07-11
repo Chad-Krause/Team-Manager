@@ -63,11 +63,6 @@ SQL;
         $chadlog = $logger->getLastLog();
         $this->assertNotNull($chadlog);
         $this->assertContains('Chad', $chadlog->getMessage());
-
-
-        $logger->log('Logging test');
-        $log = $logger->getLastLog();
-        $this->assertContains('test', $log->getMessage());
     }
 
 }

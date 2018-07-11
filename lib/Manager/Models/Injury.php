@@ -13,7 +13,7 @@ class Injury
 {
     private $id;
     private $date_added;
-    private $date_modified;
+    private $date_occurred;
     private $reporterid;
     private $victimid;
     private $description;
@@ -24,7 +24,7 @@ class Injury
         if($row !== null) {
             $this->id               = $row['id'];
             $this->date_added       = $row['date_added'];
-            $this->date_modified    = $row['date_modified'];
+            $this->date_occurred    = $row['date_occurred'];
             $this->reporterid       = $row['reporterid'];
             $this->victimid         = $row['victimid'];
             $this->description      = $row['description'];
@@ -59,17 +59,17 @@ class Injury
     /**
      * @return mixed
      */
-    public function getDateModified()
+    public function getDateOccurred()
     {
-        return $this->date_modified;
+        return $this->date_occurred;
     }
 
     /**
-     * @param mixed $date_modified
+     * @param mixed $date_occurred
      */
-    public function setDateModified($date_modified): void
+    public function setDateOccurred($date_occurred): void
     {
-        $this->date_modified = $date_modified;
+        $this->date_occurred = $date_occurred;
     }
 
     /**
