@@ -22,6 +22,7 @@ class Logger extends Table
     const USER_LOGGED_IN = 4;
     const USER_LOGGED_OUT = 5;
     const INTERNAL_EXCEPTION = 6;
+    const API_EXCEPTION = 7;
 
 
     public function __construct(Config $config)
@@ -51,6 +52,14 @@ SQL;
         }
     }
 
+    /**
+     * Logs a message with a name and id
+     * (DEPRECIATED - LOGS ARE NOW LOGS OF EXCEPTIONS)
+     * @param $type
+     * @param User $user
+     * @param null $message
+     * @param \DateTime|null $dateTime
+     */
     public function logWithUser($type, User $user, $message = null, \DateTime $dateTime = null)
     {
         $log = new Log();
@@ -90,7 +99,7 @@ SQL;
     private function _log(Log $log)
     {
         $sql = <<<SQL
-insert into log (message, type, date)
+insert into $this->tableName (message, type, date)
 values(?, ?, ?)
 SQL;
 
@@ -102,4 +111,11 @@ SQL;
         ]);
     }
 
+    public function logException(\Exception $exception)
+    {
+        $row = array(
+
+        );
+        $log = new Log($row);
+    }
 }

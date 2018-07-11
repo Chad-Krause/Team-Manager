@@ -47,4 +47,32 @@ class UserTest extends TestCase
         $this->assertEquals(2020,$user->getGraduationyear());
         $this->assertTrue($user->isConfirmed());
     }
+
+    // Tiny easter egg to put a * in the name on their birthday
+    public function testBirthday()
+    {
+        $row = array(
+            'id' => 7226,
+            'firstname' => 'Waverly',
+            'lastname' => 'Robotics',
+            'email' => 'dev@waverlyrobotics.org',
+            'roleid' => 1,
+            'birthday' => date('Y-m-d')
+        );
+
+        $user = new User($row);
+        $this->assertContains('🎁', $user->getFirstname());
+
+        $row = array(
+            'id' => 7226,
+            'firstname' => 'Waverly',
+            'lastname' => 'Robotics',
+            'email' => 'dev@waverlyrobotics.org',
+            'roleid' => 1,
+            'birthday' => '0000-00-00'
+        );
+
+        $user = new User($row);
+        $this->assertNotContains('🎁', $user->getFirstname());
+    }
 }

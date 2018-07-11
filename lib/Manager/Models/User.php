@@ -60,7 +60,12 @@ class User
      */
     public function getFirstname()
     {
-        return $this->firstname;
+        if($this->isBirthday()) {
+            return '🎁 ' . $this->firstname;
+        } else {
+            return $this->firstname;
+        }
+        //return $this->firstname;
     }
 
     /**
@@ -194,6 +199,16 @@ class User
     public function setConfirmed($confirmed): void
     {
         $this->confirmed = $confirmed;
+    }
+
+    /**
+     * @returns true if it's this user's birthday
+     */
+    private function isBirthday()
+    {
+        $date = date('m-d');
+        $bd = substr($this->birthday,5);
+        return $date == $bd;
     }
 
 

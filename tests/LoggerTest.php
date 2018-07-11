@@ -9,11 +9,27 @@
 use Manager\Helpers\Logger;
 use Manager\Models\Users;
 
+require_once 'DatabaseTest.php';
+
 class LoggerTest extends DatabaseTest
 {
     protected function getDataSet()
     {
         return $this->createFlatXMLDataSet(dirname(__FILE__) . '/Datasets/log.xml');
+    }
+
+    protected function setUp(): void
+    {
+        // For some reason
+
+        $sql = <<<SQL
+        select * from ztest_user
+SQL;
+
+        //$table = new \Manager\Models\Table(self::$config);
+        //$stmt = $table->pdo()->prepare($sql);
+        //$stmt->execute();
+
     }
 
     protected function tearDown(): void
@@ -48,10 +64,10 @@ SQL;
         $this->assertNotNull($chadlog);
         $this->assertContains('Chad', $chadlog->getMessage());
 
-        /*
+
         $logger->log('Logging test');
         $log = $logger->getLastLog();
-        $this->assertContains('test', $log->getMessage());*/
+        $this->assertContains('test', $log->getMessage());
     }
 
 }

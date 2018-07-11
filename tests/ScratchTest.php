@@ -14,7 +14,7 @@ class ScratchpadTest extends TestCase
     public function testSQLOutput()
     {
         $config = new \Manager\Config();
-        $localize = require '../lib/localize.inc.php';
+        $localize = require dirname(__DIR__) . '/lib/localize.inc.php';
         if(is_callable($localize)) {
             $localize($config);
         }

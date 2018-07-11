@@ -12,9 +12,11 @@ require_once 'DatabaseTest.php';
 
 class UserControllerTest extends DatabaseTest
 {
+
     protected function getDataSet()
     {
-        return new YamlDataSet(dirname(__FILE__) . '/Datasets/user.yaml');
+        //return new YamlDataSet(dirname(__FILE__) . '/Datasets/user.yaml');
+        return $this->createFlatXMLDataSet(dirname(__FILE__) . '/Datasets/user.xml');
     }
 
     protected function setUp(): void

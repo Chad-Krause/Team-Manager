@@ -16,8 +16,13 @@ return function(Manager\Config $config) {
 
     $config->setEmail('chad@chadkrause.com');
     $config->setRoot('/');
-    $config->dbConfigure('mysql:dbname=msushrim_team;host=chadkrause.com',
+    $config->dbConfigure('mysql:dbname=msushrim_team;host=chadkrause.com;charset=utf8',
         'msushrim_pattrn',       // Database user
         '%m8Q%ym?Rrw4',     // Database password
-        '');            // Table prefix
+        '',
+        array(
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+        )
+    );            // Table prefix
 };

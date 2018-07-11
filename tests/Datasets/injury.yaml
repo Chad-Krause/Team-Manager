@@ -1,0 +1,91 @@
+ztest_injury:
+  -
+    id: 1
+    date_added: ''
+    date_modified: ''
+    reporterid: 1
+    victimid: 2
+    description: 'Test injury 1, Mike Rowe was doing a dirty job and got really dirty'
+    actionstaken: 'Mike took a shower... actually he took a few showers'
+  -
+    id: 2
+    date_added: ''
+    date_modified: ''
+    reporterid: 3
+    victimid: 2
+    description: 'Test injury 2, Mike Rowe was cutting a tree and pinched a finger'
+    actionstaken: 'Finger was unpinched'
+  -
+    id: 3
+    date_added: ''
+    date_modified: ''
+    reporterid: 1
+    victimid: 1
+    description: 'I got my feelings hurt'
+    actionstaken: 'Many hugs were used to heal the pain'
+  -
+    id: 4
+    date_added: ''
+    date_modified: ''
+    reporterid: 3
+    victimid: 3
+    description: 'Got my self wrapped up in the leathery claws of satan'
+    actionstaken: 'Took care of it... with my prayers'
+  -
+    id: 5
+    date_added: ''
+    date_modified: ''
+    reporterid: 2
+    victimid: 3
+    description: 'Eddie Van Halen shredded too hard and broke his string'
+    actionstaken: ''
+
+ztest_user:
+  -
+    id: 1
+    firstname: "Chad"
+    lastname: "Krause"
+    email: "chad@chadkrause.com"
+    password: "07a87ddb4439201c7acfb43980f400f35dbfdcda83a1a73b66d2b7f34f7ec711"
+    salt: "6WmZ9XDT4ZYtDsOX"
+    roleid: 1
+    date_added: ""
+    date_modified: ""
+    enabled: 1
+    confirmed: 1
+    graduationyear: 2020
+    yearjoined: 2017
+    birthday: 1996-01-27
+    profileimageid:
+  -
+    id: 2
+    firstname: "Mike"
+    lastname: "Rowe"
+    email: "mike@rowe.com"
+    password: "671e728bcb284f423e19dacdf132a9410afc170ef6b7666d19b689a467d39f24"
+    salt: "y-GHUX0Ey8%E6J53"
+    roleid: 3
+    date_added: ""
+    date_modified: ""
+    enabled: 1
+    confirmed: 1
+    graduationyear: 2020
+    yearjoined: 2019
+    birthday: 1962-03-18
+    profileimageid:
+  -
+    id: 3
+    firstname: "Eddie"
+    lastname: "Van Halen"
+    email: "eddie@vanhalen.com"
+    password: "dabac4cd92d71106e74406be137a578e1b3ce436420f66d2df5be458301d2154"
+    salt: "zU`Rr$X=YjxHRp8o"
+    roleid: 2
+    date_added: ""
+    date_modified: ""
+    enabled: 0
+    confirmed: 0
+    graduationyear: 2020
+    yearjoined: 2019
+    birthday: 1955-01-26
+    profileimageid:
