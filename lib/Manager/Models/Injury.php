@@ -22,7 +22,7 @@ class Injury
     public function __construct($row = null)
     {
         if($row !== null) {
-            $this->id               = $row['id'];
+            $this->id               = !isset($row['id'])? null : $row['id']; // only assign Id if it exists
             $this->date_added       = $row['date_added'];
             $this->date_occurred    = $row['date_occurred'];
             $this->reporterid       = $row['reporterid'];

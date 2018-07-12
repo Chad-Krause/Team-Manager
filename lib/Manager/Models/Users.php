@@ -153,7 +153,7 @@ SQL;
     public function get($id)
     {
         $sql = <<<SQL
-select * from $this->tableName where id = ?
+select * from $this->tableName where id = ? and enabled = 1
 SQL;
 
         $stmt = $this->pdo()->prepare($sql);

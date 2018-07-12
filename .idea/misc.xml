@@ -4,11 +4,11 @@
     <session id="-1177993723">
       <usages-collector id="statistics.php.composer.actions">
         <counts>
-          <entry key="addDependencyDialog_from_MainMenu" value="4" />
+          <entry key="addDependencyDialog_from_MainMenu" value="5" />
           <entry key="install_from_ComposerEditorNotificationPanel" value="3" />
           <entry key="install_from_MainMenu" value="1" />
           <entry key="remove_from_AddDependencyDialog" value="2" />
-          <entry key="require_from_AddDependencyDialog" value="8" />
+          <entry key="require_from_AddDependencyDialog" value="9" />
           <entry key="self-update_from_MainMenu" value="1" />
           <entry key="updateAll_from_ComposerEditorNotificationPanel" value="1" />
           <entry key="updateAll_from_MainMenu" value="8" />
@@ -20,7 +20,7 @@
         <counts>
           <entry key="remove_with_--ansi_--dev_--no-interaction_--no-progress" value="1" />
           <entry key="remove_with_--ansi_--no-interaction_--no-progress.default" value="1" />
-          <entry key="require_with_--ansi_--dev_--no-interaction_--no-progress" value="3" />
+          <entry key="require_with_--ansi_--dev_--no-interaction_--no-progress" value="4" />
           <entry key="require_with_--ansi_--no-interaction_--no-progress.default" value="5" />
           <entry key="updatePackage_with_--ansi_--dev_--no-interaction_--no-progress" value="1" />
           <entry key="validate_with_--ansi_--no-check-publish_--no-interaction_--verbose_--with-dependencies.default" value="1" />
