@@ -144,15 +144,15 @@ SQL;
 
         if($role == User::ADMIN || $role == User::MENTOR) {
             $sql = <<<SQL
-select * from injury 
+select * from $this->tableName 
 where enabled = 1
 SQL;
             $stmt = $this->pdo()->prepare($sql);
             $stmt->execute();
         } else {
             $sql = <<<SQL
-select * from injury 
-where victimid = ? or reporterid = ?
+select * from $this->tableName 
+where enabled = 1 and victimid = ? or reporterid = ?
 SQL;
             $stmt = $this->pdo()->prepare($sql);
             $stmt->execute([
@@ -166,8 +166,7 @@ SQL;
         }
 
         $reports = [];
-        $rows = [null];
-        print_r($stmt->fetchAll(\PDO::FETCH_ASSOC));
+        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         foreach($rows as $row) {
             $reports[] = new Injury($row);

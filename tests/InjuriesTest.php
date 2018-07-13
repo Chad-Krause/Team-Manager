@@ -22,11 +22,6 @@ class InjuriesTest extends DatabaseTest
         return new YamlDataSet(dirname(__FILE__) . '/Datasets/injury.yaml');
     }
 
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
-
     public function tearDown(): void
     {
         $sql = <<<SQL
@@ -155,6 +150,7 @@ SQL;
      */
     public function testGetAllAssociated()
     {
+        $this->setUp();
         $users = new Users(self::$config);
         $admin = $users->get(1);
         $student = $users->get(3);
@@ -164,6 +160,12 @@ SQL;
 
         $this->assertNotNull($reports);
         $this->assertEquals(5, count($reports));
+
+        // There are 3 where this student is involved
+        $reports = $injuries->getAllAssociated($student);
+
+        $this->assertNotNull($reports);
+        $this->assertEquals(3, count($reports));
     }
 
 
