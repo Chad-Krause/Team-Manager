@@ -5,7 +5,7 @@
  * for testing purposes.
  */
 
-namespace TRB\Helpers;
+namespace Manager\Helpers;
 
 
 class Server {
@@ -64,7 +64,7 @@ class Server {
      * Returns the time of the request
      * @return \DateTime
      */
-	public function getRequestTime()
+	public static function getRequestTime()
     {
         return $_SERVER['REQUEST_TIME'];
     }

@@ -154,3 +154,21 @@ class PunchCard
 
 
 }
+
+class UserHours
+{
+    public $userid;
+    public $name;
+    public $time;
+    public $last_in;
+    public $auto_logouts;
+
+    public function __construct($row)
+    {
+        $userid             = $row['userid'];
+        $name               = $row['name'];
+        $time               = $row['time'];
+        $last_in            = $row['last_in'];
+        $auto_logouts       = $row['auto_logouts'];
+    }
+}

@@ -6,7 +6,7 @@
  * Time: 9:05 PM
  */
 
-namespace TRB\Models;
+namespace Manager\Models;
 
 
 class Address {

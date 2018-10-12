@@ -11,6 +11,8 @@ namespace Manager\Helpers;
 use \Firebase\JWT\JWT;
 use Manager\Config;
 use Manager\Models\User;
+use Manager\Models\Users;
+use Manager\Helpers\Server;
 
 class Authenticator
 {
@@ -56,12 +58,12 @@ class Authenticator
             }
         }
 
-        $jwt = JWT::encode($token, $this->config::PRIVATEKEY,'RS256');
+        $jwt = JWT::encode($token, Config::PRIVATEKEY,'RS256');
 
         return $jwt;
     }
 
-    public function getUserIdFromToken($jwt)
+    public static function getUserIdFromToken($jwt)
     {
         try {
             $token = JWT::decode($jwt, Config::PUBLICKEY, array('RS256'));
@@ -72,5 +74,54 @@ class Authenticator
         }
 
         return (int)$id;
+    }
+
+    /**
+     *
+     */
+    public static function GetUser(Config $config) {
+        $server = new Server();
+        if(!isset($server->__get('cookie')[Config::AUTH_COOKIE])) {
+            return null;
+        }
+        $jwt = $server->__get('cookie')[Config::AUTH_COOKIE];
+        $users = new Users($config);
+        return $users->get(Authenticator::getUserIdFromToken($jwt));
+    }
+
+    /**
+     * refreshes the expiration time of the JWT
+     */
+    public static function refreshAuthToken() {
+        $server = new Server();
+        if(!isset($server->__get('cookie')[Config::AUTH_COOKIE])) {
+            return;
+        }
+        $jwt = $server->__get('cookie')[Config::AUTH_COOKIE];
+
+        try {
+            $token = JWT::decode($jwt, Config::PUBLICKEY, array('RS256'));
+        } catch (\Exception $e) {
+            $server->setcookie(
+                Config::AUTH_COOKIE,
+                null,
+                Server::getRequestTime() + 100000000 // don't expire soon
+            );
+            return;
+        }
+
+        $decoded = json_decode(json_encode($token), true);
+
+        $time = Server::getRequestTime();
+
+        $decoded['iat'] = $time;
+        $decoded['exp'] = $time + self::DEFAULT_EXPIRATION_TIME;
+        $decoded['nbf'] = $time;
+
+        $server->setcookie(
+            Config::AUTH_COOKIE,
+            JWT::encode($token, Config::PRIVATEKEY,'RS256'),
+            $time + self::DEFAULT_EXPIRATION_TIME
+        );
     }
 }

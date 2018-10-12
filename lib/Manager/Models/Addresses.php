@@ -32,6 +32,10 @@ class Addresses extends Table {
      * @return int|null int if successful, null if not
      */
     public function get($ipaddress) {
+        if($ipaddress == null) {
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        }
+
         $sql = <<<SQL
 select id from $this->tableName
 where address = ?;
