@@ -29,7 +29,7 @@ delete from ztest_injury
 SQL;
         $table = new \Manager\Models\Table(self::$config, 'injury');
         $stmt = $table->pdo()->prepare($sql);
-        $stmt->execute();
+        //$stmt->execute();
     }
 
     public function test__construct()

@@ -6,12 +6,13 @@
  * Time: 8:20 PM
  */
 
+//TODO: Refactor all of this code to use the better method using the Server class
+
 namespace Manager\Controllers;
 
 
 use Manager\Helpers\APIException;
 use Manager\Config;
-use Manager\Controllers\Controller;
 use Manager\Helpers\Authenticator;
 use Manager\Helpers\JsonAPI;
 use Manager\Models\User;
@@ -20,9 +21,9 @@ use Manager\Models\Users;
 class UserController extends Controller
 {
 
-    public function __construct(Config $config, $time, array $request)
+    public function __construct(Config $config, $user, array $request)
     {
-        parent::__construct($config, $time, $request);
+        parent::__construct($config, $user, $request);
     }
 
     public function getResponse() {
@@ -50,8 +51,12 @@ class UserController extends Controller
                     break;
 
                 default:
-                    $data = null;
-                    throw new APIException(APIException::INVALID_REQUEST, APIException::NOT_FOUND);
+                    $data = new JsonAPI();
+                    $data->add_error(
+                        APIException::INVALID_REQUEST,
+                        APIException::NOT_FOUND
+                    );
+                    break;
             }
 
         } catch (APIException $e) {

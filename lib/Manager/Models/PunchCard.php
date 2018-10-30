@@ -159,6 +159,7 @@ class UserHours
 {
     public $userid;
     public $name;
+    public $nickname;
     public $time;
     public $last_in;
     public $auto_logouts;
@@ -167,6 +168,7 @@ class UserHours
     {
         $userid             = $row['userid'];
         $name               = $row['name'];
+        $nickname           = $row['nickname'];
         $time               = $row['time'];
         $last_in            = $row['last_in'];
         $auto_logouts       = $row['auto_logouts'];

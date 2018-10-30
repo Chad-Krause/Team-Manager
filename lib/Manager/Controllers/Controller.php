@@ -10,7 +10,6 @@ namespace Manager\Controllers;
 
 use Manager\Config;
 use Manager\Models\User;
-use Manager\Models\Users;
 
 abstract class Controller
 {
@@ -29,17 +28,15 @@ abstract class Controller
      */
     protected $config;
 
-    protected $time;
-
     /**
      * Controller constructor.
      * @param Config $config
      * @param array $request
      * @param int $userid
      */
-    public function __construct(Config $config, $time, $request = [])
+    public function __construct(Config $config, $user, $request = [])
     {
-        $this->time = $time;
+        $this->user = $user;
         $this->request = $request;
         $this->config = $config;
     }

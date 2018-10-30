@@ -1,44 +1,49 @@
 ztest_injury:
   -
     id: 1
-    date_added: ''
-    date_occurred: ''
+    date_added: "2000-01-01 01:01:01"
+    date_occurred: "2000-01-01 01:01:01"
     reporterid: 1
     victimid: 2
     description: 'Test injury 1, Mike Rowe was doing a dirty job and got really dirty'
     actionstaken: 'Mike took a shower... actually he took a few showers'
+    enabled: 'Y'
   -
     id: 2
-    date_added: ''
-    date_occurred: ''
+    date_added: "2000-01-01 01:01:01"
+    date_occurred: "2000-01-01 01:01:01"
     reporterid: 3
     victimid: 2
     description: 'Test injury 2, Mike Rowe was cutting a tree and pinched a finger'
     actionstaken: 'Finger was unpinched'
+    enabled: 'Y'
   -
     id: 3
-    date_added: ''
-    date_occurred: ''
+    date_added: "2000-01-01 01:01:01"
+    date_occurred: "2000-01-01 01:01:01"
     reporterid: 1
     victimid: 1
     description: 'I got my feelings hurt'
     actionstaken: 'Many hugs were used to heal the pain'
+    enabled: 'Y'
   -
     id: 4
-    date_added: ''
-    date_occurred: ''
+    date_added: "2000-01-01 01:01:01"
+    date_occurred: "2000-01-01 01:01:01"
     reporterid: 3
     victimid: 3
     description: 'Got my self wrapped up in the leathery claws of satan'
     actionstaken: 'Took care of it... with my prayers'
+    enabled: 'Y'
   -
     id: 5
-    date_added: ''
-    date_occurred: ''
+    date_added: "2000-01-01 01:01:01"
+    date_occurred: "2000-01-01 01:01:01"
     reporterid: 2
     victimid: 3
     description: 'Eddie Van Halen shredded too hard and broke his string'
     actionstaken: ''
+    enabled: 'Y'
 
 ztest_user:
   -
@@ -49,14 +54,16 @@ ztest_user:
     password: "07a87ddb4439201c7acfb43980f400f35dbfdcda83a1a73b66d2b7f34f7ec711"
     salt: "6WmZ9XDT4ZYtDsOX"
     roleid: 1
-    date_added: ""
-    date_modified: ""
-    enabled: 1
-    confirmed: 1
+    date_added: "2018-10-10 08:00:00"
+    date_modified: "2018-10-10 08:00:00"
+    enabled: 'Y'
+    confirmed: 'Y'
     graduationyear: 2020
     yearjoined: 2017
-    birthday: 1996-01-27
+    birthday: '1996-01-27'
     profileimageid:
+    pin: '6ccb11f8a12f3253cb78452f2d8b44f1832f03cad8cdcbf1cd48efade1b18ae5' #7226
+    pin_salt: 'fym5v32XFgyZ06xO'
   -
     id: 2
     firstname: "Mike"
@@ -65,14 +72,16 @@ ztest_user:
     password: "671e728bcb284f423e19dacdf132a9410afc170ef6b7666d19b689a467d39f24"
     salt: "y-GHUX0Ey8%E6J53"
     roleid: 3
-    date_added: ""
-    date_modified: ""
-    enabled: 1
-    confirmed: 1
+    date_added: "2018-10-10 08:00:00"
+    date_modified: "2018-10-10 08:00:00"
+    enabled: 'Y'
+    confirmed: 'Y'
     graduationyear: 2020
     yearjoined: 2019
-    birthday: 1962-03-18
+    birthday: '1962-03-18'
     profileimageid:
+    pin: '9e5a657f889cf00f69ccc3490f59aa0bd3e04647271cc2cdc50529d3c6edb896' #1234
+    pin_salt: 'N)5ePXO%mqS^kMX7'
   -
     id: 3
     firstname: "Eddie"
@@ -81,11 +90,13 @@ ztest_user:
     password: "dabac4cd92d71106e74406be137a578e1b3ce436420f66d2df5be458301d2154"
     salt: "zU`Rr$X=YjxHRp8o"
     roleid: 2
-    date_added: ""
-    date_modified: ""
-    enabled: 0
-    confirmed: 0
+    date_added: "2018-10-10 08:00:00"
+    date_modified: "2018-10-10 08:00:00"
+    enabled: 'Y'
+    confirmed: 'Y'
     graduationyear: 2020
     yearjoined: 2019
-    birthday: 1955-01-26
+    birthday: '1955-01-26'
     profileimageid:
+    pin: '098b8f25a188397214fd41fe617e5b2672ca1a4d46b51aaa941cd1070eea39a3' #0000
+    pin_salt: 'bsAHAJ+cV1VcWbTp'

@@ -20,10 +20,10 @@ return function(\Manager\Config $config)
         'mysql:host=chadkrause.com;dbname=msushrim_team;charset=utf8',
         'msushrim_pattrn',
         '%m8Q%ym?Rrw4',
-        'ztest_',
-        array(
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
-        )
+        'ztest_'//,
+        //array(
+        //    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+         //   PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+        //)
     );
 };

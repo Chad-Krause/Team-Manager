@@ -121,6 +121,10 @@ class Server {
 		setcookie($name, $value, $expire, '/', '', false, false);
 	}
 
+	public function getRequestIP() {
+	    return $_SERVER['REMOTE_ADDR'];
+    }
+
 	/**
 	 * Parse the request URI into components after the specified parent directory.
 	 *

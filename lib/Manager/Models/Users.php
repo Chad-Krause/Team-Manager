@@ -73,8 +73,8 @@ SQL;
 
         // Add a record to the user table
         $sql = <<<SQL
-INSERT INTO $this->tableName (firstname, lastname, email, roleid, enabled, date_added, date_modified, graduationyear, yearjoined, birthday)
-values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO $this->tableName (firstname, lastname, nickname, email, roleid, enabled, date_added, date_modified, graduationyear, yearjoined, birthday)
+values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 SQL;
 
         $statement = $this->pdo()->prepare($sql);
@@ -83,6 +83,7 @@ SQL;
             $statement->execute(array(
                 $user->getFirstname(),
                 $user->getLastname(),
+                $user->getNickname(),
                 strtolower($user->getEmail()),
                 $user->getRole(),
                 true,
@@ -153,11 +154,11 @@ SQL;
     public function get($id)
     {
         $sql = <<<SQL
-select * from $this->tableName where id = ? and enabled = 1
+select * from $this->tableName where id = ? and enabled = ?
 SQL;
 
         $stmt = $this->pdo()->prepare($sql);
-        $stmt->execute([$id]);
+        $stmt->execute([$id, User::ENABLED]);
 
         if($stmt->rowCount() !== 1) {
             return null;
@@ -165,4 +166,66 @@ SQL;
             return new User($stmt->fetch(\PDO::FETCH_ASSOC));
         }
     }
+
+    /**
+     * Verifies that the pin is correct
+     * @param $userid
+     * @param $pin
+     * @return bool
+     */
+    public function verifyPin($userid, $pin)
+    {
+        $sql =<<<SQL
+select * from $this->tableName
+where id=?
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute([$userid]);
+
+
+        if($statement->rowCount() === 0) {
+            return false;
+        }
+
+        $row = $statement->fetch(\PDO::FETCH_ASSOC);
+
+        // Get the encrypted password and salt from the record
+        $hash = $row['pin'];
+        $salt = $row['pin_salt'];
+
+        //print_r('real: ' . $hash);
+        //print_r('new: '. hash("sha256", $pin . $salt));
+
+        // Ensure it is correct
+        return $hash == hash("sha256", $pin . $salt);
+    }
+
+    /**
+     * Returns an array of all users
+     * @return array(User)
+     */
+    public function getAllUsers()
+    {
+        $sql = <<<SQL
+select * from $this->tableName
+where enabled = ? and confirmed = ?
+SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+        $stmt->execute([
+            User::ENABLED,
+            User::CONFIRMED
+        ]);
+
+        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $users = [];
+        foreach($rows as $row) {
+            $users[] = new User($row);
+        }
+
+        return $users;
+    }
+
 }

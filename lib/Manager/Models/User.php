@@ -14,6 +14,7 @@ class User
     private $id;                ///> Id of the user
     private $firstname;         ///> First Name
     private $lastname;          ///> Last Name
+    private $nickname;          ///> Nickname
     private $email;             ///> Email address
     private $role;              ///> Role
     private $graduationyear;    ///> Graduation Year
@@ -26,6 +27,11 @@ class User
     const MENTOR = 3;
     const GUARDIAN = 4;
 
+    const CONFIRMED = 'Y';
+    const UNCONFIRMED = 'N';
+    const ENABLED = 'Y';
+    const DISABLED = 'N';
+
     /**
      * User constructor.
      */
@@ -35,6 +41,7 @@ class User
             $this->id               = isset($row['id']) ? $row['id'] : null;
             $this->firstname        = $row['firstname'];
             $this->lastname         = $row['lastname'];
+            $this->nickname         = isset($row['nickname']) ? $row['nickname'] : null;
             $this->email            = strtolower($row['email']);
             $this->role             = $row['roleid'];
             $this->graduationyear   = isset($row['graduationyear']) ? $row['graduationyear'] : null;
@@ -42,7 +49,7 @@ class User
             $this->birthday         = isset($row['birthday']) ? $row['birthday'] : null;
 
             if(isset($row['confirmed'])) {
-                $this->confirmed = $row['confirmed'] == '1';
+                $this->confirmed = $row['confirmed'] == self::CONFIRMED;
             }
         }
     }
@@ -90,6 +97,26 @@ class User
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNickname()
+    {
+        if($this->isBirthday()) {
+            return '🎁 ' . $this->nickname;
+        } else {
+            return $this->nickname;
+        }
+    }
+
+    /**
+     * @param mixed $nickname
+     */
+    public function setNickname($nickname): void
+    {
+        $this->nickname = $nickname;
     }
 
     /**
@@ -178,6 +205,7 @@ class User
             'id' => $this->getId(),
             'firstname' => $this->getFirstname(),
             'lastname' => $this->getLastname(),
+            'nickname' => $this->getNickname(),
             'email' => $this->getEmail(),
             'graduationyear' => $this->getGraduationyear(),
             'yearjoined' => $this->getYearjoined(),

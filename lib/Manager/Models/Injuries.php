@@ -10,6 +10,7 @@ namespace Manager\Models;
 
 
 use Manager\Config;
+use Manager\Models\Injury;
 
 class Injuries extends Table
 {
@@ -26,11 +27,11 @@ class Injuries extends Table
     public function get(int $id)
     {
         $sql = <<<SQL
-select * from $this->tableName where id = ? and enabled = 1
+select * from $this->tableName where id = ? and enabled = ?
 SQL;
 
         $stmt = $this->pdo()->prepare($sql);
-        $stmt->execute([$id]);
+        $stmt->execute([$id, Injury::ENABLED]);
 
         if($stmt->rowCount() !== 1) {
             return null;
@@ -52,8 +53,9 @@ insert into $this->tableName (date_added,
                     reporterid, 
                     victimid, 
                     description, 
-                    actionstaken)
-value (?, ?, ?, ?, ?, ?)
+                    actionstaken,
+                    enabled)
+value (?, ?, ?, ?, ?, ?, ?)
 SQL;
 
         $stmt = $this->pdo()->prepare($sql);
@@ -65,7 +67,8 @@ SQL;
                 $injury->getReporterid(),
                 $injury->getVictimid(),
                 $injury->getDescription(),
-                $injury->getActionsTaken()
+                $injury->getActionsTaken(),
+                Injury::ENABLED
             ]);
         } catch (\Exception $e) {
             return null;

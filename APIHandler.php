@@ -18,7 +18,6 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(-1);
-
 //require __DIR__ . '/vendor/autoload.php';
 
 require "lib/config.inc.php";
@@ -28,12 +27,17 @@ use Manager\Helpers\JsonAPI;
 use Manager\Helpers\APIException;
 use Manager\Controllers\TimesheetsController;
 
-$request = ['path' => ['getTotalHours']];
-
-$controller = new TimesheetsController($config, time(), $request);
-return $controller->getResponse();
-
-$request_url = strtok($_SERVER['REQUEST_URI'], "/");
+try {
+    $request_url = explode("/", $_SERVER['REQUEST_URI']);
+    $request = array_slice($request_url, 3);
+} catch (\Exception $e) {
+    $json = new JsonAPI();
+    $json->add_error(
+        APIException::INVALID_REQUEST . $e->getMessage(),
+        APIException::NOT_FOUND
+    );
+    return $json->encode();
+}
 
 // Mint a new token if the user is logged in
 Authenticator::refreshAuthToken();
@@ -42,23 +46,37 @@ Authenticator::refreshAuthToken();
 $user = Authenticator::GetUser($config);
 
 $result = null;
-switch ($request_url[0]) {
+
+switch ($request_url[2]) {
     case 'user':
         break;
+
     case 'punch':
-        //TODO: Remove test code
-        $controller = new \Manager\TimesheetsController($config, time());
-        return $controller->getResponse();
+        $controller = new TimesheetsController(
+            $config,
+            $user,
+            $request
+        );
+        header('Content-Type: application/json');
+        $result = $controller->getResponse()->encode();
+
         break;
+
     case 'injury':
 
         break;
+
+    case 'image':
+        break;
+
     default:
         $json = new JsonAPI();
         $json->add_error(
+            APIException::NOT_FOUND_MSG,
             APIException::NOT_FOUND
         );
         $result = $json->encode();
 }
 
-return $result;
+
+echo($result);

@@ -21,7 +21,7 @@ class PunchCards extends Table
 
     public function __construct(Config $config)
     {
-        parent::__construct($config, "PunchCard");
+        parent::__construct($config, "punchcard");
     }
 
     /**
@@ -32,26 +32,29 @@ class PunchCards extends Table
      */
     public function punchIn($userid, $time, $ipaddress = null)
     {
-        if(!$this->isEligible($userid, self::OUT)){
+        if(!$this->isEligible($userid, self::IN)){
+
             return false;
         }
 
         $addresses = new Addresses($this->config);
         $ipaddressid = $addresses->get($ipaddress);
 
-        $json = new JsonAPI();
+        if(is_null($ipaddressid)) {
+            $ipaddressid = 1;
+        }
 
         $sql = <<<SQL
-insert into $this->tableName (userid, in_time, enabled, auto_logout, ipaddressid)
-values (?, ?, 1, 0, ?)
+insert into $this->tableName (userid, in_time, out_time, enabled, auto_logout, ipaddressid)
+values (?, ?, NULL, 1, 0, ?)
 SQL;
         try {
             $stmt = $this->pdo()->prepare($sql);
-            $stmt->execute([$userid, $time, $ipaddressid]);
+            $success = $stmt->execute([$userid, $time, $ipaddressid]);
         } catch (\Exception $e) {
             return false;
         }
-            return true;
+            return $success;
     }
 
     /**
@@ -68,16 +71,17 @@ SQL;
 
         $sql = <<<SQL
 update $this->tableName 
-set (out_time) = ? 
+set out_time = ? 
 where userid = ? and out_time is null
 SQL;
         try {
             $stmt = $this->pdo()->prepare($sql);
-            $stmt->execute([$userid, $time]);
+            $success = $stmt->execute([$time, $userid]);
         } catch (\Exception $e) {
+            print_r($e);
             return false;
         }
-        return $stmt->rowCount() == 1;
+        return $stmt->rowCount() == 1 && $success;
     }
 
     /**
@@ -88,13 +92,13 @@ SQL;
     private function isEligible($userid, $type)
     {
         $sql = <<<SQL
-select count(*) from $this->tableName
+select count(*) as 'count' from $this->tableName
 where userid = ? and out_time is null
 SQL;
 
         $stmt = $this->pdo()->prepare($sql);
         $stmt->execute([$userid]);
-        $count = $stmt->fetch(\PDO::FETCH_ASSOC)[0];
+        $count = $stmt->fetch(\PDO::FETCH_ASSOC)['count'];
 
         if($type == self::IN) {
             return $count == 0;
@@ -107,7 +111,7 @@ SQL;
      * @param $start_time
      * @return array(UserHours)
      */
-    public function getTotalHours($start_time)
+    public function getTotalHours($start_time = '2018-1-1 0:00:00')
     {
         $users = new Users($this->config);
         $usersTable = $users->getTableName();
@@ -117,12 +121,12 @@ select userid, CONCAT(firstname, ' ', lastname) as 'name', SUM(in_time - out_tim
 from $this->tableName p
 left join $usersTable u
 on p.userid = u.id
-where NOT ISNULL(out_time)
+where NOT ISNULL(out_time) AND in_time > ?
 group by userid
 SQL;
 
         $stmt = $this->pdo()->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$start_time]);
 
         $userhours = [];
 
@@ -133,22 +137,13 @@ SQL;
         return $userhours;
     }
 
-}
-
-class UserHours
-{
-    public $userid;
-    public $name;
-    public $time;
-    public $last_in;
-    public $auto_logouts;
-
-    public function __construct($row)
+    /**
+     * Returns an array of all the users
+     * @return array(User)
+     */
+    public function getUsers()
     {
-        $userid             = $row['userid'];
-        $name               = $row['name'];
-        $time               = $row['time'];
-        $last_in            = $row['last_in'];
-        $auto_logouts       = $row['auto_logouts'];
+        $users = new Users($this->config);
+        return $users->getAllUsers();
     }
 }

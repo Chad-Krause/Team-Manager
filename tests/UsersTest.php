@@ -27,7 +27,7 @@ delete from $table where id > 1
 SQL;
 
         $stmt = self::$config->pdo()->prepare($sql);
-        $stmt->execute();
+        //$stmt->execute();
     }
 
     public function testLogin()
@@ -114,6 +114,37 @@ SQL;
         $user = $users->get(10000); // user does not exist
 
         $this->assertNull($user);
+    }
+
+    public function testVerifyPin()
+    {
+        $users = new Users(self::$config);
+
+        $this->assertTrue($users->verifyPin(1, '7226'));
+        $this->assertTrue($users->verifyPin(1, 7226));
+        $this->assertFalse($users->verifyPin(1, 9999));
+    }
+
+    public function testGetAllUsers()
+    {
+        $users = new Users(self::$config);
+        $usersTable = $users->getTableName();
+
+        $sql = <<<SQL
+select count(*) as 'count' from $usersTable
+where enabled = ? and confirmed = ?
+SQL;
+        $stmt = $users->pdo()->prepare($sql);
+        $stmt->execute([
+            User::ENABLED,
+            User::CONFIRMED
+        ]);
+        $count = $stmt->fetch(\PDO::FETCH_ASSOC)['count'];
+
+        $all = $users->getAllUsers();
+
+        $this->assertEquals(count($all), $count);
+        $this->assertInstanceOf(User::class, $all[0]);
     }
 }
 

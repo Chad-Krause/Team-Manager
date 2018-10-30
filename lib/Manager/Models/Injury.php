@@ -19,6 +19,9 @@ class Injury
     private $description;
     private $actionsTaken;
 
+    const ENABLED = 'Y';
+    const DISABLED = 'N';
+
     public function __construct($row = null)
     {
         if($row !== null) {

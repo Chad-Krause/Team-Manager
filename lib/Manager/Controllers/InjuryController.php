@@ -14,9 +14,9 @@ use Manager\Config;
 class InjuryController extends Controller
 {
 
-    public function __construct(Config $config, $time, array $request)
+    public function __construct(Config $config, $user, array $request)
     {
-        parent::__construct($config, $time, $request);
+        parent::__construct($config, $user, $request);
     }
 
     public function getResponse()
