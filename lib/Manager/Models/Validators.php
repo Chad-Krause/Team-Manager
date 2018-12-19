@@ -57,7 +57,7 @@ SQL;
      * @param $validator string Validator to look up
      * @return int|null User ID or null if not found.
      */
-    public function get($validator) {
+    public function getUserIdFromValidator($validator) {
 
         $sql = <<<SQL
 select userid from $this->tableName

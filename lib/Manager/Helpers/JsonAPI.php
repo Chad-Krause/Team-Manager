@@ -37,6 +37,7 @@ class JsonAPI
             $error['code'] = $code;
         }
         $this->errors[] = $error;
+        $this->setSuccess(false);
     }
 
     /**
@@ -53,6 +54,7 @@ class JsonAPI
     public function setData($data) {
         if($data != null) {
             $this->data = $data;
+            $this->setSuccess(true);
         }
     }
 
@@ -86,10 +88,21 @@ class JsonAPI
             $json['data'] = $this->data;
         }
 
+        if($this->success !== null) {
+            $json['success'] = $this->success;
+        }
+
         return json_encode($json);
     }
 
+    public function setSuccess(bool $success)
+    {
+        $this->success = $success;
+    }
+
+
     private $errors = array();
     private $data = array();
+    private $success;
 
 }

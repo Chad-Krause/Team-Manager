@@ -19,8 +19,8 @@ class Authenticator
 
     //TODO: Add user permission to the JWT, Modify tests to accommodate
 
-    const DEFAULT_EXPIRATION_TIME = 86400;
-    const INVALID_JWT = 'The login token was corrupt or non existant. Please log in.';
+    const DEFAULT_EXPIRATION_TIME = 28800; // 28800 = 8 hours, 86400 = 1 day
+    const INVALID_JWT = 'The login token was expired, corrupt, or non existant. Please log in.';
 
     private $config;
 
@@ -77,16 +77,24 @@ class Authenticator
     }
 
     /**
-     *
+     * @param $config
+     * @return User
      */
     public static function GetUser(Config $config) {
         $server = new Server();
-        if(!isset($server->__get('cookie')[Config::AUTH_COOKIE])) {
+        $jwt = $server->jwt;
+
+        if(!isset($jwt)){
             return null;
         }
-        $jwt = $server->__get('cookie')[Config::AUTH_COOKIE];
+
         $users = new Users($config);
-        return $users->get(Authenticator::getUserIdFromToken($jwt));
+        try {
+            $user = $users->get(Authenticator::getUserIdFromToken($jwt));
+        } catch (APIException $e) {
+            $user = null;
+        }
+        return $user;
     }
 
     /**

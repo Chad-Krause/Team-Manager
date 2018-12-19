@@ -32,7 +32,7 @@ class PunchCard
             $this->id           = $row['id'];
             $this->userid       = $row['userid'];
             $this->inTime       = isset($row['in_time']) ? $row['in_time'] : null;
-            $this->outTime      = isset($row['out_time']) ? $row['in_time'] : null;
+            $this->outTime      = isset($row['out_time']) ? $row['out_time'] : null;
             $this->enabled      = isset($row['enabled']) ? $row['enabled'] : self::DISABLED;
             $this->auto_logout  = isset($row['auto_logout']) ? $row['auto_logout'] : self::AUTO_LOGOUT_FALSE;
             $this->ipaddress    = isset($row['ipaddress']) ? $row['ipaddress'] : null;
@@ -166,11 +166,11 @@ class UserHours
 
     public function __construct($row)
     {
-        $userid             = $row['userid'];
-        $name               = $row['name'];
-        $nickname           = $row['nickname'];
-        $time               = $row['time'];
-        $last_in            = $row['last_in'];
-        $auto_logouts       = $row['auto_logouts'];
+        $this->userid             = $row['userid'];
+        $this->name               = $row['name'];
+        $this->nickname           = $row['nickname'];
+        $this->time               = $row['time'];
+        $this->last_in            = $row['last_in'];
+        $this->auto_logouts       = $row['auto_logouts'];
     }
 }

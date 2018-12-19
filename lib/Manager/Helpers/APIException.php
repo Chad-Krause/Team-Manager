@@ -28,6 +28,16 @@ class APIException extends \Exception
     const UNABLE_TO_PUNCH_IN_MSG        = 'Unable to punch in. Most likely an error in the database (such as already clocked in).';
     const UNABLE_TO_PUNCH               = 8;
     const UNABLE_TO_PUNCH_MSG           = 'Unable to punch in or out.';
+    const USER_ALREADY_EXISTS           = 9;
+    const USER_ALREADY_EXISTS_MSG       = 'User already exists';
+    const PASSWORD_CONFIRMATION_FAIL    = 10;
+    const PASSWORD_CONFIRMATION_FAIL_MSG= 'Password confirmation failed';
+    const EMAIL_NOT_FOUND               = 11;
+    const EMAIL_NOT_FOUND_MSG           = 'Email not found';
+    const VALIDATOR_NOT_FOUND           = 12;
+    const VALIDATOR_NOT_FOUND_MSG       = 'Validator not found';
+    const NOT_LOGGED_IN                 = 401;
+    const NOT_LOGGED_IN_MSG             = 'Not logged in';
 
 
     const EMAIL_PASSWORD_NOT_SET = 'Email or password not set.';
@@ -37,6 +47,7 @@ class APIException extends \Exception
     const INELIGIBLE_USER = 'Not eligible to receive that user\'s information';
     const UNCONFIRMED_USER = 'This user has not been confirmed by an admin yet!';
     const REQUIRED_KEYS_ERROR_MSG = 'Required keys are missing';
+    const IMAGE_NOT_FOUND = 'Image not found. Either the image requested doesn\'t exist or the current user doesn\'t have permission to view it.';
 
 
 }

@@ -36,7 +36,7 @@ class TimesheetsController extends Controller
 
             switch ($path[0]) {
                 case 'getTotalHours':
-                    $data = $this->_getUserHours();
+                    $response = $this->_getUserHours();
                     break;
                 case 'in':
                     $response = $this->_punch(PunchCards::IN);
@@ -47,6 +47,9 @@ class TimesheetsController extends Controller
                 case 'getAllUsers':
                     $response = $this->_getAllUsers();
                     break;
+                case 'hoursLogged':
+                    $response = $this->_getHoursLogged();
+                    break;
                 default:
                     $response->add_error(
                         APIException::INVALID_REQUEST,
@@ -56,6 +59,8 @@ class TimesheetsController extends Controller
 
         } catch (APIException $e) {
             $response->add_error($e->getMessage(), $e->getCode());
+        } catch (\Exception $e) {
+            $response->add_error($e->getMessage(), $e->getCode(), 500);
         }
 
         return $response;
@@ -132,7 +137,7 @@ class TimesheetsController extends Controller
             );
             return $json;
         }
-        $json->setData(['success' => true]);
+        $json->setSuccess(true);
         return $json;
     }
 
@@ -151,6 +156,44 @@ class TimesheetsController extends Controller
         $json->setData(['users' => $usersArray]);
         return $json;
     }
+
+    private function _getHoursLogged()
+    {
+        $json = new JsonAPI();
+        $server = new Server();
+        $get = $server->get;
+
+        $permissions = [User::SAME_USER, User::ADMIN, User::MENTOR];
+
+        if (!$server->ensureKeys($get, ['userid'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
+        }
+
+        $date = null;
+
+        if(isset($get['date'])) {
+            $date = $get['date'];
+        }
+
+        if (!$this->hasPermission($permissions, $get['userid'])) {
+            $json->add_error(
+                APIException::INELIGIBLE_USER,
+                APIException::AUTHENTICATION_ERROR
+            );
+            return $json;
+        }
+
+        $timesheets = new PunchCards($this->config);
+        $row = $timesheets->getUserHours($get['userid'], $date);
+
+        $json->setData(['userid' => $row['userid'], 'totalTimeLogged' => $row['totalTimeLogged']]);
+        return $json;
+    }
+
 
 
 

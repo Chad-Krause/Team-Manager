@@ -18,6 +18,7 @@ class Config
     private $tablePrefix = '';  ///< Database table prefix
     private $root = '';         ///< Site root
     private $domain = 'chadkrause.com';
+    private $serverDomain;
 
     const PRIVATEKEY = <<<EOD
 -----BEGIN RSA PRIVATE KEY-----
@@ -159,6 +160,16 @@ EOD;
     public function getDomain(): string
     {
         return $this->domain;
+    }
+
+    public function getServerDomain(): string
+    {
+        return $this->serverDomain;
+    }
+
+    public function setServerDomain(string $domain): void
+    {
+        $this->serverDomain = $domain;
     }
 
     /**

@@ -14,45 +14,49 @@ namespace Manager\Controllers;
 use Manager\Helpers\APIException;
 use Manager\Config;
 use Manager\Helpers\Authenticator;
+use Manager\Helpers\Email;
 use Manager\Helpers\JsonAPI;
+use Manager\Helpers\Server;
 use Manager\Models\User;
 use Manager\Models\Users;
+use Manager\Models\Validators;
+use PHPUnit\Util\Json;
 
 class UserController extends Controller
 {
 
-    public function __construct(Config $config, $user, array $request)
+    public function __construct(Config $config, User $user = null, array $request = [])
     {
         parent::__construct($config, $user, $request);
     }
 
-    public function getResponse() {
+    public function getResponse()
+    {
         $response = new JsonAPI();
-
-        $path = $this->request['path'];
-        $data = null;
-
+        $path = $this->request;
         try {
 
             switch ($path[0]) {
                 case 'login': // /user/login
-                    $data = $this->_login();
+                    $response = $this->_login();
                     break;
-
-                case 'logout':
-                    $data = $this->_logout();
+                case 'checkEmail':
+                    $response = $this->_checkEmail();
                     break;
-
-                case 'get': // /user/get/##
-                    if(!isset($path[1]) || !is_numeric($path[1])) {
-                        throw new APIException(APIException::NO_USERID, APIException::USERID_NOT_FOUND);
-                    }
-                    $data = $this->_getUserInformation($path[1]);
+                case 'get':
+                    $response = $this->_getUserInformation();
                     break;
-
+                case 'createUser':
+                    $response = $this->_addUser();
+                    break;
+                case 'resetPassword':
+                    $response = $this->_resetPassword();
+                    break;
+                case 'resetPasswordWithValidator':
+                    $response = $this->_resetPasswordWithValidator();
+                    break;
                 default:
-                    $data = new JsonAPI();
-                    $data->add_error(
+                    $response->add_error(
                         APIException::INVALID_REQUEST,
                         APIException::NOT_FOUND
                     );
@@ -63,27 +67,108 @@ class UserController extends Controller
             $response->add_error($e->getMessage(), $e->getCode());
         }
 
-        if($data !== null) {
-            $response->setData($data);
-        }
-
-        return $response->encode();
+        return $response;
     }
 
+    //GET
+    /**
+     * Returns a json object stating whether the email is already in use in the system
+     * @return JsonAPI
+     */
+    private function _checkEmail()
+    {
+        $json = new JsonAPI();
+        $server = new Server();
+        $get = $server->get;
+
+        if(!Server::ensureKeys($get, ['email'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
+        }
+
+        $users = new Users($this->config);
+        $email = trim($get['email']);
+
+        $json->setData(['exists' => $users->exists($email)]);
+
+        return $json;
+    }
+
+    //POST
+    /**
+     * Creates an initial user, unconfirmed
+     * @return JsonAPI
+     */
+    private function _addUser()
+    {
+        $json = new JsonAPI();
+        $server = new Server();
+
+        $post = $server->post;
+
+        if(!Server::ensureKeys($post, ['email', 'password', 'confirmPassword', 'firstname', 'lastname'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
+        }
+
+        $email = strtolower(strip_tags($post['email']));
+        $password = $post['password'];
+        $confirmPassword = $post['confirmPassword'];
+        $firstname = strip_tags($post['firstname']);
+        $lastname = strip_tags($post['lastname']);
+
+        $date = new \DateTime();
+        $date->setTimestamp($server->getRequestTime());
+
+        if($password != $confirmPassword) {
+            $json->add_error(
+                APIException::PASSWORD_CONFIRMATION_FAIL_MSG,
+                APIException::PASSWORD_CONFIRMATION_FAIL
+            );
+            return $json;
+        }
+
+        $users = new Users($this->config);
+        try {
+            $id = $users->createUser($email, $password, $firstname, $lastname, $date);
+        } catch (APIException $e) {
+            $json->add_error($e->getMessage(), $e->getCode());
+            return $json;
+        }
+
+        $json->setData(['userid' => $id]);
+        return $json;
+    }
+
+    //POST
     /**
      * Logs in a user using the request variable. Must have email and password set in the request
      * @throws APIException if email or password isn't set
      * @throws APIException if email and password doesn't match
      * @throws APIException if the user hasn't been confirmed yet
-     * @return array
+     * @return JsonAPI
      */
     private function _login() {
-        if(!isset($this->request['email']) || !isset($this->request['password'])) {
-            throw new APIException(APIException::EMAIL_PASSWORD_NOT_SET, APIException::EMAIL_PASSWORD_NOT_FOUND);
+        $json = new JsonAPI();
+        $server = new Server();
+        $post = $server->post;
+
+        if(!Server::ensureKeys($post, ['email', 'password'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
         }
 
         $users = new Users($this->config);
-        $user = $users->login($this->request['email'], $this->request['password']);
+        $user = $users->login($post['email'], $post['password']);
 
         if($user === null) {
             throw new APIException(APIException::INCORRECT_LOGIN, APIException::EMAIL_PASSWORD_WRONG);
@@ -95,43 +180,115 @@ class UserController extends Controller
 
         $auth = new Authenticator($this->config);
 
-        $jwt = $auth->mintToken($user, $this->time);
+        $jwt = $auth->mintToken($user, $server->getRequestTime());
 
-        // Bad practice to use superglobals inside classes but I don't know of a better way to do it.
-        $_COOKIE[Config::AUTH_COOKIE] = $jwt;
+        $json->setData(['token' => $jwt, 'user' => $user->toArray()]);
 
-        return ['success' => true];
+        return $json;
     }
 
-    private function _logout() {
-        $_COOKIE[Config::AUTH_COOKIE] = null;
-        return ['success' => true];
-    }
+    //GET
+    /**
+     * Gets all the user's information given a userid
+     * @permission User::MENTOR, User::Admin
+     * @keys id
+     * @return JsonAPI
+     */
+    private function _getUserInformation() {
+        $server = new Server();
+        $get = $server->get;
+        $json = new JsonAPI();
 
-    private function _getUserInformation($userid) {
-
-        // make sure you get an integer for the userid
-        $userid = intval($userid);
-        $permissions = [User::MENTOR, User::ADMIN];
-
-        $auth = new Authenticator($this->config);
-        $jwtid = $auth->getUserIdFromToken($_COOKIE[Config::AUTH_COOKIE]);
-
-        $users = new Users($this->config);
-        $user = $users->get($jwtid);
-
-        // If the user is an admin, mentor, or themselves, they can access the information
-        if(!in_array($user->getRole(), $permissions)) {
-            if($user->getId() != $userid) {
-                throw new APIException(APIException::INELIGIBLE_USER,APIException::AUTHENTICATION_ERROR);
-            }
+        if(!$server->ensureKeys($get, ['id'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
         }
 
-        // At this point, whoever wants the request has the right permissions to get the information.
+        // make sure you get an integer for the userid
+        $userid = intval($get['id']);
+        $permissions = [User::MENTOR, User::ADMIN, User::SAME_USER];
+
+        if(!$this->hasPermission($permissions, $userid)) {
+            $json->add_error(
+                APIException::INELIGIBLE_USER,
+                APIException::AUTHENTICATION_ERROR
+            );
+            return $json;
+        }
 
         $users = new Users($this->config);
         $user = $users->get($userid);
 
-        return $user->toArray();
+        $json->setData(['user' => $user->toArray()]);
+
+        return $json;
     }
+
+    //POST
+    /**
+     * @keys userid
+     * @return JsonAPI
+     */
+    private function _resetPassword()
+    {
+        $server = new Server();
+        $json = new JsonAPI();
+        $post = $server->post;
+
+        if(!$server->ensureKeys($post, ['email'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
+        }
+
+        $users = new Users($this->config);
+
+        $users->createResetPasswordValidator($post['email'], new Email());
+
+        $json->setSuccess(true);
+        return $json;
+    }
+
+    //POST
+    /**
+     * @keys password, confirmPassword, validator
+     * @return JsonAPI
+     */
+    private function _resetPasswordWithValidator() {
+        $server = new Server();
+        $post = $server->post;
+        $json = new JsonAPI();
+
+        if(!$server->ensureKeys($post, ['password', 'confirmPassword', 'validator'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
+        }
+
+        $users = new Users($this->config);
+
+        $validator = trim($post['validator']);
+        $password = trim($post['password']);
+        $confirmPassword = trim($post['confirmPassword']);
+
+        if($password != $confirmPassword) {
+            throw new APIException(
+                APIException::PASSWORD_CONFIRMATION_FAIL_MSG,
+                APIException::PASSWORD_CONFIRMATION_FAIL
+            );
+        }
+
+        $users->resetPasswordWithValidator($validator, $password);
+
+        $json->setSuccess(true);
+        return $json;
+    }
+
 }

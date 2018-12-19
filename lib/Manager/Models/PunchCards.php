@@ -138,6 +138,29 @@ SQL;
     }
 
     /**
+     * Gets the user hours in HH:MM:SS since the $date
+     * @param $userid
+     * @param null $date
+     * @return array
+     */
+    public function getUserHours($userid, $date = null) {
+        $sql = <<<SQL
+SELECT userid, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(out_time, in_time)))) as 'totalTimeLogged'
+FROM $this->tableName
+WHERE userid = ? AND (in_time > ? OR ? IS NULL) AND out_time IS NOT NULL
+SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+        $stmt->execute([
+            $userid,
+            $date,
+            $date
+        ]);
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC)[0];
+    }
+
+    /**
      * Returns an array of all the users
      * @return array(User)
      */

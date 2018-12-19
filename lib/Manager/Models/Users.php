@@ -8,6 +8,7 @@
 
 namespace Manager\Models;
 use Manager\Config;
+use Manager\Helpers\APIException;
 use Manager\Helpers\Email;
 
 
@@ -55,7 +56,9 @@ SQL;
             return null;
         }
 
-        return new User($row);
+        $user = new User($row);
+        $this->setProfilePictureUrl($user);
+        return $user;
     }
 
     /**
@@ -73,8 +76,8 @@ SQL;
 
         // Add a record to the user table
         $sql = <<<SQL
-INSERT INTO $this->tableName (firstname, lastname, nickname, email, roleid, enabled, date_added, date_modified, graduationyear, yearjoined, birthday)
-values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+INSERT INTO $this->tableName (firstname, lastname, nickname, email, roleid, enabled, confirmed, date_added, date_modified, graduationyear, yearjoined, birthday)
+values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 SQL;
 
         $statement = $this->pdo()->prepare($sql);
@@ -87,6 +90,7 @@ SQL;
                 strtolower($user->getEmail()),
                 $user->getRole(),
                 true,
+                false,
                 date("Y-m-d H:i:s"),
                 date("Y-m-d H:i:s"),
                 $user->getGraduationyear(),
@@ -148,8 +152,8 @@ SQL;
 
     /**
      * Returns a user object that matches the id
-     * @param $id int the id of the user
-     * @return $user User
+     * @param int the id of the user
+     * @return User
      */
     public function get($id)
     {
@@ -163,8 +167,27 @@ SQL;
         if($stmt->rowCount() !== 1) {
             return null;
         } else {
+            $user = new User($stmt->fetch(\PDO::FETCH_ASSOC));
+            $this->setProfilePictureUrl($user);
+            return $user;
+        }
+    }
+
+    public function getFromEmail($email) {
+        $sql = <<<SQL
+select * from $this->tableName
+where email = ?
+SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+        $stmt->execute([$email]);
+
+        if($stmt->rowCount() !== 1) {
+            return null;
+        } else {
             return new User($stmt->fetch(\PDO::FETCH_ASSOC));
         }
+
     }
 
     /**
@@ -226,6 +249,182 @@ SQL;
         }
 
         return $users;
+    }
+
+    /**
+     * Creates an unconfirmed user
+     *
+     * @param $email
+     * @param $password
+     * @param $firstname
+     * @param $lastname
+     * @param $date
+     * @return int userid
+     */
+    public function createUser($email, $password, $firstname, $lastname, \DateTime $date) {
+        // Ensure we have no duplicate email address
+        if($this->exists($email)) {
+            throw new APIException(
+                APIException::USER_ALREADY_EXISTS_MSG,
+                APIException::USER_ALREADY_EXISTS
+            );
+        }
+
+        $salt = Users::randomSalt();
+        $hash = $this->hash_pw($password, $salt);
+
+        $sql = <<<SQL
+insert into $this->tableName (
+      firstname, 
+      lastname, 
+      email, 
+      roleid, 
+      `password`, 
+      salt, 
+      date_added, 
+      date_modified, 
+      enabled,
+      confirmed
+  )
+values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+
+        try{
+            $stmt->execute([
+                $firstname,
+                $lastname,
+                $email,
+                User::STUDENT,
+                $hash,
+                $salt,
+                $date->format(DATE_ISO8601),
+                $date->format(DATE_ISO8601),
+                User::ENABLED,
+                User::UNCONFIRMED
+            ]);
+
+        } catch(\Exception $e) {
+            throw new APIException($e->getMessage(), $e->getCode());
+        }
+
+        return $this->pdo()->lastInsertId();
+    }
+
+    /**
+     * Creates a validator token and email for resetting passwords
+     * @param $userid
+     * @param Email $mailer
+     * @return null
+     */
+    public function createResetPasswordValidator($email, Email $mailer) {
+        $user = $this->getFromEmail($email);
+
+        if($user == null) {
+            throw new APIException(
+                APIException::EMAIL_NOT_FOUND_MSG,
+                APIException::EMAIL_NOT_FOUND
+            );
+        }
+
+        // Create a validator and add to the validator table
+        $validators = new Validators($this->config);
+        $validator = $validators->newValidator($user->getId());
+
+        $from = $this->config->getEmail();
+        $name = $user->getNickname()!= null ? $user->getNickname() : $user->getFirstname();
+
+        $link = $this->config->getDomain() . '/reset-password?v=' . $validator;
+
+        $subject = "Reset Password";
+        $message = <<<MSG
+<html>
+<p>Hello $name,</p>
+
+<p>Here is your password reset link: <a href="$link">$link</a> </p>
+
+<p>If you did not request a password reset, please ignore this email.</p>
+
+</html>
+MSG;
+
+        $headers = "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso=8859-1\r\nFrom: $from\r\n";
+        $mailer->mail($user->getEmail(), $subject, $message, $headers);
+
+        return null;
+    }
+
+    /**
+     * Sets a new password given a userid
+     * @param $userid
+     * @param $password
+     * @return bool
+     */
+    private function setPassword($userid, $password) {
+        $sql = <<<SQL
+update $this->tableName 
+set `password` = ?, salt = ?
+where id = ?
+SQL;
+
+        $salt = Users::randomSalt();
+        $hash = $this->hash_pw($password, $salt);
+
+        $stmt = $this->pdo()->prepare($sql);
+        $stmt->execute([
+            $hash,
+            $salt,
+            $userid
+        ]);
+
+        return $stmt->rowCount() == 1;
+    }
+
+    /**
+     * Generate a random salt string of characters for password salting
+     * @param $len int Length to generate, default is 16
+     * @return string Salt string
+     */
+    public static function randomSalt($len = 16) {
+        $bytes = openssl_random_pseudo_bytes($len / 2);
+        return bin2hex($bytes);
+    }
+
+    /**
+     * @brief Encrypt a password using salt
+     */
+    private function hash_pw($password, $salt) {
+        return hash("sha256", $password . $salt);
+    }
+
+    /**
+     * Given a validator and a password, reset the user's password
+     * @param $validator
+     * @param $password
+     * @return null
+     */
+    public function resetPasswordWithValidator($validator, $password) {
+        $validators = new Validators($this->config);
+        $userid = $validators->getUserIdFromValidator($validator);
+
+        if($userid == null) {
+            throw new APIException(
+                APIException::VALIDATOR_NOT_FOUND_MSG,
+                APIException::VALIDATOR_NOT_FOUND
+            );
+        }
+
+        $this->setPassword($userid, $password);
+        $validators->remove($userid);
+        return null;
+    }
+
+    private function setProfilePictureUrl(User $user)
+    {
+        if(!is_null($user->getProfilePictureId())) {
+            $user->setProfilePictureUrl($this->config->getServerDomain() . '/api/image/' . $user->getProfilePictureId());
+        }
     }
 
 }

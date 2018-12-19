@@ -20,12 +20,15 @@ class User
     private $graduationyear;    ///> Graduation Year
     private $yearjoined;        ///> Year Joined
     private $birthday;          ///> Birthday
-    private $confirmed;         ///>
+    private $confirmed;         ///> Confirmed
+    private $profilePictureId;  ///> Id of the image on the image table
+    private $profilePictureUrl;  ///> Id of the image on the image table
 
     const ADMIN = 1;
     const STUDENT = 2;
     const MENTOR = 3;
     const GUARDIAN = 4;
+    const SAME_USER = 'SAME_USER';
 
     const CONFIRMED = 'Y';
     const UNCONFIRMED = 'N';
@@ -47,6 +50,7 @@ class User
             $this->graduationyear   = isset($row['graduationyear']) ? $row['graduationyear'] : null;
             $this->yearjoined       = isset($row['yearjoined']) ? $row['yearjoined'] : null;
             $this->birthday         = isset($row['birthday']) ? $row['birthday'] : null;
+            $this->profilePictureId = isset($row['profileimageid']) ? $row['profileimageid'] : null;
 
             if(isset($row['confirmed'])) {
                 $this->confirmed = $row['confirmed'] == self::CONFIRMED;
@@ -59,7 +63,7 @@ class User
      */
     public function getId()
     {
-        return $this->id;
+        return intval($this->id);
     }
 
     /**
@@ -104,7 +108,7 @@ class User
      */
     public function getNickname()
     {
-        if($this->isBirthday()) {
+        if($this->isBirthday() && !is_null($this->nickname) && $this->nickname !== '') {
             return '🎁 ' . $this->nickname;
         } else {
             return $this->nickname;
@@ -138,9 +142,9 @@ class User
     /**
      * @return mixed
      */
-    public function getRole()
+    public function getRole() : int
     {
-        return $this->role;
+        return intval($this->role);
     }
 
     /**
@@ -203,13 +207,16 @@ class User
     {
         return array(
             'id' => $this->getId(),
-            'firstname' => $this->getFirstname(),
-            'lastname' => $this->getLastname(),
+            'firstName' => $this->getFirstname(),
+            'lastName' => $this->getLastname(),
             'nickname' => $this->getNickname(),
             'email' => $this->getEmail(),
-            'graduationyear' => $this->getGraduationyear(),
-            'yearjoined' => $this->getYearjoined(),
-            'birthday' => $this->getBirthday()
+            'role' => $this->getRole(),
+            'graduationYear' => $this->getGraduationyear(),
+            'yearJoined' => $this->getYearjoined(),
+            'birthday' => $this->getBirthday(),
+            'confirmed' => $this->isConfirmed(),
+            'profilePictureUrl' => $this->getProfilePictureUrl()
         );
     }
 
@@ -237,6 +244,38 @@ class User
         $date = date('m-d');
         $bd = substr($this->birthday,5);
         return $date == $bd;
+    }
+
+    /**
+     * @return null
+     */
+    public function getProfilePictureId()
+    {
+        return $this->profilePictureId;
+    }
+
+    /**
+     * @param null $profilePictureId
+     */
+    public function setProfilePictureId($profilePictureId): void
+    {
+        $this->profilePictureId = $profilePictureId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProfilePictureUrl()
+    {
+        return $this->profilePictureUrl;
+    }
+
+    /**
+     * @param mixed $profilePictureUrl
+     */
+    public function setProfilePictureUrl($profilePictureUrl): void
+    {
+        $this->profilePictureUrl = $profilePictureUrl;
     }
 
 

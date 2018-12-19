@@ -21,7 +21,6 @@ class PunchCardTest extends TestCase
         $row = [
             'id' => 1,
             'userid' => 1,
-            'name' => 'Chad Krause',
             'in_time' => $datetime,
             'out_time' => $datetime,
             'enabled' => 1
@@ -34,7 +33,6 @@ class PunchCardTest extends TestCase
 
         $this->assertEquals(1, $punchcard->getId());
         $this->assertEquals(1, $punchcard->getUserid());
-        $this->assertEquals('Chad Krause', $punchcard->getName());
         $this->assertEquals($datetime, $punchcard->getInTime());
         $this->assertEquals($datetime, $punchcard->getOutTime());
         $this->assertEquals(true, $punchcard->isEnabled());

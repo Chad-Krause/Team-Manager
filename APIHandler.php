@@ -10,7 +10,7 @@
 /* Main entry point for APIs
  *
  * The data flow is as follows:
- * 1. Refresh authentication token if it is available
+ * 1. Get user from JWT if available
  * 2. Send post data to the controller
  * 3. Return the JSON from the controller by calling getResponse()
  */
@@ -18,6 +18,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(-1);
+header('Access-Control-Allow-Origin: *');
 //require __DIR__ . '/vendor/autoload.php';
 
 require "lib/config.inc.php";
@@ -27,8 +28,16 @@ use Manager\Helpers\JsonAPI;
 use Manager\Helpers\APIException;
 use Manager\Controllers\TimesheetsController;
 
+// respond to preflights
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    // return only the headers and not the content
+    header('Access-Control-Allow-Headers: *');
+    exit;
+}
+
 try {
-    $request_url = explode("/", $_SERVER['REQUEST_URI']);
+    //$request_url = explode("/", $_SERVER['REQUEST_URI']);
+    $request_url = preg_split('/([\/&\?@])/', $_SERVER['REQUEST_URI']);
     $request = array_slice($request_url, 3);
 } catch (\Exception $e) {
     $json = new JsonAPI();
@@ -39,16 +48,28 @@ try {
     return $json->encode();
 }
 
-// Mint a new token if the user is logged in
-Authenticator::refreshAuthToken();
 
 // Get user from request (if authenticated)
 $user = Authenticator::GetUser($config);
 
 $result = null;
 
+//print_r($request_url);
+
 switch ($request_url[2]) {
-    case 'user':
+
+    case 'image':
+        if($request_url[3] == 'upload') {
+            header('Content-Type: application/json');
+        }
+
+        $controller = new \Manager\Controllers\ImageController(
+            $config,
+            $user,
+            $request
+        );
+
+        $result = $controller->getResponse();
         break;
 
     case 'punch':
@@ -66,7 +87,14 @@ switch ($request_url[2]) {
 
         break;
 
-    case 'image':
+    case 'user':
+        $controller = new \Manager\Controllers\UserController(
+            $config,
+            $user,
+            $request
+        );
+        header('Content-Type: application/json');
+        $result = $controller->getResponse()->encode();
         break;
 
     default:
@@ -78,5 +106,4 @@ switch ($request_url[2]) {
         $result = $json->encode();
 }
 
-
-echo($result);
+echo $result;
