@@ -100,8 +100,12 @@ class ImageController extends Controller
         );
 
         $json = new JsonAPI();
+
+        if($res !== 0) {
+            $url = $this->config->getServerDomain() . '/api/image/' . $res;
+        }
         if($res) {
-            $json->setData(['success' => true, 'id' => $res]);
+            $json->setData(['url' => $url, 'id' => $res]);
             return $json;
         } else {
             $json->add_error('Bad Upload');

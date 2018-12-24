@@ -10,6 +10,7 @@ namespace Manager\Models;
 use Manager\Config;
 use Manager\Helpers\APIException;
 use Manager\Helpers\Email;
+use Manager\Helpers\Server;
 
 
 class Users extends Table
@@ -49,10 +50,9 @@ SQL;
 
         // Get the encrypted password and salt from the record
         $hash = $row['password'];
-        $salt = $row['salt'];
 
         // Ensure it is correct
-        if($hash !== hash("sha256", $password . $salt)) {
+        if(!password_verify($password, $hash)) {
             return null;
         }
 
@@ -269,9 +269,7 @@ SQL;
                 APIException::USER_ALREADY_EXISTS
             );
         }
-
-        $salt = Users::randomSalt();
-        $hash = $this->hash_pw($password, $salt);
+        $hash = password_hash($password, PASSWORD_BCRYPT);
 
         $sql = <<<SQL
 insert into $this->tableName (
@@ -279,14 +277,13 @@ insert into $this->tableName (
       lastname, 
       email, 
       roleid, 
-      `password`, 
-      salt, 
+      `password`,
       date_added, 
       date_modified, 
       enabled,
       confirmed
   )
-values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+values (?, ?, ?, ?, ?, ?, ?, ?, ?)
 SQL;
 
         $stmt = $this->pdo()->prepare($sql);
@@ -298,7 +295,6 @@ SQL;
                 $email,
                 User::STUDENT,
                 $hash,
-                $salt,
                 $date->format(DATE_ISO8601),
                 $date->format(DATE_ISO8601),
                 User::ENABLED,
@@ -364,38 +360,18 @@ MSG;
     private function setPassword($userid, $password) {
         $sql = <<<SQL
 update $this->tableName 
-set `password` = ?, salt = ?
+set `password` = ?
 where id = ?
 SQL;
-
-        $salt = Users::randomSalt();
-        $hash = $this->hash_pw($password, $salt);
+        $hash = password_hash($password, PASSWORD_BCRYPT);
 
         $stmt = $this->pdo()->prepare($sql);
         $stmt->execute([
             $hash,
-            $salt,
             $userid
         ]);
 
         return $stmt->rowCount() == 1;
-    }
-
-    /**
-     * Generate a random salt string of characters for password salting
-     * @param $len int Length to generate, default is 16
-     * @return string Salt string
-     */
-    public static function randomSalt($len = 16) {
-        $bytes = openssl_random_pseudo_bytes($len / 2);
-        return bin2hex($bytes);
-    }
-
-    /**
-     * @brief Encrypt a password using salt
-     */
-    private function hash_pw($password, $salt) {
-        return hash("sha256", $password . $salt);
     }
 
     /**
@@ -425,6 +401,48 @@ SQL;
         if(!is_null($user->getProfilePictureId())) {
             $user->setProfilePictureUrl($this->config->getServerDomain() . '/api/image/' . $user->getProfilePictureId());
         }
+    }
+
+    public function updateUser(User $user, $time = null) {
+        $sql = <<<SQL
+update $this->tableName
+set 
+  firstname = ?,
+  lastname = ?,
+  nickname = ?,
+  email = ?,
+  roleid = ?,
+  date_modified = ?,
+  graduationyear = ?,
+  birthday = ?,
+  profileimageid = ?
+where id = ?
+SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+
+        if($time === null) {
+            $time = Server::getRequestDatetime();
+        }
+
+        $stmt->execute([
+            $user->getFirstname(),
+            $user->getLastname(),
+            $user->getNickname(),
+            $user->getEmail(),
+            $user->getRole(),
+            $time,
+            $user->getGraduationyear(),
+            $user->getBirthday(),
+            $user->getProfilePictureId(),
+            $user->getId()
+        ]);
+
+        if($stmt->rowCount() > 1) {
+            throw new \Exception('UPDATED MORE THAN ONE USER');
+        }
+
+        return $stmt->rowCount() == 1;
     }
 
 }

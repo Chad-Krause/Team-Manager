@@ -8,6 +8,7 @@
 
 namespace Manager\Models;
 use Manager\Config;
+use Manager\Helpers\Server;
 
 
 class Images extends Table
@@ -58,35 +59,39 @@ SQL;
         $scale = $this->scale($w, $h, 64);
         $thumb = imagecreatetruecolor($scale['w'], $scale['h']);
         imagecopyresampled($thumb, $orig, 0, 0, 0, 0, $scale['w'], $scale['h'], $w, $h);
+        $stmt = $pdo->prepare($sql);
+
+        $tempFile = './tempimage' . Server::getRequestTime();
 
         switch ($type){
             case 'image/jpeg':
-                $thumbfile = imagejpeg($thumb, null, 100);
+                $tempFile .= '.jpg';
+                imagejpeg($thumb, $tempFile, 100);
                 break;
             case 'image/png':
-                $thumbfile = imagepng($thumb, null, 100);
+                $tempFile .= '.png';
+                imagepng($thumb, $tempFile, 100);
                 break;
             case 'image/gif':
-                $thumbfile = imagegif($thumb, null);
+                $tempFile .= '.gif';
+                imagegif($thumb, $tempFile);
                 break;
             default:
                 return false;
         }
 
-        $stmt = $pdo->prepare($sql);
+        $tempFp = fopen($tempFile, 'rb');
         $stmt->bindParam(1, $userId);
         $stmt->bindParam(2, $name);
         $stmt->bindParam(3, $fp, \PDO::PARAM_LOB);
-        $stmt->bindParam(4, $thumbfile, \PDO::PARAM_LOB);
+        $stmt->bindParam(4, $tempFp, \PDO::PARAM_LOB);
         $stmt->bindParam(5, $type);
         $stmt->bindParam(6, $datetime);
         $stmt->bindParam(7, $datetime);
 
+
+
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-
-
-        imagedestroy($thumb);
-        imagedestroy($orig);
 
         try {
             if(!$stmt->execute()) {
@@ -95,6 +100,10 @@ SQL;
         } catch(\PDOException $e) {
             print_r($e->getMessage());
             return false;
+        } finally {
+            imagedestroy($thumb);
+            imagedestroy($orig);
+            unlink($tempFile);
         }
 
         return $pdo->lastInsertId();

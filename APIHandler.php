@@ -97,6 +97,16 @@ switch ($request_url[2]) {
         $result = $controller->getResponse()->encode();
         break;
 
+    case 'tidbits':
+        $controller = new \Manager\Controllers\TidbitsController(
+            $config,
+            $user,
+            $request
+        );
+        header('Content-Type: application/json');
+        $result = $controller->getResponse()->encode();
+        break;
+
     default:
         $json = new JsonAPI();
         $json->add_error(

@@ -17,6 +17,8 @@ use Manager\Helpers\Authenticator;
 use Manager\Helpers\Email;
 use Manager\Helpers\JsonAPI;
 use Manager\Helpers\Server;
+use Manager\Models\PunchCards;
+use Manager\Models\Tidbits;
 use Manager\Models\User;
 use Manager\Models\Users;
 use Manager\Models\Validators;
@@ -54,6 +56,9 @@ class UserController extends Controller
                     break;
                 case 'resetPasswordWithValidator':
                     $response = $this->_resetPasswordWithValidator();
+                    break;
+                case 'updateUser':
+                    $response = $this->_updateUser();
                     break;
                 default:
                     $response->add_error(
@@ -222,7 +227,17 @@ class UserController extends Controller
         $users = new Users($this->config);
         $user = $users->get($userid);
 
-        $json->setData(['user' => $user->toArray()]);
+        $tidbits = new Tidbits($this->config);
+        $userTidbits = $tidbits->getTidbitsByUserId($userid);
+
+        $punch = new PunchCards($this->config);
+        $totalHoursLogged = $punch->getUserHours($userid);
+
+        $json->setData([
+            'user' => $user->toArray(),
+            'tidbits' => $userTidbits,
+            'totalHoursLogged' => $totalHoursLogged
+        ]);
 
         return $json;
     }
@@ -259,7 +274,8 @@ class UserController extends Controller
      * @keys password, confirmPassword, validator
      * @return JsonAPI
      */
-    private function _resetPasswordWithValidator() {
+    private function _resetPasswordWithValidator()
+    {
         $server = new Server();
         $post = $server->post;
         $json = new JsonAPI();
@@ -291,4 +307,81 @@ class UserController extends Controller
         return $json;
     }
 
+    private function _updateUser()
+    {
+        $server = new Server();
+        $post = $server->post;
+        $json = new JsonAPI();
+
+        if(!$server->ensureKeys($post, ['id'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
+        }
+
+        $id = $post['id'];
+
+        $users = new Users($this->config);
+        $user = $users->get($id);
+        $permissions = [User::MENTOR, User::ADMIN, User::SAME_USER];
+
+        if(!$this->hasPermission($permissions, $id)) {
+            $json->add_error(
+                APIException::INELIGIBLE_USER,
+                APIException::AUTHENTICATION_ERROR
+            );
+            return $json;
+        }
+
+        /*
+         * This will look for keys and determine if they are set.
+         * If they are set, that field will update.
+         */
+
+        if(isset($post['firstName'])) {
+            $user->setFirstname(strip_tags($post['firstName']));
+        }
+
+        if(isset($post['lastName'])) {
+            $user->setLastname(strip_tags($post['lastName']));
+        }
+
+        if(isset($post['nickname'])) {
+            $user->setNickname(strip_tags($post['nickname']));
+        }
+
+        if(isset($post['email'])) {
+            $user->setEmail(strip_tags($post['email']));
+        }
+
+        if(isset($post['roleid'])) {
+            $user->setRole(strip_tags($post['roleid']));
+        }
+
+        if(isset($post['birthday'])) {
+            $user->setBirthday(strip_tags($post['birthday']));
+        }
+
+        if(isset($post['graduationYear'])) {
+            $user->setGraduationyear(strip_tags($post['graduationYear']));
+        }
+
+        if(isset($post['profileimageid'])) {
+            $user->setProfilePictureId(intval($post['profileimageid']));
+        }
+
+        $time = Server::getRequestDatetime();
+        $success = $users->updateUser($user, $time);
+
+        if($success) {
+            $user = $users->get($id);
+            $json->setData($user->toArray());
+            return $json;
+        }
+
+        $json->setSuccess(false);
+        return $json;
+    }
 }

@@ -16,14 +16,10 @@ return function(\Manager\Config $config)
 
     $config->setEmail('chad@chadkrause.com');
     $config->setRoot('/');
-    $config->dbConfigure(
-        'mysql:host=chadkrause.com;dbname=msushrim_team;charset=utf8',
-        'msushrim_pattrn',
-        '%m8Q%ym?Rrw4',
-        'ztest_'//,
-        //array(
-        //    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-         //   PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
-        //)
-    );
+    $config->dbConfigure('mysql:dbname=TeamManagement;host=localhost:3306;charset=utf8',
+        'root',       // Database user
+        'root',     // Database password
+        'ztest_');
+    $config->setDomain('localhost:4200');
+    $config->setServerDomain('http://localhost');
 };

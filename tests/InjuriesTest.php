@@ -19,7 +19,7 @@ class InjuriesTest extends DatabaseTest
 {
     public function getDataSet()
     {
-        return new YamlDataSet(dirname(__FILE__) . '/Datasets/injury.yaml');
+        return new YamlDataSet(dirname(__FILE__) . '/Datasets/master.yaml');
     }
 
     public function tearDown(): void

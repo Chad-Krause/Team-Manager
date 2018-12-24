@@ -72,6 +72,15 @@ class Server {
         return $_SERVER['REQUEST_TIME'];
     }
 
+    /**
+     * Returns the datetime of the request
+     * @return string
+     */
+    public static function getRequestDatetime()
+    {
+        return date(DATE_ISO8601, $_SERVER['REQUEST_TIME']);
+    }
+
 	/**
 	 * Ensure all required keys are present
 	 * @param $list array List to check
