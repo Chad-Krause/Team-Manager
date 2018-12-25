@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="msushrim_team@chadkrause.com">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.7">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.9">
     <root id="1">
+      <ServerVersion>5.5.5</ServerVersion>
+      <RdbmsFlavour>MariaDB</RdbmsFlavour>
+      <DefaultEngine>MyISAM</DefaultEngine>
+      <DefaultTmpEngine>MyISAM</DefaultTmpEngine>
       <DefaultCasing>exact</DefaultCasing>
     </root>
     <schema id="2" parent="1" name="information_schema">
@@ -13,7 +17,7 @@
     <schema id="4" parent="1" name="msushrim_team">
       <Current>1</Current>
       <Visible>1</Visible>
-      <Collation>latin1_swedish_ci</Collation>
+      <Collation>utf8mb4_unicode_ci</Collation>
     </schema>
     <collation id="5" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>
@@ -951,489 +955,1086 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="239" parent="4" name="contact">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="240" parent="4" name="emergency_contact">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="241" parent="4" name="image">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="242" parent="4" name="injury">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="243" parent="4" name="injury_image">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="244" parent="4" name="lesson">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="245" parent="4" name="lessons_learned">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="246" parent="4" name="punchcard">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="247" parent="4" name="role">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="248" parent="4" name="user">
-      <Engine>MyISAM</Engine>
-    </table>
-    <table id="249" parent="4" name="validator">
-      <Engine>MyISAM</Engine>
-    </table>
-    <column id="250" parent="239" name="id">
+    <table id="239" parent="4" name="contact"/>
+    <table id="240" parent="4" name="emergency_contact"/>
+    <table id="241" parent="4" name="image"/>
+    <table id="242" parent="4" name="injury"/>
+    <table id="243" parent="4" name="injury_image"/>
+    <table id="244" parent="4" name="lesson"/>
+    <table id="245" parent="4" name="lessons_learned"/>
+    <table id="246" parent="4" name="log"/>
+    <table id="247" parent="4" name="punchcard"/>
+    <table id="248" parent="4" name="role"/>
+    <table id="249" parent="4" name="user"/>
+    <table id="250" parent="4" name="validator"/>
+    <table id="251" parent="4" name="ztest_contact"/>
+    <table id="252" parent="4" name="ztest_emergency_contact"/>
+    <table id="253" parent="4" name="ztest_image"/>
+    <table id="254" parent="4" name="ztest_injury"/>
+    <table id="255" parent="4" name="ztest_injury_image"/>
+    <table id="256" parent="4" name="ztest_lesson"/>
+    <table id="257" parent="4" name="ztest_lessons_learned"/>
+    <table id="258" parent="4" name="ztest_log"/>
+    <table id="259" parent="4" name="ztest_punchcard"/>
+    <table id="260" parent="4" name="ztest_role"/>
+    <table id="261" parent="4" name="ztest_user"/>
+    <table id="262" parent="4" name="ztest_validator"/>
+    <column id="263" parent="239" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="251" parent="239" name="firstname">
+    <column id="264" parent="239" name="firstname">
       <Position>2</Position>
-      <DataType>varchar(50)|0</DataType>
+      <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="252" parent="239" name="lastname">
+    <column id="265" parent="239" name="lastname">
       <Position>3</Position>
-      <DataType>varchar(50)|0</DataType>
+      <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="239" name="phone">
+    <column id="266" parent="239" name="phone">
       <Position>4</Position>
-      <DataType>varchar(20)|0</DataType>
+      <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="239" name="email">
+    <column id="267" parent="239" name="email">
       <Position>5</Position>
-      <DataType>varchar(200)|0</DataType>
+      <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="239" name="streetaddress">
+    <column id="268" parent="239" name="streetaddress">
       <Position>6</Position>
-      <DataType>tinytext|0</DataType>
+      <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="239" name="city">
+    <column id="269" parent="239" name="city">
       <Position>7</Position>
-      <DataType>varchar(50)|0</DataType>
+      <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="239" name="zip">
+    <column id="270" parent="239" name="zip">
       <Position>8</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="239" name="state">
+    <column id="271" parent="239" name="state">
       <Position>9</Position>
-      <DataType>char(2)|0</DataType>
+      <DataType>char(2)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="259" parent="239" name="PRIMARY">
+    <column id="272" parent="239" name="notes">
+      <Position>10</Position>
+      <DataType>mediumtext|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="273" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="260" parent="240" name="userid">
+    <column id="274" parent="240" name="userid">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="240" name="contactid">
+    <column id="275" parent="240" name="contactid">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="262" parent="240" name="FKemergency_531540">
+    <index id="276" parent="240" name="FKemergency_531540">
       <ColNames>contactid</ColNames>
+      <Type>btree</Type>
     </index>
-    <key id="263" parent="240" name="PRIMARY">
+    <key id="277" parent="240" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userid
 contactid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="264" parent="241" name="id">
+    <column id="278" parent="241" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="241" name="uploaderid">
+    <column id="279" parent="241" name="uploaderid">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="266" parent="241" name="uploadname">
+    <column id="280" parent="241" name="uploadname">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="241" name="name">
+    <column id="281" parent="241" name="name">
       <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="241" name="description">
+    <column id="282" parent="241" name="description">
       <Position>5</Position>
-      <DataType>text|0</DataType>
+      <DataType>mediumtext|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="241" name="image">
+    <column id="283" parent="241" name="image">
       <Position>6</Position>
-      <DataType>blob|0</DataType>
+      <DataType>blob|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="270" parent="241" name="FKimage647104">
+    <index id="284" parent="241" name="FKimage647104">
       <ColNames>uploaderid</ColNames>
+      <Type>btree</Type>
     </index>
-    <key id="271" parent="241" name="PRIMARY">
+    <key id="285" parent="241" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="272" parent="242" name="id">
+    <column id="286" parent="242" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="242" name="date_occured">
+    <column id="287" parent="242" name="date_occurred">
       <Position>2</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="274" parent="242" name="date_added">
+    <column id="288" parent="242" name="date_added">
       <Position>3</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="275" parent="242" name="description">
+    <column id="289" parent="242" name="description">
       <Position>4</Position>
-      <DataType>text|0</DataType>
+      <DataType>mediumtext|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="242" name="actionstaken">
+    <column id="290" parent="242" name="actionstaken">
       <Position>5</Position>
-      <DataType>text|0</DataType>
+      <DataType>mediumtext|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="242" name="reporterid">
+    <column id="291" parent="242" name="reporterid">
       <Position>6</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="242" name="victimid">
+    <column id="292" parent="242" name="victimid">
       <Position>7</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="279" parent="242" name="FKinjury444232">
+    <column id="293" parent="242" name="enabled">
+      <Position>8</Position>
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>b&apos;1&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="294" parent="242" name="FKinjury444232">
       <ColNames>reporterid</ColNames>
+      <Type>btree</Type>
     </index>
-    <index id="280" parent="242" name="FKinjury996715">
+    <index id="295" parent="242" name="FKinjury996715">
       <ColNames>victimid</ColNames>
+      <Type>btree</Type>
     </index>
-    <key id="281" parent="242" name="PRIMARY">
+    <key id="296" parent="242" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="282" parent="243" name="injuryid">
+    <column id="297" parent="243" name="injuryid">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="243" name="imageid">
+    <column id="298" parent="243" name="imageid">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="284" parent="243" name="FKinjury_ima273604">
+    <index id="299" parent="243" name="FKinjury_ima273604">
       <ColNames>imageid</ColNames>
+      <Type>btree</Type>
     </index>
-    <key id="285" parent="243" name="PRIMARY">
+    <key id="300" parent="243" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>injuryid
 imageid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="286" parent="244" name="id">
+    <column id="301" parent="244" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="244" name="name">
+    <column id="302" parent="244" name="name">
       <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="244" name="description">
+    <column id="303" parent="244" name="description">
       <Position>3</Position>
-      <DataType>text|0</DataType>
+      <DataType>mediumtext|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="244" name="enabled">
+    <column id="304" parent="244" name="enabled">
       <Position>4</Position>
-      <DataType>bit(1)|0</DataType>
+      <DataType>bit(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="290" parent="244" name="PRIMARY">
+    <column id="305" parent="244" name="date_added">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="306" parent="244" name="date_modified">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="307" parent="244" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="291" parent="245" name="userid">
+    <column id="308" parent="245" name="userid">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="245" name="lessonid">
+    <column id="309" parent="245" name="lessonid">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="245" name="date_completed">
+    <column id="310" parent="245" name="date_completed">
       <Position>3</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="294" parent="245" name="FKlessons_le236591">
+    <index id="311" parent="245" name="FKlessons_le236591">
       <ColNames>lessonid</ColNames>
+      <Type>btree</Type>
     </index>
-    <key id="295" parent="245" name="PRIMARY">
+    <key id="312" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userid
 lessonid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="296" parent="246" name="id">
+    <column id="313" parent="246" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="246" name="userid">
+    <column id="314" parent="246" name="message">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="298" parent="246" name="in_time">
+    <column id="315" parent="246" name="type">
       <Position>3</Position>
-      <DataType>datetime|0</DataType>
-      <NotNull>1</NotNull>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="246" name="out_time">
+    <column id="316" parent="246" name="date">
       <Position>4</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="300" parent="246" name="enabled">
-      <Position>5</Position>
-      <DataType>bit(1)|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="301" parent="246" name="userid">
+    <key id="317" parent="246" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="318" parent="247" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="319" parent="247" name="userid">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="320" parent="247" name="in_time">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="321" parent="247" name="out_time">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="322" parent="247" name="enabled">
+      <Position>5</Position>
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="323" parent="247" name="userid">
       <ColNames>userid</ColNames>
+      <Type>btree</Type>
     </index>
-    <key id="302" parent="246" name="PRIMARY">
+    <key id="324" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="303" parent="247" name="id">
+    <column id="325" parent="248" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="247" name="name">
+    <column id="326" parent="248" name="name">
       <Position>2</Position>
-      <DataType>varchar(50)|0</DataType>
+      <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="305" parent="247" name="description">
+    <column id="327" parent="248" name="description">
       <Position>3</Position>
-      <DataType>text|0</DataType>
+      <DataType>mediumtext|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="306" parent="247" name="PRIMARY">
+    <key id="328" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="307" parent="248" name="id">
+    <column id="329" parent="249" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="308" parent="248" name="firstname">
+    <column id="330" parent="249" name="firstname">
       <Position>2</Position>
-      <DataType>varchar(50)|0</DataType>
+      <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="309" parent="248" name="lastname">
+    <column id="331" parent="249" name="lastname">
       <Position>3</Position>
-      <DataType>varchar(50)|0</DataType>
+      <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="310" parent="248" name="email">
+    <column id="332" parent="249" name="email">
       <Position>4</Position>
-      <DataType>varchar(200)|0</DataType>
+      <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="311" parent="248" name="password">
+    <column id="333" parent="249" name="password">
       <Position>5</Position>
-      <DataType>char(64)|0</DataType>
+      <DataType>char(64)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="248" name="salt">
+    <column id="334" parent="249" name="salt">
       <Position>6</Position>
-      <DataType>char(16)|0</DataType>
+      <DataType>char(16)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="313" parent="248" name="roleid">
+    <column id="335" parent="249" name="roleid">
       <Position>7</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="314" parent="248" name="date_added">
+    <column id="336" parent="249" name="date_added">
       <Position>8</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="315" parent="248" name="date_modified">
+    <column id="337" parent="249" name="date_modified">
       <Position>9</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="316" parent="248" name="enabled">
+    <column id="338" parent="249" name="enabled">
       <Position>10</Position>
-      <DataType>bit(1)|0</DataType>
+      <DataType>bit(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="317" parent="248" name="graduationyear">
+    <column id="339" parent="249" name="confirmed">
       <Position>11</Position>
-      <DataType>int(10)|0</DataType>
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>b&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="318" parent="248" name="yearjoined">
+    <column id="340" parent="249" name="graduationyear">
       <Position>12</Position>
-      <DataType>int(10)|0</DataType>
+      <DataType>int(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="319" parent="248" name="birthday">
+    <column id="341" parent="249" name="yearjoined">
       <Position>13</Position>
-      <DataType>date|0</DataType>
+      <DataType>int(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="320" parent="248" name="profileimageid">
+    <column id="342" parent="249" name="birthday">
       <Position>14</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="321" parent="248" name="firstname">
-      <ColNames>firstname</ColNames>
-    </index>
-    <index id="322" parent="248" name="lastname">
-      <ColNames>lastname</ColNames>
-    </index>
-    <index id="323" parent="248" name="email">
+    <column id="343" parent="249" name="profileimageid">
+      <Position>15</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="344" parent="249" name="unique_email">
       <ColNames>email</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
     </index>
-    <index id="324" parent="248" name="role">
+    <index id="345" parent="249" name="firstname">
+      <ColNames>firstname</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="346" parent="249" name="lastname">
+      <ColNames>lastname</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="347" parent="249" name="role">
       <ColNames>roleid</ColNames>
+      <Type>btree</Type>
     </index>
-    <index id="325" parent="248" name="FKuser928879">
+    <index id="348" parent="249" name="FKuser928879">
       <ColNames>profileimageid</ColNames>
+      <Type>btree</Type>
     </index>
-    <key id="326" parent="248" name="PRIMARY">
+    <key id="349" parent="249" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="327" parent="249" name="id">
+    <key id="350" parent="249" name="unique_email">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>unique_email</UnderlyingIndexName>
+    </key>
+    <column id="351" parent="250" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="328" parent="249" name="userid">
+    <column id="352" parent="250" name="userid">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="329" parent="249" name="validator">
+    <column id="353" parent="250" name="validator">
       <Position>3</Position>
-      <DataType>char(32)|0</DataType>
+      <DataType>char(32)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="330" parent="249" name="date">
+    <column id="354" parent="250" name="date">
       <Position>4</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="331" parent="249" name="validator">
+    <index id="355" parent="250" name="validator">
       <ColNames>validator</ColNames>
       <Unique>1</Unique>
+      <Type>btree</Type>
     </index>
-    <index id="332" parent="249" name="userid">
+    <index id="356" parent="250" name="userid">
       <ColNames>userid</ColNames>
+      <Type>btree</Type>
     </index>
-    <key id="333" parent="249" name="PRIMARY">
+    <key id="357" parent="250" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="334" parent="249" name="validator">
+    <key id="358" parent="250" name="validator">
+      <ColNames>validator</ColNames>
+      <UnderlyingIndexName>validator</UnderlyingIndexName>
+    </key>
+    <column id="359" parent="251" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="360" parent="251" name="firstname">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="361" parent="251" name="lastname">
+      <Position>3</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="362" parent="251" name="phone">
+      <Position>4</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="363" parent="251" name="email">
+      <Position>5</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="364" parent="251" name="streetaddress">
+      <Position>6</Position>
+      <DataType>text|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="365" parent="251" name="city">
+      <Position>7</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="366" parent="251" name="zip">
+      <Position>8</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="367" parent="251" name="state">
+      <Position>9</Position>
+      <DataType>char(2)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="368" parent="251" name="notes">
+      <Position>10</Position>
+      <DataType>mediumtext|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="369" parent="251" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="370" parent="252" name="userid">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="371" parent="252" name="contactid">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="372" parent="252" name="FKemergency_531540">
+      <ColNames>contactid</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="373" parent="252" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>userid
+contactid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="374" parent="253" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="375" parent="253" name="uploaderid">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="376" parent="253" name="uploadname">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="377" parent="253" name="name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="378" parent="253" name="description">
+      <Position>5</Position>
+      <DataType>mediumtext|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="379" parent="253" name="image">
+      <Position>6</Position>
+      <DataType>blob|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="380" parent="253" name="FKimage647104">
+      <ColNames>uploaderid</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="381" parent="253" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="382" parent="254" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="383" parent="254" name="date_occurred">
+      <Position>2</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="384" parent="254" name="date_added">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="385" parent="254" name="description">
+      <Position>4</Position>
+      <DataType>mediumtext|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="386" parent="254" name="actionstaken">
+      <Position>5</Position>
+      <DataType>mediumtext|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="387" parent="254" name="reporterid">
+      <Position>6</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="388" parent="254" name="victimid">
+      <Position>7</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="389" parent="254" name="enabled">
+      <Position>8</Position>
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>b&apos;1&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="390" parent="254" name="FKinjury444232">
+      <ColNames>reporterid</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="391" parent="254" name="FKinjury996715">
+      <ColNames>victimid</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="392" parent="254" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="393" parent="255" name="injuryid">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="394" parent="255" name="imageid">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="395" parent="255" name="FKinjury_ima273604">
+      <ColNames>imageid</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="396" parent="255" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>injuryid
+imageid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="397" parent="256" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="398" parent="256" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="399" parent="256" name="description">
+      <Position>3</Position>
+      <DataType>mediumtext|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="400" parent="256" name="enabled">
+      <Position>4</Position>
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="401" parent="256" name="date_added">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="402" parent="256" name="date_modified">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="403" parent="256" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="404" parent="257" name="userid">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="405" parent="257" name="lessonid">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="406" parent="257" name="date_completed">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="407" parent="257" name="FKlessons_le236591">
+      <ColNames>lessonid</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="408" parent="257" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>userid
+lessonid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="409" parent="258" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="410" parent="258" name="message">
+      <Position>2</Position>
+      <DataType>mediumtext|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="411" parent="258" name="type">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="412" parent="258" name="date">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="413" parent="258" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="414" parent="259" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="415" parent="259" name="userid">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="416" parent="259" name="in_time">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="417" parent="259" name="out_time">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="418" parent="259" name="enabled">
+      <Position>5</Position>
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="419" parent="259" name="userid">
+      <ColNames>userid</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="420" parent="259" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="421" parent="260" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="422" parent="260" name="name">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="423" parent="260" name="description">
+      <Position>3</Position>
+      <DataType>mediumtext|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="424" parent="260" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="425" parent="261" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="426" parent="261" name="firstname">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="427" parent="261" name="lastname">
+      <Position>3</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="428" parent="261" name="email">
+      <Position>4</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="429" parent="261" name="password">
+      <Position>5</Position>
+      <DataType>char(64)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="430" parent="261" name="salt">
+      <Position>6</Position>
+      <DataType>char(16)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="431" parent="261" name="roleid">
+      <Position>7</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="432" parent="261" name="date_added">
+      <Position>8</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="433" parent="261" name="date_modified">
+      <Position>9</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="434" parent="261" name="enabled">
+      <Position>10</Position>
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="435" parent="261" name="confirmed">
+      <Position>11</Position>
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>b&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="436" parent="261" name="graduationyear">
+      <Position>12</Position>
+      <DataType>int(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="437" parent="261" name="yearjoined">
+      <Position>13</Position>
+      <DataType>int(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="438" parent="261" name="birthday">
+      <Position>14</Position>
+      <DataType>date|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="439" parent="261" name="profileimageid">
+      <Position>15</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="440" parent="261" name="firstname">
+      <ColNames>firstname</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="441" parent="261" name="lastname">
+      <ColNames>lastname</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="442" parent="261" name="email">
+      <ColNames>email</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="443" parent="261" name="test_role">
+      <ColNames>roleid</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="444" parent="261" name="FKuser928879">
+      <ColNames>profileimageid</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="445" parent="261" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="446" parent="262" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="447" parent="262" name="userid">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="448" parent="262" name="validator">
+      <Position>3</Position>
+      <DataType>char(32)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="449" parent="262" name="date">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="450" parent="262" name="validator">
+      <ColNames>validator</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="451" parent="262" name="userid">
+      <ColNames>userid</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="452" parent="262" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="453" parent="262" name="validator">
       <ColNames>validator</ColNames>
       <UnderlyingIndexName>validator</UnderlyingIndexName>
     </key>

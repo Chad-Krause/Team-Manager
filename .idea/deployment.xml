@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="team.chadkrause.com">
+  <component name="PublishConfigData" serverName="api.waverlyrobotics.org">
     <serverData>
-      <paths name="team.chadkrause.com">
+      <paths name="api.waverlyrobotics.org">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/chadkrause/public_html/api" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

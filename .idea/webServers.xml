@@ -2,12 +2,12 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="8506ae44-c5b8-45e6-8898-b5c859d3dd37" name="team.chadkrause.com" url="http://team.chadkrause.com">
-        <fileTransfer host="chadkrause.com" port="21">
+      <webServer id="8506ae44-c5b8-45e6-8898-b5c859d3dd37" name="api.waverlyrobotics.org" url="http://api.waverlyrobotics.com">
+        <fileTransfer host="waverlyrobotics.org" port="22" accessType="SFTP">
           <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
+            <advancedOptions compatibilityMode="true" dataProtectionLevel="Private" />
           </advancedOptions>
-          <option name="port" value="21" />
+          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
     </option>

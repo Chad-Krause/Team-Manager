@@ -11,21 +11,23 @@
   <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/dbunit" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
       <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
@@ -40,23 +42,19 @@
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/dbunit" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
-      <path value="$PROJECT_DIR$/vendor/claviska/simpleimage" />
-      <path value="$PROJECT_DIR$/vendor/league/color-extractor" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
     <interpreters>
-      <interpreter home="ssh://msushrim@chadkrause.com:22/usr/bin/php" id="cb8cabaf-ec92-4990-a88c-b7ced40d037a" name="Remote PHP 7.0" debugger_id="php.debugger.XDebug">
+      <interpreter home="ssh://msushrim@chadkrause.com:22/usr/bin/php" id="dc2cf63e-ddc8-44b0-be4a-8690d85c825e" name="Remote PHP 7" debugger_id="php.debugger.XDebug">
         <remote_data HOST="chadkrause.com" PORT="22" USERNAME="msushrim" PRIVATE_KEY_FILE="" USE_KEY_PAIR="false" USE_AUTH_AGENT="false" INTERPRETER_PATH="/usr/bin/php" HELPERS_PATH="/home/msushrim/.phpstorm_helpers" INITIALIZED="false" VALID="true" />
       </interpreter>
     </interpreters>
   </component>
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
-      <interpreter name="Remote PHP 7.0">
+      <interpreter name="Remote PHP 7">
         <phpinfo binary_type="PHP" php_cgi="/opt/cpanel/ea-php70/root/usr/bin/php-cgi" php_cli="/opt/cpanel/ea-php70/root/usr/bin/php-cgi.cagefs" path_separator=":" remote_host="65.31.65.61" version="7.0.30">
           <additional_php_ini>/opt/cpanel/ea-php70/root/etc/php.d/01-ioncube.ini, /opt/cpanel/ea-php70/root/etc/php.d/10-opcache.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-bcmath.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-bz2.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-calendar.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-ctype.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-curl.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-dom.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-exif.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-fileinfo.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-ftp.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-gd.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-gettext.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-iconv.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-imap.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-intl.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-json.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-mbstring.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-mcrypt.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-mysqlnd.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-pdo.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-phar.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-posix.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-pspell.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-simplexml.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-soap.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-sockets.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-sqlite3.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-tidy.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-tokenizer.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-xml.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-xmlwriter.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-xsl.ini, /opt/cpanel/ea-php70/root/etc/php.d/20-zip.ini, /opt/cpanel/ea-php70/root/etc/php.d/30-mysqli.ini, /opt/cpanel/ea-php70/root/etc/php.d/30-pdo_mysql.ini, /opt/cpanel/ea-php70/root/etc/php.d/30-pdo_sqlite.ini, /opt/cpanel/ea-php70/root/etc/php.d/30-wddx.ini, /opt/cpanel/ea-php70/root/etc/php.d/30-xmlreader.ini, /opt/cpanel/ea-php70/root/etc/php.d/30-xmlrpc.ini, /opt/cpanel/ea-php70/root/etc/php.d/zzzzzzz-pecl.ini</additional_php_ini>
           <configuration_file>/opt/cpanel/ea-php70/root/etc/php.ini</configuration_file>
@@ -394,6 +392,7 @@
   <component name="PhpUnit">
     <phpunit_settings>
       <PhpUnitSettings load_method="CUSTOM_LOADER" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" phpunit_phar_path="" />
+      <phpunit_by_interpreter interpreter_id="dc2cf63e-ddc8-44b0-be4a-8690d85c825e" load_method="CUSTOM_LOADER" custom_loader_path="/home/msushrim/team.chadkrause.com/vendor/autoload.php" />
     </phpunit_settings>
   </component>
 </project>
