@@ -50,6 +50,8 @@ class TimesheetsController extends Controller
                 case 'hoursLogged':
                     $response = $this->_getHoursLogged();
                     break;
+                case 'validatePin':
+                    $response = $this->_validatePin();
                 default:
                     $response->add_error(
                         APIException::INVALID_REQUEST,
@@ -194,7 +196,22 @@ class TimesheetsController extends Controller
         return $json;
     }
 
+    private function _validatePin()
+    {
+        $server = new Server();
+        $users = new Users($this->config);
+        $json = new JsonAPI();
 
+        $post = $server->post;
+
+        if(!$server->ensureKeys($post, ['id'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
+        }
+    }
 
 
 }

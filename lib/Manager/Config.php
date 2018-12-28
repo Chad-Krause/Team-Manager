@@ -167,7 +167,7 @@ EOD;
         return $this->serverDomain;
     }
 
-    public function setServerDomain(string $domain): void
+    public function setServerDomain($domain): void
     {
         $this->serverDomain = $domain;
     }
@@ -175,7 +175,7 @@ EOD;
     /**
      * @param string $domain
      */
-    public function setDomain(string $domain): void
+    public function setDomain($domain): void
     {
         $this->domain = $domain;
     }

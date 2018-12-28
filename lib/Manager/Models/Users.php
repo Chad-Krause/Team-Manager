@@ -215,14 +215,18 @@ SQL;
         $row = $statement->fetch(\PDO::FETCH_ASSOC);
 
         // Get the encrypted password and salt from the record
-        $hash = $row['pin'];
-        $salt = $row['pin_salt'];
-
-        //print_r('real: ' . $hash);
-        //print_r('new: '. hash("sha256", $pin . $salt));
-
+        $userPin = $row['pin'];
         // Ensure it is correct
-        return $hash == hash("sha256", $pin . $salt);
+        return password_verify($pin, $userPin);
+    }
+
+    /**
+     * Set's a user's pin
+     * @param $userid
+     * @param $pin
+     */
+    public function setPin($userid, $pin) {
+
     }
 
     /**
@@ -414,6 +418,7 @@ set
   roleid = ?,
   date_modified = ?,
   graduationyear = ?,
+  yearjoined = ?,
   birthday = ?,
   profileimageid = ?
 where id = ?
@@ -433,6 +438,7 @@ SQL;
             $user->getRole(),
             $time,
             $user->getGraduationyear(),
+            $user->getYearjoined(),
             $user->getBirthday(),
             $user->getProfilePictureId(),
             $user->getId()

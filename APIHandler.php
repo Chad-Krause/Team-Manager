@@ -52,6 +52,7 @@ try {
 // Get user from request (if authenticated)
 $user = Authenticator::GetUser($config);
 
+
 $result = null;
 
 //print_r($request_url);

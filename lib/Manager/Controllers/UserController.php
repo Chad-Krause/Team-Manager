@@ -216,6 +216,7 @@ class UserController extends Controller
         $userid = intval($get['id']);
         $permissions = [User::MENTOR, User::ADMIN, User::SAME_USER];
 
+
         if(!$this->hasPermission($permissions, $userid)) {
             $json->add_error(
                 APIException::INELIGIBLE_USER,
@@ -368,8 +369,17 @@ class UserController extends Controller
             $user->setGraduationyear(strip_tags($post['graduationYear']));
         }
 
+        if(isset($post['yearJoined'])) {
+            $user->setYearjoined(strip_tags($post['yearJoined']));
+        }
+
         if(isset($post['profileimageid'])) {
             $user->setProfilePictureId(intval($post['profileimageid']));
+        }
+
+        if(isset($post['pin'])) {
+            $pin = intval(strip_tags($post['pin']));
+            $users->setPin($id, $pin);
         }
 
         $time = Server::getRequestDatetime();

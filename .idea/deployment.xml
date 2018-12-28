@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="api.waverlyrobotics.org">
+  <component name="PublishConfigData" serverName="api.waverlyrobotics.org" filePermissions="493" folderPermissions="493">
     <serverData>
       <paths name="api.waverlyrobotics.org">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/chadkrause/public_html/api" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/tests" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.gitignore" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
