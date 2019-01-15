@@ -9,6 +9,7 @@
 namespace Manager\Controllers;
 
 use Manager\Config;
+use Manager\Helpers\Authenticator;
 use Manager\Helpers\JsonAPI;
 use Manager\Helpers\Server;
 use Manager\Models\Addresses;
@@ -52,6 +53,13 @@ class TimesheetsController extends Controller
                     break;
                 case 'validatePin':
                     $response = $this->_validatePin();
+                    break;
+                case 'login':
+                    $response = $this->_login();
+                    break;
+                case 'AllUsersOut':
+                    $response = $this->_punchAllUsersOut();
+                    break;
                 default:
                     $response->add_error(
                         APIException::INVALID_REQUEST,
@@ -93,7 +101,7 @@ class TimesheetsController extends Controller
 
         $post = $server->post;
 
-        if(!Server::ensureKeys($post, ['userid', 'pin', 'time'])) {
+        if(!Server::ensureKeys($post, ['userid', 'pin'])) {
             $json->add_error(
                 APIException::REQUIRED_KEYS_ERROR_MSG,
                 APIException::VALIDATION_ERROR
@@ -101,20 +109,24 @@ class TimesheetsController extends Controller
             return $json;
         }
 
-        $post = $server->post;
+        $permissions = [User::ADMIN, User::MENTOR];
+
+        if(!$this->hasPermission($permissions)) {
+            $json->add_error(
+                APIException::INELIGIBLE_USER,
+                APIException::AUTHENTICATION_ERROR
+            );
+            return $json;
+        }
+
         $ip = $server->getRequestIP();
         $userid = $post['userid'];
         $pin = $post['pin'];
-        $time = $post['time'];
-
-        $address = new Addresses($this->config);
-        $ipid = $address->get($ip);
-
-
+        $time = Server::getRequestDatetime();
 
         $users = new Users($this->config);
 
-        if($users->verifyPin($userid, $pin)){
+        if(!$users->verifyPin($userid, $pin)){
             $json->add_error(
                 APIException::INVALID_PIN_MSG,
                 APIException::INVALID_PIN
@@ -122,12 +134,10 @@ class TimesheetsController extends Controller
             return $json;
         }
 
-
-
         $punchcards = new PunchCards($this->config);
 
         if($type == PunchCards::IN) {
-            $result = $punchcards->punchIn($userid, $time, $ipid);
+            $result = $punchcards->punchIn($userid, $time, $server->getRequestIP());
         } else {
             $result = $punchcards->punchOut($userid, $time);
         }
@@ -139,23 +149,9 @@ class TimesheetsController extends Controller
             );
             return $json;
         }
+
+
         $json->setSuccess(true);
-        return $json;
-    }
-
-    private function _getAllUsers()
-    {
-        $users = new Users($this->config);
-        $all = $users->getAllUsers();
-
-        $usersArray = [];
-
-        foreach($all as $user) {
-            $usersArray[] = $user->toArray();
-        }
-
-        $json = new JsonAPI();
-        $json->setData(['users' => $usersArray]);
         return $json;
     }
 
@@ -196,22 +192,128 @@ class TimesheetsController extends Controller
         return $json;
     }
 
-    private function _validatePin()
-    {
-        $server = new Server();
-        $users = new Users($this->config);
+    //POST
+    /**
+     * Login for Admins/Mentors only. Shorter JWT Time
+     * @throws APIException if email or password isn't set
+     * @throws APIException if email and password doesn't match
+     * @throws APIException if the user hasn't been confirmed yet
+     * @return JsonAPI
+     */
+    private function _login() {
         $json = new JsonAPI();
-
+        $server = new Server();
         $post = $server->post;
 
-        if(!$server->ensureKeys($post, ['id'])) {
+        if(!Server::ensureKeys($post, ['email', 'password'])) {
             $json->add_error(
                 APIException::REQUIRED_KEYS_ERROR_MSG,
                 APIException::VALIDATION_ERROR
             );
             return $json;
         }
+
+        $users = new Users($this->config);
+        $user = $users->login($post['email'], $post['password']);
+
+        if($user === null) {
+            throw new APIException(APIException::INCORRECT_LOGIN, APIException::EMAIL_PASSWORD_WRONG);
+        }
+
+        if(!$user->isConfirmed()) {
+            throw new APIException(APIException::UNCONFIRMED_USER, APIException::USER_NOT_CONFIRMED);
+        }
+
+        if(!($user->getRole() == User::ADMIN || $user->getRole() == User::MENTOR)) {
+            throw new APIException(APIException::LOGIN_FOR_ADMIN_MENTOR_MSG, APIException::LOGIN_FOR_ADMIN_MENTOR);
+        }
+
+        $auth = new Authenticator($this->config);
+
+        $exp = 60*30; // 60s x 30mins
+        $jwt = $auth->mintToken($user, $server->getRequestTime(), $exp);
+
+        $json->setData(['token' => $jwt, 'user' => $user->toArray()]);
+
+        return $json;
     }
 
+    //GET
+    /**
+     * Gets a list of all users, including
+     * @return JsonAPI
+     */
+    private function _getAllUsers()
+    {
+        $json = new JsonAPI();
+        $permissions = [User::MENTOR, User::ADMIN];
 
+
+        if(!$this->hasPermission($permissions)) {
+            $json->add_error(
+                APIException::INELIGIBLE_USER,
+                APIException::AUTHENTICATION_ERROR
+            );
+            return $json;
+        }
+
+        $users = new Users($this->config);
+        $allUsers = $users->getAllUsersForTimesheets();
+
+        $allUsersArray = [];
+        foreach($allUsers as $user) {
+            $allUsersArray[] = $user->toArray();
+        }
+
+        $json->setData($allUsersArray);
+        return $json;
+    }
+
+    //POST
+    /**
+     * Punches all users that are punched in, out, and also
+     * sets the 'auto_logout' flag in the database
+     * @return JsonAPI
+     */
+    private function _punchAllUsersOut()
+    {
+        $json = new JsonAPI();
+        $server = new Server();
+        $permissions = [User::MENTOR, User::ADMIN];
+        $post = $server->post;
+
+        if(!Server::ensureKeys($post, ['userid', 'pin'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
+        }
+
+        if(!$this->hasPermission($permissions)) {
+            $json->add_error(
+                APIException::INELIGIBLE_USER,
+                APIException::AUTHENTICATION_ERROR
+            );
+            return $json;
+        }
+
+        $userid = $post['userid'];
+        $pin = $post['pin'];
+
+        $users = new Users($this->config);
+        if(!$users->verifyPin($userid, $pin)){
+            $json->add_error(
+                APIException::INVALID_PIN_MSG,
+                APIException::INVALID_PIN
+            );
+            return $json;
+        }
+
+        $punchcards = new PunchCards($this->config);
+        $count = $punchcards->punchAllUsersOut($server::getRequestDatetime());
+
+        $json->setData(['numUsers' => $count]);
+        return $json;
+    }
 }

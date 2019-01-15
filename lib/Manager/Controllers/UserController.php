@@ -60,6 +60,15 @@ class UserController extends Controller
                 case 'updateUser':
                     $response = $this->_updateUser();
                     break;
+                case 'getAllUsers':
+                    $response = $this->_getAllUsers();
+                    break;
+                case 'disableUser':
+                    $response = $this->_disableUser();
+                    break;
+                case 'confirmUser':
+                    $response = $this->_confirmUser();
+                    break;
                 default:
                     $response->add_error(
                         APIException::INVALID_REQUEST,
@@ -308,6 +317,11 @@ class UserController extends Controller
         return $json;
     }
 
+    //POST
+    /**
+     * Updates a user based on what keys are submitted with the request
+     * @return JsonAPI
+     */
     private function _updateUser()
     {
         $server = new Server();
@@ -378,7 +392,7 @@ class UserController extends Controller
         }
 
         if(isset($post['pin'])) {
-            $pin = intval(strip_tags($post['pin']));
+            $pin = strip_tags($post['pin']);
             $users->setPin($id, $pin);
         }
 
@@ -392,6 +406,107 @@ class UserController extends Controller
         }
 
         $json->setSuccess(false);
+        return $json;
+    }
+
+    //GET
+    /**
+     * Gets a list of all users, including
+     * @return JsonAPI
+     */
+    private function _getAllUsers()
+    {
+        $server = new Server();
+        $get = $server->get;
+        $json = new JsonAPI();
+        $permissions = [User::MENTOR, User::ADMIN];
+
+
+        if(!$this->hasPermission($permissions)) {
+            $json->add_error(
+                APIException::INELIGIBLE_USER,
+                APIException::AUTHENTICATION_ERROR
+            );
+            return $json;
+        }
+
+        $users = new Users($this->config);
+        $allUsers = $users->getAllUsers();
+
+        $allUsersArray = [];
+        foreach($allUsers as $user) {
+            $allUsersArray[] = $user->toArray();
+        }
+
+        $json->setData($allUsersArray);
+        return $json;
+    }
+
+    private function _confirmUser()
+    {
+        $server = new Server();
+        $post = $server->post;
+        $json = new JsonAPI();
+        $permissions = [User::ADMIN];
+
+        if(!$this->hasPermission($permissions)) {
+            $json->add_error(
+                APIException::INELIGIBLE_USER,
+                APIException::AUTHENTICATION_ERROR
+            );
+            return $json;
+        }
+
+        if(!Server::ensureKeys($post, ['userid'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
+        }
+
+        $users = new Users($this->config);
+
+        $userid = intval($post['userid']);
+
+        $success = $users->confirmUser($userid);
+
+        $json->setSuccess($success);
+
+        return $json;
+    }
+
+    private function _disableUser()
+    {
+        $server = new Server();
+        $post = $server->post;
+        $json = new JsonAPI();
+        $permissions = [User::ADMIN];
+
+        if(!$this->hasPermission($permissions)) {
+            $json->add_error(
+                APIException::INELIGIBLE_USER,
+                APIException::AUTHENTICATION_ERROR
+            );
+            return $json;
+        }
+
+        if(!Server::ensureKeys($post, ['userid'])) {
+            $json->add_error(
+                APIException::REQUIRED_KEYS_ERROR_MSG,
+                APIException::VALIDATION_ERROR
+            );
+            return $json;
+        }
+
+        $users = new Users($this->config);
+
+        $userid = intval($post['userid']);
+
+        $success = $users->disableUser($userid);
+
+        $json->setSuccess($success);
+
         return $json;
     }
 }

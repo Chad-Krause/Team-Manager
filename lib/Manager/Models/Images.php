@@ -119,7 +119,7 @@ SQL;
         $pdo = $this->pdo();
 
         $sql = <<<SQL
-select `image`, userid, `name`, `type`, date_added, date_modified
+select `image`, thumbnail, userid, `name`, `type`, date_added, date_modified
 from $this->tableName
 where id=?
 SQL;
@@ -130,23 +130,26 @@ SQL;
         $type = null;
         $created = null;
         $modified = null;
+        $thumbnail = null;
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id]);
 
 
         $stmt->bindColumn(1, $image, \PDO::PARAM_LOB);
-        $stmt->bindColumn(2, $userId, \PDO::PARAM_INT);
-        $stmt->bindColumn(3, $name, \PDO::PARAM_STR);
-        $stmt->bindColumn(4, $type, \PDO::PARAM_STR);
-        $stmt->bindColumn(5, $created, \PDO::PARAM_STR);
-        $stmt->bindColumn(6, $modified, \PDO::PARAM_STR);
+        $stmt->bindColumn(2, $thumbnail, \PDO::PARAM_LOB);
+        $stmt->bindColumn(3, $userId, \PDO::PARAM_INT);
+        $stmt->bindColumn(4, $name, \PDO::PARAM_STR);
+        $stmt->bindColumn(5, $type, \PDO::PARAM_STR);
+        $stmt->bindColumn(6, $created, \PDO::PARAM_STR);
+        $stmt->bindColumn(7, $modified, \PDO::PARAM_STR);
 
         if($stmt->fetch(\PDO::FETCH_BOUND) !== false) {
             return [
                 'userId'=>$userId,
                 'name'=>$name,
                 'image' => $image,
+                'thumbnail' => $thumbnail,
                 'type' => $type,
                 'date_added' => strtotime($created),
                 'date_modified' => strtotime($modified)

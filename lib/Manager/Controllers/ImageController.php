@@ -38,6 +38,8 @@ class ImageController extends Controller
                 $result = $this->upload()->encode();
             } elseif (is_numeric($path[0])) {   // Get image
                 $result = $this->get($path[0]);
+            } elseif ($path[0] == 'thumb') {
+                $result = $this->getThumbnail($path[1]);
             } else {                            // Error
                 throw new APIException();
             }
@@ -86,13 +88,19 @@ class ImageController extends Controller
             return $json;
         }
 
+        if(!is_null($this->user)) {
+            $id = $this->user->getId();
+        } else {
+            $id = 1;
+        }
+
         $name = $file["name"];
         $sepext = explode('.', strtolower($name));
         $fp = $file["tmp_name"];
 
         $fs = new Images($this->config);
         $res = $fs->writeFile(
-            1,
+            $id,
             $name,
             $fp,
             $type,
@@ -145,6 +153,32 @@ class ImageController extends Controller
     }
 
     private function getThumbnail($id) {
+        $images = new Images($this->config);
+        $server = new Server();
 
+        if ($this->user == null) {
+            $server->header('Content-Type: application/json');
+            $json = new JsonAPI();
+            $json->add_error(APIException::NOT_LOGGED_IN_MSG, APIException::AUTHENTICATION_ERROR);
+            http_response_code(404);
+            return $json->encode();
+        }
+
+
+        $file = $images->readFileId($id);
+
+        if (is_null($file)) {
+            $server->header('Content-Type: application/json');
+            $json = new JsonAPI();
+            $json->add_error(APIException::IMAGE_NOT_FOUND, APIException::NOT_FOUND);
+            http_response_code(404);
+            return $json->encode();
+        } else {
+            $server->header('Content-Type: ' . $file['type']);
+            $server->header("Content-Transfer-Encoding: Binary");
+            $server->header("Content-disposition: attachment; filename=\"" . $file['name'] . "\"");
+            //print_r('file: ' . $file['image']);
+            return $file['thumbnail'];
+        }
     }
 }

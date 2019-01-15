@@ -18,6 +18,7 @@ class PunchCards extends Table
 {
     const IN = 'in';
     const OUT = 'out';
+    const AUTO_LOGOUT = 1;
 
     public function __construct(Config $config)
     {
@@ -33,7 +34,6 @@ class PunchCards extends Table
     public function punchIn($userid, $time, $ipaddress = null)
     {
         if(!$this->isEligible($userid, self::IN)){
-
             return false;
         }
 
@@ -48,12 +48,16 @@ class PunchCards extends Table
 insert into $this->tableName (userid, in_time, out_time, enabled, auto_logout, ipaddressid)
 values (?, ?, NULL, 1, 0, ?)
 SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+
         try {
-            $stmt = $this->pdo()->prepare($sql);
             $success = $stmt->execute([$userid, $time, $ipaddressid]);
         } catch (\Exception $e) {
+            print_r($e);
             return false;
         }
+
             return $success;
     }
 
@@ -160,13 +164,22 @@ SQL;
         return $stmt->fetchAll(\PDO::FETCH_ASSOC)[0];
     }
 
-    /**
-     * Returns an array of all the users
-     * @return array(User)
-     */
-    public function getUsers()
+    public function punchAllUsersOut($time)
     {
-        $users = new Users($this->config);
-        return $users->getAllUsers();
+        $sql = <<<SQL
+update $this->tableName 
+set out_time = ?, auto_logout = ?
+where out_time is null
+SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+        try {
+            $success = $stmt->execute([$time, self::AUTO_LOGOUT]);
+        } catch (\Exception $e) {
+            print_r($e);
+            return false;
+        }
+        return $stmt->rowCount();
     }
+
 }

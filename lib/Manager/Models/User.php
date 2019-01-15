@@ -23,6 +23,8 @@ class User
     private $confirmed;         ///> Confirmed
     private $profilePictureId;  ///> Id of the image on the image table
     private $profilePictureUrl;  ///> Id of the image on the image table
+    private $date_added;
+    private $date_modified;
 
     const ADMIN = 1;
     const STUDENT = 2;
@@ -51,11 +53,45 @@ class User
             $this->yearjoined       = isset($row['yearjoined']) ? $row['yearjoined'] : null;
             $this->birthday         = isset($row['birthday']) ? $row['birthday'] : null;
             $this->profilePictureId = isset($row['profileimageid']) ? $row['profileimageid'] : null;
+            $this->date_added       = isset($row['date_added']) ? $row['date_added'] : null;
+            $this->date_modified    = isset($row['date_modified']) ? $row['date_modified'] : null;
 
             if(isset($row['confirmed'])) {
                 $this->confirmed = $row['confirmed'] == self::CONFIRMED;
             }
         }
+    }
+
+    /**
+     * @return null
+     */
+    public function getDateAdded()
+    {
+        return $this->date_added;
+    }
+
+    /**
+     * @param null $date_added
+     */
+    public function setDateAdded($date_added): void
+    {
+        $this->date_added = $date_added;
+    }
+
+    /**
+     * @return null
+     */
+    public function getDateModified()
+    {
+        return $this->date_modified;
+    }
+
+    /**
+     * @param null $date_modified
+     */
+    public function setDateModified($date_modified): void
+    {
+        $this->date_modified = $date_modified;
     }
 
     /**
@@ -216,7 +252,9 @@ class User
             'yearJoined' => $this->getYearjoined(),
             'birthday' => $this->getBirthday(),
             'confirmed' => $this->isConfirmed(),
-            'profilePictureUrl' => $this->getProfilePictureUrl()
+            'profilePictureId' => intval($this->getProfilePictureId()),
+            'date_added' => $this->getDateAdded(),
+            'date_modified' => $this->getDateModified()
         );
     }
 

@@ -57,7 +57,6 @@ SQL;
         }
 
         $user = new User($row);
-        $this->setProfilePictureUrl($user);
         return $user;
     }
 
@@ -103,26 +102,16 @@ SQL;
 
         $id = $this->pdo()->lastInsertId();
 
-        // Create a validator and add to the validator table
-        $validators = new Validators($this->config);
-        $validator = $validators->newValidator($id);
-
-        // Send email with the validator in it
-        $link = "https://team.chadkrause.com"  . $this->config->getRoot() .
-            '/password-validate.php?v=' . $validator;
-
         $from = $this->config->getEmail();
         $name = $user->getFirstname();
 
-        $subject = "Confirm your email";
+        $subject = "Welcome to Waverly Robotics";
         $message = <<<MSG
 <html>
 <p>Greetings, $name,</p>
 
-<p>Welcome to Felis. In order to complete your registration,
-please verify your email address by visiting the following link:</p>
-
-<p><a href="$link">$link</a></p>
+<p>Welcome to Waverly Robotics. In order to complete your registration, a mentor will have
+to confirm your account. You should get a email notification when your account gets confirmed.</p>
 </html>
 MSG;
         $headers = "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso=8859-1\r\nFrom: $from\r\n";
@@ -168,7 +157,6 @@ SQL;
             return null;
         } else {
             $user = new User($stmt->fetch(\PDO::FETCH_ASSOC));
-            $this->setProfilePictureUrl($user);
             return $user;
         }
     }
@@ -216,6 +204,11 @@ SQL;
 
         // Get the encrypted password and salt from the record
         $userPin = $row['pin'];
+
+        if(strlen($userPin) == 0) {
+            throw new APIException(APIException::PIN_NOT_SET_MSG, APIException::PIN_NOT_SET);
+        }
+
         // Ensure it is correct
         return password_verify($pin, $userPin);
     }
@@ -226,30 +219,44 @@ SQL;
      * @param $pin
      */
     public function setPin($userid, $pin) {
+        $sql = <<<SQL
+update $this->tableName set pin = ?
+where id = ?
+SQL;
 
+        $stmt = $this->pdo()->prepare($sql);
+
+        $hash = password_hash($pin, PASSWORD_BCRYPT);
+
+        $stmt->execute([$hash, $userid]);
+
+        if($stmt->rowCount() > 1) {
+            throw new \Exception('More than 1 record updated!');
+        }
     }
 
     /**
      * Returns an array of all users
-     * @return array(User)
+     * @return User[]
      */
     public function getAllUsers()
     {
         $sql = <<<SQL
 select * from $this->tableName
-where enabled = ? and confirmed = ?
+where enabled = ?
+order by lastname
 SQL;
 
         $stmt = $this->pdo()->prepare($sql);
         $stmt->execute([
-            User::ENABLED,
-            User::CONFIRMED
+            User::ENABLED
         ]);
 
         $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         $users = [];
         foreach($rows as $row) {
-            $users[] = new User($row);
+            $user = new User($row);
+            $users[] = $user;
         }
 
         return $users;
@@ -400,13 +407,6 @@ SQL;
         return null;
     }
 
-    private function setProfilePictureUrl(User $user)
-    {
-        if(!is_null($user->getProfilePictureId())) {
-            $user->setProfilePictureUrl($this->config->getServerDomain() . '/api/image/' . $user->getProfilePictureId());
-        }
-    }
-
     public function updateUser(User $user, $time = null) {
         $sql = <<<SQL
 update $this->tableName
@@ -451,4 +451,118 @@ SQL;
         return $stmt->rowCount() == 1;
     }
 
+    /**
+     * Confirms a user
+     * @param $userid
+     * @return bool true if successful
+     */
+    public function confirmUser($userid)
+    {
+        $sql = <<<SQL
+update $this->tableName
+set
+  confirmed = ?
+where
+  id = ?
+SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+        $stmt->execute([
+            User::CONFIRMED,
+            $userid
+        ]);
+
+        $success =  $stmt->rowCount() == 1;
+
+        if($success) {
+            $link = $this->config->getDomain();
+
+            $from = $this->config->getEmail();
+            $user = $this->get($userid);
+            $name = $user->getFirstname();
+
+            $subject = "Waverly Robotics: Account Confirmed";
+            $message = <<<MSG
+<html>
+<p>Hello $name,</p>
+
+<p>Welcome to Waverly Robotics, Team Error 404! Your account has just been confirmed by an admin.</p>
+<p>Please log in and fill out some additional information on your account, like your profile picture and PIN. Without
+your pin, you will not be able to log time.</p>
+
+<a href="$link">Click here to log in</a>
+</html>
+MSG;
+            $mailer = new Email();
+            $headers = "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso=8859-1\r\nFrom: $from\r\n";
+            $mailer->mail($user->getEmail(), $subject, $message, $headers);
+        }
+
+        return $success;
+    }
+
+    /**
+     * Disables a user
+     * @param $userid
+     * @return bool
+     */
+    public function disableUser($userid)
+    {
+        $sql = <<<SQL
+update $this->tableName
+set
+  enabled = ?
+where
+  id = ?
+SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+        $stmt->execute([
+            User::DISABLED,
+            $userid
+        ]);
+
+        return $stmt->rowCount() == 1;
+    }
+
+    /**
+     * Returns an array of all users
+     * @return TimesheetsUser[]
+     */
+    public function getAllUsersForTimesheets()
+    {
+        $punchcards = new PunchCards($this->config);
+        $pctable = $punchcards->getTableName();
+
+        $sql = <<<SQL
+select 
+    *, 
+    not isnull(pin) `hasPin`, 
+    (
+        select isnull(out_time) 
+        from $pctable p 
+        where p.userid = u.id 
+        order by id desc 
+        limit 1
+    ) `punchedIn`
+from $this->tableName u
+where enabled = ? and confirmed = ?
+order by hasPin desc, lastname
+SQL;
+
+        $stmt = $this->pdo()->prepare($sql);
+        $stmt->execute([
+            TimesheetsUser::ENABLED,
+            TimesheetsUser::CONFIRMED
+        ]);
+
+        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $tsusers = [];
+        foreach($rows as $row) {
+            $user = new TimesheetsUser($row);
+            $tsusers[] = $user;
+        }
+
+        return $tsusers;
+    }
 }

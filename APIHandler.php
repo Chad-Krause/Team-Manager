@@ -18,7 +18,6 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(-1);
-header('Access-Control-Allow-Origin: *');
 //require __DIR__ . '/vendor/autoload.php';
 
 require "lib/config.inc.php";
@@ -28,11 +27,29 @@ use Manager\Helpers\JsonAPI;
 use Manager\Helpers\APIException;
 use Manager\Controllers\TimesheetsController;
 
-// respond to preflights
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Cache-Control: post-check=0, pre-check=0', FALSE);
+header('Pragma: no-cache');
+
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
+    // you want to allow, and if so:
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Max-Age: 86400');    // cache for 1 day
+}
+
+// Access-Control headers are received during OPTIONS requests
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    // return only the headers and not the content
-    header('Access-Control-Allow-Headers: *');
-    exit;
+
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+        // may also be using PUT, PATCH, HEAD etc
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+        header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+
+    exit(0);
 }
 
 try {
@@ -61,7 +78,7 @@ switch ($request_url[2]) {
 
     case 'image':
         if($request_url[3] == 'upload') {
-            header('Content-Type: application/json');
+            header('Content-Type: application/json; charset=utf-8');
         }
 
         $controller = new \Manager\Controllers\ImageController(
@@ -79,7 +96,7 @@ switch ($request_url[2]) {
             $user,
             $request
         );
-        header('Content-Type: application/json');
+        header('Content-Type: application/json; charset=utf-8');
         $result = $controller->getResponse()->encode();
 
         break;
@@ -94,7 +111,7 @@ switch ($request_url[2]) {
             $user,
             $request
         );
-        header('Content-Type: application/json');
+        header('Content-Type: application/json; charset=utf-8');
         $result = $controller->getResponse()->encode();
         break;
 
@@ -104,7 +121,7 @@ switch ($request_url[2]) {
             $user,
             $request
         );
-        header('Content-Type: application/json');
+        header('Content-Type: application/json; charset=utf-8');
         $result = $controller->getResponse()->encode();
         break;
 

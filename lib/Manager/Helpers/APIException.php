@@ -38,6 +38,10 @@ class APIException extends \Exception
     const VALIDATOR_NOT_FOUND_MSG       = 'Validator not found';
     const NOT_LOGGED_IN                 = 401;
     const NOT_LOGGED_IN_MSG             = 'Not logged in';
+    const LOGIN_FOR_ADMIN_MENTOR        = 13;
+    const LOGIN_FOR_ADMIN_MENTOR_MSG    = 'This login is for Admins and Mentors only. The attempted user is not an Admin or Mentor';
+    const PIN_NOT_SET                   = 14;
+    const PIN_NOT_SET_MSG               = 'User has not set their pin yet';
 
 
     const EMAIL_PASSWORD_NOT_SET = 'Email or password not set.';

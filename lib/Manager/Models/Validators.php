@@ -44,7 +44,7 @@ SQL;
     /**
      * Generate a random validator string of characters
      * @param $len int Length to generate, default is 32
-     * @returns string Validator string
+     * @return string Validator string
      */
     private function createValidator($len = 32) {
         $bytes = openssl_random_pseudo_bytes($len / 2);

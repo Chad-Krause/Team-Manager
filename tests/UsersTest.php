@@ -15,7 +15,7 @@ class UsersTest extends DatabaseTest
 {
     protected function getDataSet()
     {
-        return new YamlDataSet(dirname(__FILE__) . '/Datasets/user.yaml');
+        return new YamlDataSet(dirname(__FILE__) . '/Datasets/master.yaml');
     }
 
     protected function tearDown(): void
@@ -145,6 +145,15 @@ SQL;
 
         $this->assertEquals(count($all), $count);
         $this->assertInstanceOf(User::class, $all[0]);
+    }
+
+    public function testPinVerify() {
+        $users = new Users(self::$config);
+        $user = $users->get(1); // pin should be 7226
+
+        $this->assertTrue($users->verifyPin(1, 7226));
+
+
     }
 }
 

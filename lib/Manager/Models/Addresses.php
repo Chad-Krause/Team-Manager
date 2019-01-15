@@ -59,14 +59,14 @@ SQL;
      */
     private function insert($ipaddress){
         $sql = <<<SQL
-insert into $this->tableName (address)
-value (?);
+insert into $this->tableName (address, ipaddresstypeid, enabled)
+value (?, ?, ?);
 SQL;
         $pdo = $this->pdo();
         $stmt = $pdo->prepare($sql);
 
         try {
-            if($stmt->execute([$ipaddress]) === false) {
+            if($stmt->execute([$ipaddress, 1, 1]) === false) {
                 return null;
             }
         } catch(\PDOException $e) {
