@@ -230,7 +230,7 @@ class TimesheetsController extends Controller
 
         $auth = new Authenticator($this->config);
 
-        $exp = 60*30; // 60s x 30mins
+        $exp = 60*60*8; // 60s x 60mins x 8hrs
         $jwt = $auth->mintToken($user, $server->getRequestTime(), $exp);
 
         $json->setData(['token' => $jwt, 'user' => $user->toArray()]);
