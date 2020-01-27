@@ -69,6 +69,9 @@ class UserController extends Controller
                 case 'confirmUser':
                     $response = $this->_confirmUser();
                     break;
+                case 'happyBirthday':
+                    $response = $this->_sendHappyBirthdayEmails();
+                    break;
                 default:
                     $response->add_error(
                         APIException::INVALID_REQUEST,
@@ -508,5 +511,38 @@ class UserController extends Controller
         $json->setSuccess($success);
 
         return $json;
+    }
+
+    private function _sendHappyBirthdayEmails()
+    {
+        $users = new Users($this->config);
+        $allUsers = $users->getAllUsers();
+        $mailer = new Email();
+        $birthdays = [];
+
+        foreach($allUsers as $user)
+        {
+            if($user->isBirthday())
+            {
+                $birthdays[] = $user;
+//                 $from = $this->config->getEmail();
+//                 $name = $user->getNickname()!= null ? $user->getNickname() : $user->getFirstname();
+    
+//                 $subject = "🎂Happy Birthday from Waverly Robotics!🎂";
+//                 $message = <<<MSG
+// <html>
+// <p>Happy Birthday, $name!</p>
+// <p>Thank you for being such an awesome member of the team!</p>
+
+// <p>Love,</p>
+// <p>Waverly Robotics, Team 7226</p>
+// </html>
+// MSG;
+    
+//                 $headers = "MIME-Version: 1.0\r\nContent-type: text/html; charset=utf-8\r\nFrom: $from\r\n";
+//                 $mailer->mail($user->getEmail(), $subject, $message, $headers);
+            }
+        }
+        return $birthdays;
     }
 }

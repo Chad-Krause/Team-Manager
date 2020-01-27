@@ -277,7 +277,7 @@ class User
     /**
      * @returns true if it's this user's birthday
      */
-    private function isBirthday()
+    public function isBirthday()
     {
         $date = date('m-d');
         $bd = substr($this->birthday,5);
